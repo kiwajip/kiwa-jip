@@ -415,25 +415,34 @@
       min-height: 110px;
     }
 
-    /* 파일 업로드 스타일 */
-    input[type="file"].form-control {
-      padding: 0.6rem;
-      color: var(--text-sub);
+    /* 커스텀 파일 업로드 디자인 */
+    .custom-file-upload {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 0.9rem;
+      background-color: #1a1918;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
       cursor: pointer;
+      transition: border-color 0.3s ease;
     }
 
-    input[type="file"]::file-selector-button {
+    .custom-file-upload:hover {
+      border-color: var(--accent-color);
+    }
+
+    .file-btn-text {
       background-color: var(--border-color);
       color: var(--text-main);
-      border: none;
       padding: 6px 12px;
       border-radius: 4px;
-      cursor: pointer;
-      margin-right: 10px;
+      font-size: 0.85rem;
+      font-weight: 500;
       transition: background 0.3s;
     }
 
-    input[type="file"]::file-selector-button:hover {
+    .custom-file-upload:hover .file-btn-text {
       background-color: var(--accent-color);
     }
 
@@ -604,15 +613,16 @@
 
     <!-- 위치 및 게스트 스팟 정보 -->
     <section class="info-grid fade-up">
-<div class="info-card">
-    <h3 data-en="Base & Location" data-kr="작업실 위치" data-de="Standort">Base & Location</h3>
-    <p data-en="Primary Studio: <a href='https://maps.google.com/?q=Frankfurt+am+Main' target='_blank' style='color: var(--text-secondary); text-decoration: none;'>Frankfurt am Main, Germany</a>.<br>Appointments are strictly private and booked in advance." 
-       data-kr="메인 스튜디오: <a href='https://maps.google.com/?q=Frankfurt+am+Main' target='_blank' style='color: var(--text-secondary); text-decoration: none;'>독일 프랑크푸르트 암 마인</a>.<br>모든 작업은 프라이빗 예약제로 운영됩니다." 
-       data-de="Hauptstudio: <a href='https://maps.google.com/?q=Frankfurt+am+Main' target='_blank' style='color: var(--text-secondary); text-decoration: none;'>Frankfurt am Main, Deutschland</a>.<br>Termine nur nach vorheriger Absprache.">
-        Primary Studio: <a href="https://maps.google.com/?q=Frankfurt+am+Main" target="_blank" style="color: var(--text-secondary); text-decoration: none;">Frankfurt am Main, Germany</a>.<br>
-        Appointments are strictly private and booked in advance.
-    </p>
-</div>
+      <div class="info-card">
+        <h3 data-en="Base & Location" data-kr="작업실 위치" data-de="Standort">Base & Location</h3>
+        <p data-en="Primary Studio: <a href='https://maps.google.com/?q=Frankfurt+am+Main' target='_blank' style='color: var(--text-sub); text-decoration: none; transition: color 0.3s;' onmouseover=\"this.style.color='var(--accent-color)'\" onmouseout=\"this.style.color='var(--text-sub)'\">Frankfurt am Main, Germany</a>.<br>Appointments are strictly private and booked in advance." 
+           data-kr="메인 스튜디오: <a href='https://maps.google.com/?q=Frankfurt+am+Main' target='_blank' style='color: var(--text-sub); text-decoration: none; transition: color 0.3s;' onmouseover=\"this.style.color='var(--accent-color)'\" onmouseout=\"this.style.color='var(--text-sub)'\">독일 프랑크푸르트 암 마인</a>.<br>모든 작업은 프라이빗 예약제로 운영됩니다." 
+           data-de="Hauptstudio: <a href='https://maps.google.com/?q=Frankfurt+am+Main' target='_blank' style='color: var(--text-sub); text-decoration: none; transition: color 0.3s;' onmouseover=\"this.style.color='var(--accent-color)'\" onmouseout=\"this.style.color='var(--text-sub)'\">Frankfurt am Main, Deutschland</a>.<br>Termine nur nach vorheriger Absprache.">
+            Primary Studio: <a href="https://maps.google.com/?q=Frankfurt+am+Main" target="_blank" style="color: var(--text-sub); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--accent-color)'" onmouseout="this.style.color='var(--text-sub)'">Frankfurt am Main, Germany</a>.<br>
+            Appointments are strictly private and booked in advance.
+        </p>
+      </div>
+
       <div class="info-card">
         <h3 data-en="Guest Spot Schedule" data-kr="게스트 스팟 일정" data-de="Gastspot-Zeitplan">Guest Spot Schedule</h3>
         <ul>
@@ -721,9 +731,14 @@
           </div>
         </div>
 
+        <!-- 나라별 다국어 연동되는 커스텀 파일 업로드 버튼 -->
         <div class="form-group">
-          <label for="attachment" data-en="REFERENCE PHOTO / FILE" data-kr="참고 사진 첨부 (PHOTO / FILE)" data-de="REFERENZ-FOTO / DATEI">REFERENCE PHOTO / FILE</label>
-          <input type="file" id="attachment" name="attachment" class="form-control" accept="image/*">
+          <label data-en="REFERENCE PHOTO / FILE" data-kr="참고 사진 첨부 (PHOTO / FILE)" data-de="REFERENZ-FOTO / DATEI">REFERENCE PHOTO / FILE</label>
+          <label for="attachment" class="custom-file-upload">
+            <span id="file-chosen" data-en="No file chosen" data-kr="선택된 파일 없음" data-de="Keine Datei ausgewählt">No file chosen</span>
+            <span class="file-btn-text" data-en="Browse" data-kr="파일찾기" data-de="Durchsuchen">Browse</span>
+          </label>
+          <input type="file" id="attachment" name="attachment" accept="image/*" style="display: none;" onchange="document.getElementById('file-chosen').textContent = this.files[0] ? this.files[0].name : (document.documentElement.lang === 'kr' ? '선택된 파일 없음' : 'No file chosen');">
         </div>
 
         <div class="form-group">
@@ -741,18 +756,19 @@
 
   </main>
 
-<footer>
+  <footer>
     <p>&copy; 2026 KIWA. All Rights Reserved.</p>
     <div style="margin-top: 10px; display: flex; justify-content: center; gap: 15px; font-size: 0.9rem;">
         <a href="https://www.instagram.com/kiwa_jip" target="_blank" style="color: var(--accent-color); text-decoration: none;">Instagram (@kiwa_jip)</a>
         <span style="color: var(--border-color);">|</span>
         <a href="mailto:kiwajip91@gmail.com" style="color: var(--text-secondary); text-decoration: none; transition: var(--transition);" onmouseover="this.style.color='var(--accent-color)'" onmouseout="this.style.color='var(--text-secondary)'">Email Inquiry</a>
     </div>
-</footer>
+  </footer>
 
   <script>
-    // 언어 전환 기능
+    // 언어 전환 기능 (+ HTML lang 속성 동기화)
     function setLanguage(lang) {
+      document.documentElement.lang = lang; // 파일 업로드 상태 문구 연동용
       document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
       if(lang === 'en') document.querySelectorAll('.lang-btn')[0].classList.add('active');
       if(lang === 'kr') document.querySelectorAll('.lang-btn')[1].classList.add('active');
@@ -769,24 +785,17 @@
     document.getElementById('contact-form').addEventListener('submit', function(event) {
         event.preventDefault();
 
-        // 폼 데이터를 EmailJS가 인식할 수 있는 객체로 변환
         const myForm = this;
-        const formData = new FormData(myForm);
-        
-        // 파일이 첨부된 경우 처리를 위한 객체 구성
-        const fileInput = document.getElementById('attachment');
-        
-        // 안내 메시지 (전송 중 표시)
         const submitBtn = myForm.querySelector('.btn-submit');
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = "Sending...";
         submitBtn.disabled = true;
 
-        // EmailJS 전송 실행
         emailjs.sendForm('service_kiwa', 'template_ahfvhka', myForm)
             .then(function() {
                 alert('예약 문의가 성공적으로 전송되었습니다! 빠른 시일 내에 답변 드리겠습니다.');
                 myForm.reset();
+                document.getElementById('file-chosen').textContent = "No file chosen";
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             }, function(error) {
