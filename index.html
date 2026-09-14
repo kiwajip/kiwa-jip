@@ -1,923 +1,632 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KIWA | Ornamental & Geometric Tattoo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
-  
-  <!-- EmailJS SDK -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script type="text/javascript">
-      (function() {
-          emailjs.init("dB0Q2cv_50XALAZq4");
-      })();
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIWA | Ornamental & Geometric Tattoo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("d00Q2cv_50XALAZg0");
+        })();
+    </script>
 
-  <style>
-    :root {
-      --bg-color: #1a1918;
-      --card-bg: #242220;
-      --accent-color: #ff6d00;
-      --text-main: #f5f4f0;
-      --text-sub: #a8a49e;
-      --border-color: #3d3935;
-    }
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-tertiary: #1f1f1f;
+            --text-primary: #f0f0f0;
+            --text-secondary: #a0a0a0;
+            --accent-color: #c5a059;
+            --accent-hover: #d4af37;
+            --border-color: #2a2a2a;
+            --error-color: #ff4d4d;
+            --success-color: #4bb543;
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      font-family: 'Noto Sans KR', sans-serif;
-      line-height: 1.6;
-      overflow-x: hidden;
-      width: 100%;
-    }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    header {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 100;
-      padding: 1.5rem 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: linear-gradient(180deg, rgba(26,25,24,0.85) 0%, rgba(26,25,24,0) 100%);
-    }
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
 
-    .header-left {
-      display: flex;
-      flex-direction: column;
-    }
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
 
-    .logo-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.6rem;
-      letter-spacing: 3px;
-      color: var(--text-main);
-      text-transform: uppercase;
-      text-decoration: none;
-      font-weight: 700;
-    }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            align-items: center;
+        }
 
-    .nav-tagline {
-      font-size: 0.75rem;
-      color: var(--accent-color);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
 
-    .lang-switch {
-      display: flex;
-      gap: 6px;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 4px;
-      border-radius: 20px;
-      border: 1px solid var(--border-color);
-    }
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
 
-    .lang-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-sub);
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 4px 8px;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+        /* Language Switcher Dropdown */
+        .lang-select {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
 
-    .lang-btn.active {
-      background: var(--accent-color);
-      color: #ffffff;
-    }
+        .lang-select:hover, .lang-select:focus {
+            border-color: var(--accent-color);
+        }
 
-    .hero-slider-container {
-      position: relative;
-      width: 100%;
-      height: 75vh;
-      min-height: 450px;
-      overflow: hidden;
-      background-color: #141312;
-      touch-action: pan-y;
-    }
+        /* Hero Section */
+        header.hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: linear-gradient(rgba(10,10,10,0.5), rgba(10,10,10,0.8)), url('hero-bg.jpg') no-repeat center center/cover;
+            position: relative;
+        }
 
-    .hero-track {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-    }
+        header.hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
 
-    .hero-slide {
-      min-width: 100%;
-      height: 100%;
-      position: relative;
-      user-select: none;
-    }
+        header.hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            letter-spacing: 1px;
+        }
 
-    .hero-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(0.8);
-      pointer-events: none;
-    }
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
 
-    .hero-content-overlay {
-      position: absolute;
-      bottom: 3rem;
-      left: 5%;
-      right: 5%;
-      z-index: 10;
-      max-width: 650px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-      pointer-events: none;
-    }
+        section {
+            margin-bottom: 80px;
+        }
 
-    .hero-content-overlay h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 1.8rem;
-      margin-bottom: 0.4rem;
-      letter-spacing: 2px;
-    }
+        h2.section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
 
-    .hero-content-overlay p {
-      color: #e6e4dc;
-      font-size: 0.9rem;
-      font-weight: 300;
-    }
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
 
-    .slider-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.4);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 20;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      user-select: none;
-    }
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
 
-    .slider-arrow:hover {
-      background: var(--accent-color);
-      border-color: var(--accent-color);
-    }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
 
-    .arrow-left { left: 1rem; }
-    .arrow-right { right: 1rem; }
+        .tag {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+        }
 
-    .dots-container {
-      position: absolute;
-      bottom: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 6px;
-      z-index: 20;
-    }
+        .info-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
 
-    .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.4);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+        .info-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
 
-    .dot.active {
-      background: var(--accent-color);
-      width: 18px;
-      border-radius: 3px;
-    }
+        .info-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
 
-    .container {
-      max-width: 900px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 3rem 1rem;
-    }
+        /* FAQ Section */
+        .faq-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
 
-    .fade-up {
-      opacity: 0;
-      transform: translateY(35px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+        .faq-item h3 {
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
 
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+        .faq-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
 
-    .section-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.5rem;
-      letter-spacing: 2px;
-      margin-bottom: 1.2rem;
-      color: var(--text-main);
-      position: relative;
-      display: inline-block;
-    }
+        /* Booking Form */
+        .booking-form {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 8px;
+        }
 
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      width: 40%;
-      height: 2px;
-      background-color: var(--accent-color);
-    }
+        .form-group {
+            margin-bottom: 25px;
+        }
 
-    .intro-text {
-      color: var(--text-sub);
-      font-size: 0.95rem;
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-    }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
 
-    /* 스타일 뱃지 */
-    .style-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 2.5rem;
-    }
+        label {
+            display: block;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
 
-    .tag {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
-      font-size: 0.8rem;
-      padding: 6px 12px;
-      border-radius: 20px;
-      letter-spacing: 0.5px;
-    }
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            padding: 14px;
+            color: var(--text-primary);
+            border-radius: 4px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
 
-    /* 정보 카드 박스 */
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-      margin-bottom: 3rem;
-    }
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--accent-color);
+        }
 
-    @media (max-width: 768px) {
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
 
-    .info-card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1.5rem;
-    }
+        /* Custom File Upload Style */
+        .custom-file-upload {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            padding: 4px 4px 4px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
 
-    .info-card h3 {
-      font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
-      color: var(--accent-color);
-      margin-bottom: 0.8rem;
-      letter-spacing: 1px;
-    }
+        .custom-file-upload:hover {
+            border-color: var(--accent-color);
+        }
 
-    .info-card p, .info-card li {
-      color: var(--text-sub);
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
+        input[type="file"]::file-selector-button {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
 
-    .info-card ul {
-      list-style-type: none;
-      padding-left: 0;
-    }
+        input[type="file"]::file-selector-button:hover {
+            border-color: var(--accent-color);
+        }
 
-    .info-card li {
-      margin-bottom: 0.4rem;
-    }
+        .file-chosen-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding-left: 10px;
+        }
 
-    /* FAQ 및 케어 가이드 박스 */
-    .content-section-box {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 2rem 1.5rem;
-      margin-bottom: 3rem;
-    }
+        .submit-btn {
+            width: 100%;
+            background: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 16px;
+            border-radius: 4px;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-    .faq-item {
-      border-bottom: 1px solid var(--border-color);
-      padding: 1rem 0;
-    }
+        .submit-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-primary);
+        }
 
-    .faq-item:last-child {
-      border-bottom: none;
-    }
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
 
-    .faq-question {
-      font-weight: 500;
-      color: var(--text-main);
-      font-size: 1rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .faq-answer {
-      color: var(--text-sub);
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-
-    /* 예약 폼 섹션 */
-    .booking-section {
-      background-color: var(--card-bg);
-      border-radius: 12px;
-      border: 1px solid var(--border-color);
-      padding: 2rem 1.2rem;
-      width: 100%;
-      margin-bottom: 3rem;
-    }
-
-    .booking-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-      margin-top: 1.5rem;
-      width: 100%;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.0rem;
-      width: 100%;
-    }
-
-    @media (max-width: 768px) {
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      width: 100%;
-    }
-
-    .form-group label {
-      font-size: 0.8rem;
-      color: var(--text-sub);
-      letter-spacing: 1px;
-    }
-
-    .form-control {
-      background-color: #1a1918;
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      padding: 0.8rem 0.9rem;
-      color: var(--text-main);
-      font-family: 'Noto Sans KR', sans-serif;
-      font-size: 0.95rem;
-      width: 100%;
-      transition: border-color 0.3s ease;
-    }
-
-    .form-control:focus {
-      outline: none;
-      border-color: var(--accent-color);
-    }
-
-    textarea.form-control {
-      resize: vertical;
-      min-height: 110px;
-    }
-
-    /* 커스텀 파일 업로드 디자인 */
-    .custom-file-upload {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.8rem 0.9rem;
-      background-color: #1a1918;
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      cursor: pointer;
-      transition: border-color 0.3s ease;
-    }
-
-    .custom-file-upload:hover {
-      border-color: var(--accent-color);
-    }
-
-    .file-btn-text {
-      background-color: var(--border-color);
-      color: var(--text-main);
-      padding: 6px 12px;
-      border-radius: 4px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      transition: background 0.3s;
-    }
-
-    .custom-file-upload:hover .file-btn-text {
-      background-color: var(--accent-color);
-    }
-
-    .btn-submit {
-      background-color: var(--accent-color);
-      color: #ffffff;
-      border: none;
-      padding: 0.9rem 1.5rem;
-      font-size: 0.95rem;
-      font-weight: 500;
-      letter-spacing: 1px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      width: 100%;
-      margin-top: 0.5rem;
-    }
-
-    .btn-submit:hover {
-      background-color: #ff851b;
-      box-shadow: 0 4px 15px rgba(255, 109, 0, 0.4);
-    }
-
-    .btn-instagram {
-      display: block;
-      text-align: center;
-      background-color: transparent;
-      color: var(--text-main);
-      border: 1px solid var(--border-color);
-      padding: 0.8rem 1.5rem;
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 1px;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      width: 100%;
-      margin-top: 0.8rem;
-    }
-
-    .btn-instagram:hover {
-      border-color: var(--accent-color);
-      color: var(--accent-color);
-      background-color: rgba(255, 109, 0, 0.05);
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      color: var(--text-sub);
-      font-size: 0.8rem;
-      border-top: 1px solid var(--border-color);
-      margin-top: 3rem;
-    }
-  </style>
+        @media(max-width: 768px) {
+            .about-grid, .form-row {
+                grid-template-columns: 1fr;
+            }
+            nav {
+                padding: 15px 20px;
+            }
+            header.hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <div class="header-left">
-      <a href="#" class="logo-title">KIWA</a>
-      <span class="nav-tagline">Ornamental & Geometric</span>
-    </div>
-    <div class="lang-switch">
-      <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
-      <button class="lang-btn" onclick="setLanguage('kr')">KR</button>
-      <button class="lang-btn" onclick="setLanguage('de')">DE</button>
-    </div>
-  </header>
-
-  <div class="hero-slider-container" id="sliderContainer">
-    <div class="hero-track" id="heroTrack">
-      
-      <div class="hero-slide">
-        <img src="artwork3.jpg" alt="KIWA Tattoo Artwork 3">
-        <div class="hero-content-overlay">
-          <h2 data-en="Core Geometry" data-kr="코어 지오메트리" data-de="Kerngeometrie">Core Geometry</h2>
-          <p data-en="Symmetrical core geometry capturing mesmerizing rhythm and body flow." data-kr="매혹적인 리듬과 신체 흐름을 포착한 대칭적 코어 지오메트리." data-de="Symmetrische Kerngeometrie mit faszinierendem Rhythmus und Körperfluss.">Symmetrical core geometry capturing mesmerizing rhythm and body flow.</p>
-        </div>
-      </div>
-
-      <div class="hero-slide">
-        <img src="artwork8.jpg" alt="KIWA Tattoo Artwork 8">
-        <div class="hero-content-overlay">
-          <h2 data-en="Linear Flow" data-kr="리니어 플로우" data-de="Linearem Fluss">Linear Flow</h2>
-          <p data-en="Hypnotic linear patterns flowing seamlessly down the legs." data-kr="다리를 따라 부드럽게 이어지는 최면적인 라인 패턴." data-de="Hypnotische Linearmuster, die nahtlos die Beine hinunterfließen.">Hypnotic linear patterns flowing seamlessly down the legs.</p>
-        </div>
-      </div>
-
-      <div class="hero-slide">
-        <img src="artwork1.jpg" alt="KIWA Tattoo Artwork 1">
-        <div class="hero-content-overlay">
-          <h2 data-en="Organic Stippling" data-kr="오가닉 스티플링" data-de="Organisches Stippling">Organic Stippling</h2>
-          <p data-en="Soft dotwork gradients harmonizing with natural muscle contours." data-kr="자연스러운 근육 곡선과 조화를 이루는 부드러운 닷워크 그라데이션." data-de="Weiche Dotwork-Gradienten, die mit natürlichen Muskelkonturen harmonieren.">Soft dotwork gradients harmonizing with natural muscle contours.</p>
-        </div>
-      </div>
-
-      <div class="hero-slide">
-        <img src="artwork2.jpg" alt="KIWA Tattoo Artwork 2">
-        <div class="hero-content-overlay">
-          <h2 data-en="Full Bodysuit Flow" data-kr="풀 바디슈트 플로우" data-de="Ganzkörperfluss">Full Bodysuit Flow</h2>
-          <p data-en="Bold blackwork and striking red contrasts sculpting the upper body." data-kr="상체를 조각하는 대담한 블랙워크와 강렬한 레드 포인트." data-de="Kühne Blackworks und markante rote Kontraste, die den Oberkörper formen.">Bold blackwork and striking red contrasts sculpting the upper body.</p>
-        </div>
-      </div>
-
-      <div class="hero-slide">
-        <img src="artwork4.jpg" alt="KIWA Tattoo Artwork 4">
-        <div class="hero-content-overlay">
-          <h2 data-en="Radiant Motif" data-kr="래디언트 모티브" data-de="Strahlendes Motiv">Radiant Motif</h2>
-          <p data-en="A striking sunburst pattern radiating outward from the neck and chest." data-kr="목과 가슴에서 바깥쪽으로 뻗어나가는 인상적인 선버스트 패턴." data-de="Ein auffälliges Sonnenstrahlenmuster, das von Hals und Brust ausstrahlt.">A striking sunburst pattern radiating outward from the neck and chest.</p>
-        </div>
-      </div>
-
-      <div class="hero-slide">
-        <img src="artwork5.jpg" alt="KIWA Tattoo Artwork 5">
-        <div class="hero-content-overlay">
-          <h2 data-en="Heritage Floral" data-kr="헤리티지 플로럴" data-de="Traditionelles Floral">Heritage Floral</h2>
-          <p data-en="Traditional Dancheong motifs elevated by delicate shading and linework." data-kr="섬세한 섀딩과 라인워크로 재해석한 전통 단청 모티브." data-de="Traditionelle Dancheong-Motive, veredelt durch feine Schattierungen und Linien.">Traditional Dancheong motifs elevated by delicate shading and linework.</p>
-        </div>
-      </div>
-
-      <div class="hero-slide">
-        <img src="artwork6.jpg" alt="KIWA Tattoo Artwork 6">
-        <div class="hero-content-overlay">
-          <h2 data-en="Oriental Clouds" data-kr="오리엔탈 클라우드" data-de="Orientalische Wolken">Oriental Clouds</h2>
-          <p data-en="Dynamic cloud patterns wrapping fluidly around the temple and head." data-kr="관자놀이와 머리 주변을 유연하게 감싸는 역동적인 구름 패턴." data-de="Dynamische Wolkenmuster, die sich fließend um Schläfe und Kopf legen.">Dynamic cloud patterns wrapping fluidly around the temple and head.</p>
-        </div>
-      </div>
-
-      <div class="hero-slide">
-        <img src="artwork7.jpg" alt="KIWA Tattoo Artwork 7">
-        <div class="hero-content-overlay">
-          <h2 data-en="Color Dynamics" data-kr="컬러 다이나믹스" data-de="Farb-Dynamik">Color Dynamics</h2>
-          <p data-en="Vibrant blue gradients and intricate structural details accentuating joint lines." data-kr="관절 라인을 강조하는 생동감 넘치는 블루 그라데이션과 정교한 구조적 디테일." data-de="Lebendige blaue Farbverläufe und filigrane Strukturdetails, die Gelenklinie betonen.">Vibrant blue gradients and intricate structural details accentuating joint lines.</p>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="slider-arrow arrow-left" id="prevBtn">&#10094;</div>
-    <div class="slider-arrow arrow-right" id="nextBtn">&#10095;</div>
-
-    <div class="dots-container" id="dotsContainer"></div>
-  </div>
-
-  <main class="container">
-    
-    <!-- 아티스트 소개 및 태그 -->
-    <section class="fade-up">
-      <h2 class="section-title" data-en="About the Craft" data-kr="아티스트 소개" data-de="Über die Kunst">About the Craft</h2>
-      <p class="intro-text" 
-         data-en="Based in Frankfurt am Main, KIWA specializes in custom ornamental and geometric tattoos.<br>Bridging traditional Korean motifs—such as Dancheong, clouds, and snow—with contemporary linework and organic body flow to create timeless wearable art."
-         data-kr="프랑크푸르트 암 마인을 기반으로 활동하는 KIWA는 커스텀 오나멘탈 및 지오메트리 타투를 전문으로 합니다.<br>단청, 구름, 눈 등의 전통 한국적 모티브와 현대적인 라인워크, 유기적인 바디 플로우를 결합하여 시대를 초월한 웨어러블 아트를 창조합니다."
-         data-de="Mit Sitz in Frankfurt am Main spezialisiert sich KIWA auf individuelle Ornamental- und Geometrietattoos.<br>Traditionelle koreanische Motive – wie Dancheong, Wolken und Schnee – werden mit modernen Linien und organischem Körperfluss zu zeitloser Kunst verbunden.">
-        Based in Frankfurt am Main, KIWA specializes in custom ornamental and geometric tattoos.<br>
-        Bridging traditional Korean motifs—such as Dancheong, clouds, and snow—with contemporary linework and organic body flow to create timeless wearable art.
-      </p>
-
-      <div class="style-tags">
-        <span class="tag">Geometric</span>
-        <span class="tag">Ornamental</span>
-        <span class="tag">Dancheong (단청)</span>
-        <span class="tag">Dotwork & Stippling</span>
-        <span class="tag">Blackwork</span>
-        <span class="tag">Organic Body Flow</span>
-      </div>
-    </section>
-
-    <!-- 위치 및 게스트 스팟 정보 -->
-    <section class="info-grid fade-up">
-      <div class="info-card">
-        <h3 data-en="Base & Location" data-kr="작업실 위치" data-de="Standort">Base & Location</h3>
-        <p data-en="Primary Studio: <a href='https://maps.google.com/?q=Frankfurt+am+Main' target='_blank' style='color: var(--text-sub); text-decoration: none; transition: color 0.3s;' onmouseover=\"this.style.color='var(--accent-color)'\" onmouseout=\"this.style.color='var(--text-sub)'\">Frankfurt am Main, Germany</a>.<br>Appointments are strictly private and booked in advance." 
-           data-kr="메인 스튜디오: <a href='https://maps.google.com/?q=Frankfurt+am+Main' target='_blank' style='color: var(--text-sub); text-decoration: none; transition: color 0.3s;' onmouseover=\"this.style.color='var(--accent-color)'\" onmouseout=\"this.style.color='var(--text-sub)'\">독일 프랑크푸르트 암 마인</a>.<br>모든 작업은 프라이빗 예약제로 운영됩니다." 
-           data-de="Hauptstudio: <a href='https://maps.google.com/?q=Frankfurt+am+Main' target='_blank' style='color: var(--text-sub); text-decoration: none; transition: color 0.3s;' onmouseover=\"this.style.color='var(--accent-color)'\" onmouseout=\"this.style.color='var(--text-sub)'\">Frankfurt am Main, Deutschland</a>.<br>Termine nur nach vorheriger Absprache.">
-            Primary Studio: <a href="https://maps.google.com/?q=Frankfurt+am+Main" target="_blank" style="color: var(--text-sub); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--accent-color)'" onmouseout="this.style.color='var(--text-sub)'">Frankfurt am Main, Germany</a>.<br>
-            Appointments are strictly private and booked in advance.
-        </p>
-      </div>
-
-      <div class="info-card">
-        <h3 data-en="Guest Spot Schedule" data-kr="게스트 스팟 일정" data-de="Gastspot-Zeitplan">Guest Spot Schedule</h3>
-        <ul>
-          <li><strong>Amsterdam:</strong> Sep 24 – Sep 27, 2026</li>
-          <li style="color: var(--text-main); margin-top: 0.4rem;" data-en="* More guest spots will be announced via Instagram." data-kr="* 추가 게스트 스팟 일정은 인스타그램을 통해 공지됩니다." data-de="* Weitere Gastspots werden über Instagram bekannt gegeben.">* More guest spots will be announced via Instagram.</li>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">KIWA</a>
+        <ul class="nav-links">
+            <li><a href="#about" data-i18n="nav_about">About</a></li>
+            <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
+            <li><a href="#booking" data-i18n="nav_booking">Booking</a></li>
+            <li>
+                <select id="langSwitch" class="lang-select" onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="ko">한국어</option>
+                    <option value="de">Deutsch</option>
+                </select>
+            </li>
         </ul>
-      </div>
-    </section>
+    </nav>
 
-    <!-- FAQ 및 예약 안내 -->
-    <section class="content-section-box fade-up">
-      <h2 class="section-title" style="margin-bottom: 1.5rem;" data-en="Booking Guide & FAQ" data-kr="예약 안내 및 자주 묻는 질문" data-de="Buchungsanleitung & FAQ">Booking Guide & FAQ</h2>
-      
-      <div class="faq-item">
-        <div class="faq-question" data-en="Q. How does custom design work and what about the deposit?" data-kr="Q. 도안 커스텀과 예약금은 어떻게 진행되나요?" data-de="Q. Wie funktioniert das individuelle Design und die Anzahlung?">Q. How does custom design work and what about the deposit?</div>
-        <div class="faq-answer" data-en="Custom designs include a deposit requirement of €100 to secure your date. This deposit is fully included in the total tattoo price, so you do not need to pay it twice." 
-             data-kr="도안 커스텀은 예약 확정을 위해 100유로의 보증금을 받고 진행하고 있습니다. 이 보증금은 전체 금액에 포함된 금액이므로 현장에서 추가로 내실 필요가 없습니다."
-             data-de="Individuelle Designs erfordern eine Anzahlung von 100 €, um Ihren Termin zu sichern. Diese Anzahlung ist vollständig im Gesamtpreis enthalten, sodass Sie sie nicht doppelt bezahlen müssen.">
-          Custom designs include a deposit requirement of €100 to secure your date. This deposit is fully included in the total tattoo price, so you do not need to pay it twice.
-        </div>
-      </div>
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1 data-i18n="hero_title">KIWA TATTOO</h1>
+        <p data-i18n="hero_subtitle">Symmetrical core geometry capturing mesmerizing rhythm and body flow.</p>
+    </header>
 
-      <div class="faq-item" style="margin-top: 1rem;">
-        <div class="faq-question" data-en="Q. How should I prepare for my session?" data-kr="Q. 작업 전 준비 사항이 있나요?" data-de="Q. Wie sollte ich mich auf die Sitzung vorbereiten?">Q. How should I prepare for my session?</div>
-        <div class="faq-answer" data-en="Get a good night's sleep, eat a solid meal before coming, and stay well hydrated. Avoid alcohol and blood thinners 24 hours prior to your appointment." 
-             data-kr="작업 전날 충분히 수면을 취하시고, 예약 당일 식사를 든든하게 하고 오세요. 수분 섭취를 충분히 해주시고, 방문 전 24시간 동안은 음주나 혈액순환을 방해하는 약물 복용을 피해주시기 바랍니다."
-             data-de="Schlafen Sie gut, essen Sie vor der Sitzung eine Mahlzeit und trinken Sie ausreichend Wasser. Vermeiden Sie 24 Stunden vor dem Termin Alkohol und Blutverdünner.">
-          Get a good night's sleep, eat a solid meal before coming, and stay well hydrated. Avoid alcohol and blood thinners 24 hours prior to your appointment.
-        </div>
-      </div>
-    </section>
+    <div class="container">
+        <!-- About & Info Section -->
+        <section id="about">
+            <h2 class="section-title" data-i18n="about_heading">ABOUT THE CRAFT</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p data-i18n="about_desc">Based in Frankfurt am Main, KIWA specializes in custom ornamental and geometric tattoos. Bridging traditional Korean motifs—such as Dancheong, clouds, and snow—with contemporary linework and organic body flow to create timeless wearable art.</p>
+                    <div class="tags">
+                        <span class="tag">Geometric</span>
+                        <span class="tag">Ornamental</span>
+                        <span class="tag">Dancheong (단청)</span>
+                        <span class="tag">Dotwork & Stippling</span>
+                        <span class="tag">Blackwork</span>
+                        <span class="tag">Organic Body Flow</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="info-card">
+                        <h3 data-i18n="location_title">BASE & LOCATION</h3>
+                        <p data-i18n="location_text">Frankfurt am Main, Germany.<br>Appointments are strictly private and booked in advance.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3 data-i18n="guest_title">GUEST SPOT SCHEDULE</h3>
+                        <p data-i18n="guest_text">Amsterdam: Sep 24 - Sep 27, 2026<br>*More guest spots will be announced via Instagram.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- 타투 관리 방법 (Aftercare) -->
-    <section class="content-section-box fade-up">
-      <h2 class="section-title" style="margin-bottom: 1.5rem;" data-en="Tattoo Aftercare Guide" data-kr="타투 관리 방법 (Best Aftercare)" data-de="Tattoo-Pflegeanleitung">Tattoo Aftercare Guide</h2>
-      
-      <div class="faq-item">
-        <div class="faq-question" data-en="1. Film / Bandage Removal" data-kr="1. 보호필름 제거" data-de="1. Entfernung der Folie">1. Film / Bandage Removal</div>
-        <div class="faq-answer" data-en="If using protective film, leave it on for 3 to 4 days. If fluid pools excessively, you can remove it earlier. Gently wash the area with lukewarm water and mild soap." 
-             data-kr="보호필름(더마르 등)을 부착한 경우 3~4일 동안 유지한 뒤 제거하세요. 내부에 진물이 너무 많이 고이면 일찍 제거해도 좋습니다. 미지근한 물과 저자극 비누로 부드럽게 씻어내세요."
-             data-de="Wenn Sie Schutzfolie verwenden, lassen Sie diese 3 bis 4 Tage auf der Haut. Waschen Sie den Bereich anschließend vorsichtig mit lauwarmem Wasser und milder Seife.">
-          If using protective film, leave it on for 3 to 4 days. If fluid pools excessively, you can remove it earlier. Gently wash the area with lukewarm water and mild soap.
-        </div>
-      </div>
+        <!-- FAQ Section -->
+        <section id="faq">
+            <h2 class="section-title" data-i18n="faq_heading">BOOKING GUIDE & FAQ</h2>
+            <div class="faq-item">
+                <h3 data-i18n="faq_q1">Q. How does custom design work and what about the deposit?</h3>
+                <p data-i18n="faq_a1">Custom designs include a deposit requirement of €100 to secure your date. This deposit is fully included in the total tattoo price, so you do not need to pay it twice.</p>
+            </div>
+            <div class="faq-item">
+                <h3 data-i18n="faq_q2">Q. How should I prepare for my session?</h3>
+                <p data-i18n="faq_a2">Get a good night's sleep, eat well before your session, and drink plenty of water. Avoid alcohol and blood thinners 24 hours prior to your appointment.</p>
+            </div>
+        </section>
 
-      <div class="faq-item" style="margin-top: 1rem;">
-        <div class="faq-question" data-en="2. Moisturizing" data-kr="2. 보습 관리" data-de="2. Feuchtigkeitsversorgung">2. Moisturizing</div>
-        <div class="faq-answer" data-en="Apply a thin layer of specialized tattoo aftercare ointment or fragrance-free lotion 2 to 3 times a day. Do not over-apply; the skin needs to breathe." 
-             data-kr="타투 전용 연고나 향이 없는 로션을 하루에 2~3회 아주 얇게 펴 발라주세요. 너무 두껍게 바르면 피부 숨구멍을 막아 회복을 더디게 하므로 얇게 자주 발라주는 것이 좋습니다."
-             data-de="Tragen Sie 2-3 Mal täglich eine dünne Schicht Tattoo-Pflegecreme oder parfümfreie Lotion auf. Tragen Sie nicht zu viel auf, damit die Haut atmen kann.">
-          Apply a thin layer of specialized tattoo aftercare ointment or fragrance-free lotion 2 to 3 times a day. Do not over-apply; the skin needs to breathe.
-        </div>
-      </div>
+        <!-- Booking Form Section -->
+        <section id="booking">
+            <h2 class="section-title" data-i18n="booking_heading">BOOKING INQUIRY</h2>
+            <div class="booking-form">
+                <form id="bookingForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" data-i18n="label_name">Your Name</label>
+                            <input type="text" id="name" name="from_name" required placeholder="Full Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-i18n="label_email">Your Email</label>
+                            <input type="email" id="email" name="reply_to" required placeholder="example@email.com">
+                        </div>
+                    </div>
 
-      <div class="faq-item" style="margin-top: 1rem;">
-        <div class="faq-question" data-en="3. Important Rules" data-kr="3. 주의사항 (절대 금지)" data-de="3. Wichtige Regeln">3. Important Rules</div>
-        <div class="faq-answer" data-en="Do not pick, scratch, or peel the scabs/skin as it heals. Avoid swimming pools, saunas, direct sunlight, and intense workouts for at least 2 weeks." 
-             data-kr="회복 과정에서 각질이나 딱지가 생겨도 절대 억지로 뜯거나 긁지 마세요. 최소 2주 동안은 수영장, 사우나, 직사광선 노출, 격렬한 운동을 피해주시기 바랍니다."
-             data-de="Kratzen oder ziehen Sie nicht an sich bildenden Schuppen oder Krusten. Vermeiden Sie mindestens 2 Wochen lang Schwimmbäder, Saunen, direkte Sonneneinstrahlung und intensives Training.">
-          Do not pick, scratch, or peel the scabs/skin as it heals. Avoid swimming pools, saunas, direct sunlight, and intense workouts for at least 2 weeks.
-        </div>
-      </div>
-    </section>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="age" data-i18n="label_age">Age</label>
+                            <input type="text" id="age" name="age" required placeholder="18+">
+                        </div>
+                        <div class="form-group">
+                            <label for="placement" data-i18n="label_placement">Tattoo Placement & Size (approx. cm)</label>
+                            <input type="text" id="placement" name="placement" required placeholder="e.g., Forearm, 15x10cm">
+                        </div>
+                    </div>
 
-    <!-- EmailJS 연동 예약 폼 -->
-    <section class="booking-section fade-up">
-      <h2 class="section-title" style="margin-bottom: 0.5rem;" data-en="Booking Inquiry" data-kr="예약 문의" data-de="Buchungsanfrage">Booking Inquiry</h2>
-      <p style="color: var(--text-sub); font-size: 0.9rem; line-height: 1.5;"
-         data-en="Fill out the form below to submit your inquiry, or contact via Instagram DM."
-         data-kr="아래 양식을 채워 문의를 제출하시거나, 인스타그램 DM으로 편하게 연락주세요."
-         data-de="Füllen Sie das Formular aus, um Ihre Anfrage abzusenden, oder kontaktieren Sie uns über Instagram DM.">
-        Fill out the form below to submit your inquiry, or contact via Instagram DM.
-      </p>
-      
-      <form class="booking-form" id="contact-form">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="from_name" data-en="YOUR NAME" data-kr="성함 (YOUR NAME)" data-de="NAME">YOUR NAME</label>
-            <input type="text" id="from_name" name="from_name" class="form-control" placeholder="Enter your name" required>
-          </div>
-          <div class="form-group">
-            <label for="from_email" data-en="EMAIL ADDRESS" data-kr="이메일 주소 (EMAIL)" data-de="E-MAIL-ADRESSE">EMAIL ADDRESS</label>
-            <input type="email" id="from_email" name="from_email" class="form-control" placeholder="Enter your email" required>
-          </div>
-        </div>
+                    <div class="form-group">
+                        <label for="reference" data-i18n="label_reference">Reference Images (Optional)</label>
+                        <div class="custom-file-upload">
+                            <input type="file" id="reference" name="my_file" accept="image/*" onchange="updateFileName(this)">
+                            <span id="file-chosen" class="file-chosen-text" data-i18n="file_chosen">No file chosen</span>
+                        </div>
+                    </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="age" data-en="AGE" data-kr="나이 (AGE)" data-de="ALTER">AGE</label>
-            <input type="text" id="age" name="age" class="form-control" placeholder="Enter your age" required>
-          </div>
-          <div class="form-group">
-            <label for="phone" data-en="PHONE NUMBER" data-kr="전화번호 (PHONE)" data-de="TELEFONNUMMER">PHONE NUMBER</label>
-            <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone number" required>
-          </div>
-        </div>
+                    <div class="form-group">
+                        <label for="description" data-i18n="label_desc">Project Description & Ideas</label>
+                        <textarea id="description" name="message" required placeholder="Describe your idea, motifs, or specific elements..."></textarea>
+                    </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="placement" data-en="TATTOO PLACEMENT" data-kr="시술 부위 (PLACEMENT)" data-de="TATTOO-PLATZIERUNG">TATTOO PLACEMENT</label>
-            <input type="text" id="placement" name="placement" class="form-control" placeholder="e.g., Forearm, Thigh, Chest" required>
-          </div>
-          <div class="form-group">
-            <label for="size" data-en="ESTIMATED SIZE (CM)" data-kr="예상 사이즈 (SIZE)" data-de="GESCHÄTZTE GRÖSSE (CM)">ESTIMATED SIZE (CM)</label>
-            <input type="text" id="size" name="size" class="form-control" placeholder="e.g., 15cm x 10cm" required>
-          </div>
-        </div>
-
-        <!-- 나라별 다국어 연동되는 커스텀 파일 업로드 버튼 -->
-        <div class="form-group">
-          <label data-en="REFERENCE PHOTO / FILE" data-kr="참고 사진 첨부 (PHOTO / FILE)" data-de="REFERENZ-FOTO / DATEI">REFERENCE PHOTO / FILE</label>
-          <label for="attachment" class="custom-file-upload">
-            <span id="file-chosen" data-en="No file chosen" data-kr="선택된 파일 없음" data-de="Keine Datei ausgewählt">No file chosen</span>
-            <span class="file-btn-text" data-en="Browse" data-kr="파일찾기" data-de="Durchsuchen">Browse</span>
-          </label>
-          <input type="file" id="attachment" name="attachment" accept="image/*" style="display: none;" onchange="document.getElementById('file-chosen').textContent = this.files[0] ? this.files[0].name : (document.documentElement.lang === 'kr' ? '선택된 파일 없음' : 'No file chosen');">
-        </div>
-
-        <div class="form-group">
-          <label for="message" data-en="PROJECT IDEA & DETAILS" data-kr="작업 아이디어 및 디테일 (IDEA)" data-de="PROJEKT-IDEE & DETAILS">PROJECT IDEA & DETAILS</label>
-          <textarea id="message" name="message" class="form-control" placeholder="Describe your concept, preferred motifs (Dancheong, geometric, etc.)" required></textarea>
-        </div>
-
-        <button type="submit" class="btn-submit" data-en="Submit Inquiry" data-kr="문의 제출하기" data-de="Anfrage absenden">Submit Inquiry</button>
-      </form>
-
-      <a href="https://www.instagram.com/kiwa_jip" target="_blank" class="btn-instagram" data-en="Or Contact via Instagram DM" data-kr="또는 인스타그램 DM으로 문의하기" data-de="Oder per Instagram DM anfragen">
-        Or Contact via Instagram DM
-      </a>
-    </section>
-
-  </main>
-
-  <footer>
-    <p>&copy; 2026 KIWA. All Rights Reserved.</p>
-    <div style="margin-top: 10px; display: flex; justify-content: center; gap: 15px; font-size: 0.9rem;">
-        <a href="https://www.instagram.com/kiwa_jip" target="_blank" style="color: var(--accent-color); text-decoration: none;">Instagram (@kiwa_jip)</a>
-        <span style="color: var(--border-color);">|</span>
-        <a href="mailto:kiwajip91@gmail.com" style="color: var(--text-secondary); text-decoration: none; transition: var(--transition);" onmouseover="this.style.color='var(--accent-color)'" onmouseout="this.style.color='var(--text-secondary)'">Email Inquiry</a>
+                    <button type="submit" class="submit-btn" id="submitBtn" data-i18n="submit_btn">SUBMIT INQUIRY</button>
+                </form>
+            </div>
+        </section>
     </div>
-  </footer>
 
-  <script>
-    // 언어 전환 기능 (+ HTML lang 속성 동기화)
-    function setLanguage(lang) {
-      document.documentElement.lang = lang; // 파일 업로드 상태 문구 연동용
-      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-      if(lang === 'en') document.querySelectorAll('.lang-btn')[0].classList.add('active');
-      if(lang === 'kr') document.querySelectorAll('.lang-btn')[1].classList.add('active');
-      if(lang === 'de') document.querySelectorAll('.lang-btn')[2].classList.add('active');
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 KIWA. All Rights Reserved.</p>
+    </footer>
 
-      document.querySelectorAll('[data-en]').forEach(el => {
-        if (el.dataset[lang]) {
-          el.innerHTML = el.dataset[lang];
-        }
-      });
-    }
+    <!-- JavaScript for Multi-language & EmailJS -->
+    <script>
+        // Dictionary for Multi-language support
+        const translations = {
+            en: {
+                nav_about: "About",
+                nav_faq: "FAQ",
+                nav_booking: "Booking",
+                hero_title: "KIWA TATTOO",
+                hero_subtitle: "Symmetrical core geometry capturing mesmerizing rhythm and body flow.",
+                about_heading: "ABOUT THE CRAFT",
+                about_desc: "Based in Frankfurt am Main, KIWA specializes in custom ornamental and geometric tattoos. Bridging traditional Korean motifs—such as Dancheong, clouds, and snow—with contemporary linework and organic body flow to create timeless wearable art.",
+                location_title: "BASE & LOCATION",
+                location_text: "Frankfurt am Main, Germany.<br>Appointments are strictly private and booked in advance.",
+                guest_title: "GUEST SPOT SCHEDULE",
+                guest_text: "Amsterdam: Sep 24 - Sep 27, 2026<br>*More guest spots will be announced via Instagram.",
+                faq_heading: "BOOKING GUIDE & FAQ",
+                faq_q1: "Q. How does custom design work and what about the deposit?",
+                faq_a1: "Custom designs include a deposit requirement of €100 to secure your date. This deposit is fully included in the total tattoo price, so you do not need to pay it twice.",
+                faq_q2: "Q. How should I prepare for my session?",
+                faq_a2: "Get a good night's sleep, eat well before your session, and drink plenty of water. Avoid alcohol and blood thinners 24 hours prior to your appointment.",
+                booking_heading: "BOOKING INQUIRY",
+                label_name: "Your Name",
+                label_email: "Your Email",
+                label_age: "Age",
+                label_placement: "Tattoo Placement & Size (approx. cm)",
+                label_reference: "Reference Images (Optional)",
+                file_chosen: "No file chosen",
+                label_desc: "Project Description & Ideas",
+                submit_btn: "SUBMIT INQUIRY"
+            },
+            ko: {
+                nav_about: "아티스트 소개",
+                nav_faq: "예약 안내 & FAQ",
+                nav_booking: "예약 문의",
+                hero_title: "키와 타투",
+                hero_subtitle: "대칭적 코어 지오메트리와 매혹적인 리듬감, 자연스러운 근육 구조의 조화를 이루는 푸드.",
+                about_heading: "아티스트 소개",
+                about_desc: "프랑크푸르트 암 마인을 기반으로 활동하는 KIWA는 커스텀 오나멘탈 및 지오메트리 타투를 전문으로 합니다. 단청, 구름, 눈 등의 전통 한국 모티브와 현대적인 라인워크, 유기적인 바디 플로우를 결합하여 시대를 초월한 웨어러블 아트를 창조합니다.",
+                location_title: "작업실 위치",
+                location_text: "프랑크푸르트 암 마인, 독일.<br>모든 작업은 프라이빗 예약제로 운영됩니다.",
+                guest_title: "게스트 스팟 일정",
+                guest_text: "암스테르담: 9월 24일 - 9월 27일, 2026<br>*추가 게스트 스팟 일정은 인스타그램을 통해 공지됩니다.",
+                faq_heading: "예약 안내 및 자주 묻는 질문",
+                faq_q1: "Q. 도안 커스텀과 예약금은 어떻게 진행되나요?",
+                faq_a1: "도안 커스텀은 예약 확정을 위해 100유로의 보증금을 받고 진행하고 있습니다. 이 보증금은 전체 금액에 포함된 금액이므로 현장에서 추가로 내실 필요가 없습니다.",
+                faq_q2: "Q. 작업 전에 어떻게 준비해야 하나요?",
+                faq_a2: "전 날 충분히 숙면을 취하시고, 예약 전 식사를 든든히 하신 후 충분한 물을 섭취해 주세요. 예약 24시간 전에는 음주와 혈액순환제를 피해주세요.",
+                booking_heading: "예약 문의",
+                label_name: "성함",
+                label_email: "이메일 주소",
+                label_age: "나이",
+                label_placement: "타투 부위 및 크기 (예: 팔뚝, 15x10cm)",
+                label_reference: "참고 이미지 첨부 (선택사항)",
+                file_chosen: "선택된 파일 없음",
+                label_desc: "진행중인 작품/아이디어 설명",
+                submit_btn: "문의 제출하기"
+            },
+            de: {
+                nav_about: "Über die Kunst",
+                nav_faq: "Buchungsanleitung & FAQ",
+                nav_booking: "Buchungsanfrage",
+                hero_title: "KIWA TATTOO",
+                hero_subtitle: "Symmetrische Kerngeometrie mit faszinierendem Rhythmus und Körperfluss.",
+                about_heading: "ÜBER DIE KUNST",
+                about_desc: "Mit Sitz in Frankfurt am Main spezialisiert sich KIWA auf individuelle Ornamental- und Geometrietattoos. Traditionelle koreanische Motive – wie Dancheong, Wolken und Schnee – werden mit modernen Linien und organischem Körperfluss zu zeitloser Kunst verbunden.",
+                location_title: "Standort",
+                location_text: "Frankfurt am Main, Deutschland.<br>Termine nur nach vorheriger Absprache.",
+                guest_title: "Gastspot-Zeitplan",
+                guest_text: "Amsterdam: 24. Sep - 27. Sep 2026<br>*Weitere Gastspots werden über Instagram bekannt gegeben.",
+                faq_heading: "Buchungsanleitung & FAQ",
+                faq_q1: "Q. Wie funktioniert das individuelle Design und die Anzahlung?",
+                faq_a1: "Individuelle Designs erfordern eine Anzahlung von 100 €, um Ihren Termin zu sichern. Diese Anzahlung ist vollständig in der Gesamtpreis enthalten, sodass Sie sie nicht doppelt bezahlen müssen.",
+                faq_q2: "Q. Wie sollte ich mich auf die Sitzung vorbereiten?",
+                faq_a2: "Schlafen Sie gut, essen Sie vor der Sitzung eine Mahlzeit und trinken Sie ausreichend Wasser. Vermeiden Sie 24 Stunden vor dem Termin Alkohol und Blutverdünner.",
+                booking_heading: "Buchungsanfrage",
+                label_name: "Ihr Name",
+                label_email: "Ihre E-Mail",
+                label_age: "Alter",
+                label_placement: "Tattoo-Platzierung & Größe (ca. cm)",
+                label_reference: "Referenzbilder (Optional)",
+                file_chosen: "Keine Datei ausgewählt",
+                label_desc: "Projektbeschreibung & Ideen",
+                submit_btn: "ANFRAGE ABSENDEN"
+            }
+        };
 
-    // EmailJS 폼 전송 기능 (파일 첨부 및 내 이메일 수신 포함)
-    document.getElementById('contact-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const myForm = this;
-        const submitBtn = myForm.querySelector('.btn-submit');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = "Sending...";
-        submitBtn.disabled = true;
-
-        emailjs.sendForm('service_kiwa', 'template_ahfvhka', myForm)
-            .then(function() {
-                alert('예약 문의가 성공적으로 전송되었습니다! 빠른 시일 내에 답변 드리겠습니다.');
-                myForm.reset();
-                document.getElementById('file-chosen').textContent = "No file chosen";
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, function(error) {
-                alert('전송에 실패했습니다. 다시 시도해 주세요. (Error: ' + JSON.stringify(error) + ')');
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
+        function changeLanguage(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = translations[lang][key];
+                    } else {
+                        el.innerHTML = translations[lang][key];
+                    }
+                }
             });
-    });
-
-    // 슬라이더 제어 스크립트
-    const track = document.getElementById('heroTrack');
-    const container = document.getElementById('sliderContainer');
-    const slides = Array.from(track.children);
-    const nextBtn = document.getElementById('nextBtn');
-    const prevBtn = document.getElementById('prevBtn');
-    const dotsContainer = document.getElementById('dotsContainer');
-
-    let currentIndex = 0;
-    let autoSlideTimer = null;
-
-    slides.forEach((_, index) => {
-      const dot = document.createElement('div');
-      dot.classList.add('dot');
-      if (index === 0) dot.classList.add('active');
-      dot.addEventListener('click', () => {
-        goToSlide(index);
-        resetAutoSlide();
-      });
-      dotsContainer.appendChild(dot);
-    });
-
-    const dots = Array.from(dotsContainer.children);
-
-    function updateDots() {
-      dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentIndex);
-      });
-    }
-
-    function goToSlide(index) {
-      currentIndex = index;
-      if (currentIndex < 0) currentIndex = slides.length - 1;
-      if (currentIndex >= slides.length) currentIndex = 0;
-      
-      track.style.transform = `translateX(-${currentIndex * 100}%)`;
-      updateDots();
-    }
-
-    function startAutoSlide() {
-      autoSlideTimer = setInterval(() => {
-        goToSlide(currentIndex + 1);
-      }, 5000);
-    }
-
-    function resetAutoSlide() {
-      clearInterval(autoSlideTimer);
-      startAutoSlide();
-    }
-
-    nextBtn.addEventListener('click', () => {
-      goToSlide(currentIndex + 1);
-      resetAutoSlide();
-    });
-
-    prevBtn.addEventListener('click', () => {
-      goToSlide(currentIndex - 1);
-      resetAutoSlide();
-    });
-
-    let startX = 0;
-    let endX = 0;
-
-    container.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-    }, { passive: true });
-
-    container.addEventListener('touched', (e) => {
-      endX = e.changedTouches[0].clientX;
-      handleSwipe();
-    }, { passive: true });
-
-    container.addEventListener('mousedown', (e) => {
-      startX = e.clientX;
-    });
-
-    container.addEventListener('mouseup', (e) => {
-      endX = e.clientX;
-      handleSwipe();
-    });
-
-    function handleSwipe() {
-      const diffX = startX - endX;
-      const threshold = 50;
-
-      if (Math.abs(diffX) > threshold) {
-        if (diffX > 0) {
-          goToSlide(currentIndex + 1);
-        } else {
-          goToSlide(currentIndex - 1);
+            // 파일 선택 텍스트 초기화 처리
+            const fileChosen = document.getElementById('file-chosen');
+            if (fileChosen.textContent === "No file chosen" || fileChosen.textContent === "선택된 파일 없음" || fileChosen.textContent === "Keine Datei ausgewählt") {
+                fileChosen.textContent = translations[lang]["file_chosen"];
+            }
         }
-        resetAutoSlide();
-      }
-      startX = 0;
-      endX = 0;
-    }
 
-    startAutoSlide();
+        // File name update function
+        function updateFileName(input) {
+            const fileChosen = document.getElementById('file-chosen');
+            const currentLang = document.getElementById('langSwitch').value;
+            if (input.files && input.files[0]) {
+                fileChosen.textContent = input.files[0].name;
+            } else {
+                fileChosen.textContent = translations[currentLang]["file_chosen"];
+            }
+        }
 
-    // 페이드업 애니메이션
-    document.addEventListener("DOMContentLoaded", function () {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
+        // EmailJS form submission
+        const myForm = document.getElementById('bookingForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        myForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const currentLang = document.getElementById('langSwitch').value;
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = currentLang === 'ko' ? "전송 중..." : (currentLang === 'de' ? "Wird gesendet..." : "SENDING...");
+            submitBtn.disabled = true;
+
+            emailjs.sendForm('service_kiwa', 'template_ahfvhka', myForm)
+                .then(function() {
+                    const successMsg = currentLang === 'ko' ? "예약 문의가 성공적으로 전송되었습니다! 빠른 시일 내에 답변 드리겠습니다." : 
+                                       (currentLang === 'de' ? "Buchungsanfrage erfolgreich gesendet! Wir werden uns bald bei Ihnen melden." : 
+                                       "Booking inquiry successfully sent! We will get back to you soon.");
+                    alert(successMsg);
+                    myForm.reset();
+                    fileChosenText = currentLang === 'ko' ? "선택된 파일 없음" : (currentLang === 'de' ? "Keine Datei ausgewählt" : "No file chosen");
+                    document.getElementById('file-chosen').textContent = fileChosenText;
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, function(error) {
+                    const errorMsg = currentLang === 'ko' ? "전송에 실패했습니다. 다시 시도해 주세요. (Error: " : 
+                                     (currentLang === 'de' ? "Senden fehlgeschlagen. Bitte versuchen Sie es erneut. (Error: " : 
+                                     "Failed to send. Please try again. (Error: ");
+                    alert(errorMsg + JSON.stringify(error) + ')');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                });
         });
-      }, { threshold: 0.1 });
-
-      document.querySelectorAll(".fade-up").forEach((el) => {
-        observer.observe(el);
-      });
-    });
-  </script>
+    </script>
 </body>
 </html>
