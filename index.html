@@ -1,705 +1,673 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KIWA | Ornamental & Geometric Tattoo</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function() {
-            emailjs.init("c80Q2cv_50XALAZq4");
-        })();
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KIWA | Ornamental & Geometric Tattoo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+      (function() {
+          emailjs.init("dB0Q2cv_50XALAZq4");
+      })();
+  </script>
 
-    <style>
-        :root {
-            --bg-color: #1a1918;
-            --card-bg: #242220;
-            --accent-color: #ff6c00;
-            --text-main: #f5f4f8;
-            --text-sub: #a8a49c;
-            --border-color: #3c3936;
-        }
+  <style>
+    :root {
+      --bg-color: #1a1918;
+      --card-bg: #242220;
+      --accent-color: #ff6d00;
+      --text-main: #f5f4f0;
+      --text-sub: #a8a49e;
+      --border-color: #3d3935;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: 'Noto Sans KR', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      width: 100%;
+    }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 2rem 5%;
-            border-bottom: 1px solid var(--border-color);
-            position: relative;
-        }
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.5rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(180deg, rgba(26,25,24,0.85) 0%, rgba(26,25,24,0) 100%);
+    }
 
-        .logo {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: 4px;
-            color: var(--text-main);
-            text-decoration: none;
-        }
+    .header-left {
+      display: flex;
+      flex-direction: column;
+    }
 
-        .lang-switch {
-            display: flex;
-            gap: 10px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            cursor: pointer;
-        }
+    .logo-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      letter-spacing: 3px;
+      color: var(--text-main);
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 700;
+    }
 
-        .lang-switch span {
-            color: var(--text-sub);
-            transition: color 0.3s;
-        }
+    .nav-tagline {
+      font-size: 0.75rem;
+      color: var(--accent-color);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
 
-        .lang-switch span.active, .lang-switch span:hover {
-            color: var(--accent-color);
-        }
+    .lang-switch {
+      display: flex;
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 4px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+    }
 
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 85vh;
-            border-bottom: 1px solid var(--border-color);
-        }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-sub);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-        @media (max-width: 900px) {
-            .hero {
-                grid-template-columns: 1fr;
-            }
-        }
+    .lang-btn.active {
+      background: var(--accent-color);
+      color: #ffffff;
+    }
 
-        .hero-image {
-            position: relative;
-            background: url('https://images.unsplash.com/photo-1598371839606-f12af2c40c74?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
-            min-height: 400px;
-        }
+    .hero-slider-container {
+      position: relative;
+      width: 100%;
+      height: 75vh;
+      min-height: 450px;
+      overflow: hidden;
+      background-color: #141312;
+      touch-action: pan-y;
+    }
 
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 4% 6%;
-            background: linear-gradient(to top, var(--bg-color) 10%, transparent);
-        }
+    .hero-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
 
-        .hero-title {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            margin-bottom: 1rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-        }
+    .hero-slide {
+      min-width: 100%;
+      height: 100%;
+      position: relative;
+      user-select: none;
+    }
 
-        .hero-desc {
-            color: var(--text-sub);
-            font-size: 1.05rem;
-            margin-bottom: 2rem;
-        }
+    .hero-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.8);
+      pointer-events: none;
+    }
 
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+    .hero-content-overlay {
+      position: absolute;
+      bottom: 3rem;
+      left: 5%;
+      right: 5%;
+      z-index: 10;
+      max-width: 650px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+      pointer-events: none;
+    }
 
-        .tag {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 6px 14px;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            border-radius: 2px;
-        }
+    .hero-content-overlay h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      margin-bottom: 0.4rem;
+      letter-spacing: 2px;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 6rem 5%;
-        }
+    .hero-content-overlay p {
+      color: #e6e4dc;
+      font-size: 0.9rem;
+      font-weight: 300;
+    }
 
-        section {
-            border-bottom: 1px solid var(--border-color);
-        }
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.4);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 20;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
 
-        .section-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            letter-spacing: 2px;
-        }
+    .slider-arrow:hover {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+    }
 
-        /* Portfolio Gallery Grid */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
+    .arrow-left { left: 1rem; }
+    .arrow-right { right: 1rem; }
 
-        .portfolio-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 4px;
-            border: 1px solid var(--border-color);
-            background-color: var(--card-bg);
-            aspect-ratio: 4/5;
-        }
+    .dots-container {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 20;
+    }
 
-        .portfolio-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-        .portfolio-item:hover img {
-            transform: scale(1.03);
-        }
+    .dot.active {
+      background: var(--accent-color);
+      width: 18px;
+      border-radius: 3px;
+    }
 
-        .portfolio-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem;
-            background: linear-gradient(to top, rgba(26,25,24,0.9), transparent);
-            font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-        }
+    .container {
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 3rem 1rem;
+    }
 
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
+    .fade-up {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-        @media (max-width: 768px) {
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-        }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-        .info-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 2.5rem;
-            border-radius: 4px;
-        }
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      margin-bottom: 1.2rem;
+      color: var(--text-main);
+      position: relative;
+      display: inline-block;
+    }
 
-        .info-card h3 {
-            font-family: 'Cinzel', serif;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
-            letter-spacing: 1px;
-        }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 40%;
+      height: 2px;
+      background-color: var(--accent-color);
+    }
 
-        .info-card p {
-            color: var(--text-sub);
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-        }
+    .intro-text {
+      color: var(--text-sub);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
 
-        .faq-item {
-            margin-bottom: 2.5rem;
-        }
+    .booking-section {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      padding: 2rem 1.2rem;
+      width: 100%;
+    }
 
-        .faq-item h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
+    .booking-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      width: 100%;
+    }
 
-        .faq-item p {
-            color: var(--text-sub);
-            font-size: 0.95rem;
-        }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.0rem;
+      width: 100%;
+    }
 
-        /* Press / Publications Section */
-        .press-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
 
-        .press-item {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 2rem;
-            border-radius: 4px;
-            transition: border-color 0.3s;
-        }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      width: 100%;
+    }
 
-        .press-item:hover {
-            border-color: var(--accent-color);
-        }
+    .form-group label {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      letter-spacing: 1px;
+    }
 
-        .press-item span {
-            display: block;
-            color: var(--accent-color);
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-        }
+    .form-control {
+      background-color: #1a1918;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 0.8rem 0.9rem;
+      color: var(--text-main);
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 0.95rem;
+      width: 100%;
+      transition: border-color 0.3s ease;
+    }
 
-        .press-item h4 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent-color);
+    }
 
-        .press-item p {
-            color: var(--text-sub);
-            font-size: 0.9rem;
-        }
+    textarea.form-control {
+      resize: vertical;
+      min-height: 110px;
+    }
 
-        /* Form Styles */
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
+    .btn-submit {
+      background-color: var(--accent-color);
+      color: #ffffff;
+      border: none;
+      padding: 0.9rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      width: 100%;
+      margin-top: 0.5rem;
+    }
 
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
+    .btn-submit:hover {
+      background-color: #ff851b;
+      box-shadow: 0 4px 15px rgba(255, 109, 0, 0.4);
+    }
 
-        @media (max-width: 768px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
+    .btn-instagram {
+      display: block;
+      text-align: center;
+      background-color: transparent;
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 0.8rem 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      width: 100%;
+      margin-top: 0.8rem;
+    }
 
-        label {
-            display: block;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--text-sub);
-            margin-bottom: 0.5rem;
-        }
+    .btn-instagram:hover {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+      background-color: rgba(255, 109, 0, 0.05);
+    }
 
-        input, textarea, select {
-            width: 100%;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 1rem;
-            color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 0.95rem;
-            border-radius: 2px;
-            transition: border-color 0.3s;
-        }
-
-        input:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-
-        input[type="file"] {
-            padding: 0.75rem;
-            cursor: pointer;
-        }
-
-        input[type="file"]::file-selector-button {
-            background-color: var(--border-color);
-            color: var(--text-main);
-            border: none;
-            padding: 0.5rem 1rem;
-            margin-right: 1rem;
-            border-radius: 2px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        input[type="file"]::file-selector-button:hover {
-            background-color: var(--accent-color);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .btn {
-            display: inline-block;
-            width: 100%;
-            background-color: var(--accent-color);
-            color: #fff;
-            border: none;
-            padding: 1.25rem;
-            font-size: 0.95rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            border-radius: 2px;
-            transition: opacity 0.3s;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            margin-top: 1rem;
-            text-align: center;
-            text-decoration: none;
-        }
-
-        .btn-outline:hover {
-            border-color: var(--accent-color);
-            opacity: 1;
-        }
-
-        footer {
-            padding: 3rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: var(--text-sub);
-        }
-
-        @media (max-width: 600px) {
-            footer {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-        }
-
-        /* Scroll to Top Button */
-        #scrollTopBtn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: var(--card-bg);
-            color: var(--text-main);
-            border: 1px solid var(--border-color);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 99;
-        }
-
-        #scrollTopBtn.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        #scrollTopBtn:hover {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-        }
-    </style>
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--text-sub);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <a href="#" class="logo">KIWA</a>
-        <div class="lang-switch">
-            <span class="active" onclick="switchLang('en')">EN</span>
-            <span>·</span>
-            <span onclick="switchLang('kr')">KR</span>
-            <span>·</span>
-            <span onclick="switchLang('de')">DE</span>
+  <header>
+    <div class="header-left">
+      <a href="#" class="logo-title">KIWA</a>
+      <span class="nav-tagline">Ornamental & Geometric</span>
+    </div>
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+      <button class="lang-btn" onclick="setLanguage('kr')">KR</button>
+      <button class="lang-btn" onclick="setLanguage('de')">DE</button>
+    </div>
+  </header>
+
+  <div class="hero-slider-container" id="sliderContainer">
+    <div class="hero-track" id="heroTrack">
+      
+      <div class="hero-slide">
+        <img src="artwork3.jpg" alt="KIWA Tattoo Artwork 3">
+        <div class="hero-content-overlay">
+          <h2 data-en="Core Geometry" data-kr="코어 지오메트리" data-de="Kerngeometrie">Core Geometry</h2>
+          <p data-en="Symmetrical core geometry capturing mesmerizing rhythm and body flow." data-kr="매혹적인 리듬과 신체 흐름을 포착한 대칭적 코어 지오메트리." data-de="Symmetrische Kerngeometrie mit faszinierendem Rhythmus und Körperfluss.">Symmetrical core geometry capturing mesmerizing rhythm and body flow.</p>
         </div>
-    </header>
+      </div>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-image"></div>
-            <div class="hero-content">
-                <h1 class="hero-title">RADIANT MOTIF</h1>
-                <p class="hero-desc">A striking sunburst pattern radiating outward from the neck and chest.</p>
-                <div class="tags">
-                    <span class="tag">Geometric</span>
-                    <span class="tag">Ornamental</span>
-                    <span class="tag">Dancheong (단청)</span>
-                    <span class="tag">Dotwork & Stippling</span>
-                    <span class="tag">Blackwork</span>
-                    <span class="tag">Organic Body Flow</span>
-                </div>
-            </div>
-        </section>
+      <div class="hero-slide">
+        <img src="artwork8.jpg" alt="KIWA Tattoo Artwork 8">
+        <div class="hero-content-overlay">
+          <h2 data-en="Linear Flow" data-kr="리니어 플로우" data-de="Linearem Fluss">Linear Flow</h2>
+          <p data-en="Hypnotic linear patterns flowing seamlessly down the legs." data-kr="다리를 따라 부드럽게 이어지는 최면적인 라인 패턴." data-de="Hypnotische Linearmuster, die nahtlos die Beine hinunterfließen.">Hypnotic linear patterns flowing seamlessly down the legs.</p>
+        </div>
+      </div>
 
-        <!-- Portfolio Gallery Section -->
-        <section class="container">
-            <h2 class="section-title">SELECTED WORK</h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1611591483321-68d865451de1?auto=format&fit=crop&w=800&q=80" alt="Geometric Tattoo">
-                    <div class="portfolio-caption">Geometric Mandala</div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=800&q=80" alt="Oriental Linework">
-                    <div class="portfolio-caption">Oriental Linework</div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1598371839606-f12af2c40c74?auto=format&fit=crop&w=800&q=80" alt="Dancheong Motif">
-                    <div class="portfolio-caption">Dancheong Flow</div>
-                </div>
-            </div>
-        </section>
+      <div class="hero-slide">
+        <img src="artwork1.jpg" alt="KIWA Tattoo Artwork 1">
+        <div class="hero-content-overlay">
+          <h2 data-en="Organic Stippling" data-kr="오가닉 스티플링" data-de="Organisches Stippling">Organic Stippling</h2>
+          <p data-en="Soft dotwork gradients harmonizing with natural muscle contours." data-kr="자연스러운 근육 곡선과 조화를 이루는 부드러운 닷워크 그라데이션." data-de="Weiche Dotwork-Gradienten, die mit natürlichen Muskelkonturen harmonieren.">Soft dotwork gradients harmonizing with natural muscle contours.</p>
+        </div>
+      </div>
 
-        <!-- About Section -->
-        <section class="container">
-            <h2 class="section-title">ABOUT THE CRAFT</h2>
-            <div class="grid-2">
-                <div>
-                    <p style="color: var(--text-sub); font-size: 1.05rem; margin-bottom: 1.5rem;">
-                        Based in Frankfurt am Main, KIWA specializes in custom ornamental and geometric tattoos. 
-                    </p>
-                    <p style="color: var(--text-sub); font-size: 1.05rem;">
-                        Bridging traditional Korean motifs—such as Dancheong, clouds, and snow—with contemporary linework and organic body flow to create timeless wearable art.
-                    </p>
-                </div>
-                <div class="info-card">
-                    <h3>Base & Location</h3>
-                    <p><strong>Primary Studio:</strong> Frankfurt am Main, Germany.</p>
-                    <p>Appointments are strictly private and booked in advance.</p>
-                    <h3 style="margin-top: 2rem;">Guest Spot Schedule</h3>
-                    <p><strong>Amsterdam:</strong> Sep 24 – Sep 27, 2026</p>
-                    <p style="font-size: 0.85rem; color: var(--accent-color);">* More guest spots will be announced via Instagram.</p>
-                </div>
-            </div>
-        </section>
+      <div class="hero-slide">
+        <img src="artwork2.jpg" alt="KIWA Tattoo Artwork 2">
+        <div class="hero-content-overlay">
+          <h2 data-en="Full Bodysuit Flow" data-kr="풀 바디슈트 플로우" data-de="Ganzkörperfluss">Full Bodysuit Flow</h2>
+          <p data-en="Bold blackwork and striking red contrasts sculpting the upper body." data-kr="상체를 조각하는 대담한 블랙워크와 강렬한 레드 포인트." data-de="Kühne Blackworks und markante rote Kontraste, die den Oberkörper formen.">Bold blackwork and striking red contrasts sculpting the upper body.</p>
+        </div>
+      </div>
 
-        <!-- Press & Publications Section -->
-        <section class="container" style="background-color: rgba(255,255,255,0.01);">
-            <h2 class="section-title">PRESS & PUBLICATIONS</h2>
-            <div class="press-grid">
-                <div class="press-item">
-                    <span>Upcoming Feature</span>
-                    <h4>Geometrip Book</h4>
-                    <p>Scheduled Publication: November 2026</p>
-                </div>
-                <div class="press-item">
-                    <span>Exhibition / Guest</span>
-                    <h4>International Tours</h4>
-                    <p>Amsterdam & Berlin Guest Spots (2026)</p>
-                </div>
-                <div class="press-item">
-                    <span>Specialization</span>
-                    <h4>Modern Korean Heritage</h4>
-                    <p>Merging Dancheong patterns with Geometry</p>
-                </div>
-            </div>
-        </section>
+      <div class="hero-slide">
+        <img src="artwork4.jpg" alt="KIWA Tattoo Artwork 4">
+        <div class="hero-content-overlay">
+          <h2 data-en="Radiant Motif" data-kr="래디언트 모티브" data-de="Strahlendes Motiv">Radiant Motif</h2>
+          <p data-en="A striking sunburst pattern radiating outward from the neck and chest." data-kr="목과 가슴에서 바깥쪽으로 뻗어나가는 인상적인 선버스트 패턴." data-de="Ein auffälliges Sonnenstrahlenmuster, das von Hals und Brust ausstrahlt.">A striking sunburst pattern radiating outward from the neck and chest.</p>
+        </div>
+      </div>
 
-        <!-- Booking Guide & FAQ -->
-        <section class="container">
-            <h2 class="section-title">BOOKING GUIDE & FAQ</h2>
-            <div class="grid-2">
-                <div>
-                    <div class="faq-item">
-                        <h4>Q. How does custom design work and what about the deposit?</h4>
-                        <p>Custom designs include a deposit requirement of €100 to secure your date. This deposit is fully included in the total tattoo price, so you do not need to pay it twice.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>Q. How should I prepare for my session?</h4>
-                        <p>Get a good night's sleep, eat a solid meal before coming, and stay well hydrated. Avoid alcohol and blood thinners 24 hours prior to your appointment.</p>
-                    </div>
-                </div>
-                <div>
-                    <div class="faq-item">
-                        <h4>Q. Tattoo Aftercare Guide</h4>
-                        <p><strong>1. Film / Bandage Removal:</strong> If using protective film, leave it on for 3 to 4 days. If fluid pools excessively, you can remove it earlier. Gently wash the area with lukewarm water and mild soap.</p>
-                    </div>
-                    <div class="faq-item">
-                        <p><strong>2. Moisturizing:</strong> Apply a thin layer of specialized tattoo aftercare ointment or fragrance-free lotion 2 to 3 times a day. Do not over-apply; the skin needs to breathe.</p>
-                    </div>
-                    <div class="faq-item">
-                        <p><strong>3. Important Rules:</strong> Do not pick, scratch, or peel the scabs/skin as it heals. Avoid swimming pools, sauna, direct sunlight, and intense workouts for at least 2 weeks.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <div class="hero-slide">
+        <img src="artwork5.jpg" alt="KIWA Tattoo Artwork 5">
+        <div class="hero-content-overlay">
+          <h2 data-en="Heritage Floral" data-kr="헤리티지 플로럴" data-de="Traditionelles Floral">Heritage Floral</h2>
+          <p data-en="Traditional Dancheong motifs elevated by delicate shading and linework." data-kr="섬세한 섀딩과 라인워크로 재해석한 전통 단청 모티브." data-de="Traditionelle Dancheong-Motive, veredelt durch feine Schattierungen und Linien.">Traditional Dancheong motifs elevated by delicate shading and linework.</p>
+        </div>
+      </div>
 
-        <!-- Booking Inquiry Form -->
-        <section class="container" id="inquiry">
-            <h2 class="section-title">BOOKING INQUIRY</h2>
-            <p style="color: var(--text-sub); margin-bottom: 2.5rem; margin-top: -1.5rem;">
-                Fill out the form below to submit your inquiry, or contact via Instagram DM.
-            </p>
+      <div class="hero-slide">
+        <img src="artwork6.jpg" alt="KIWA Tattoo Artwork 6">
+        <div class="hero-content-overlay">
+          <h2 data-en="Oriental Clouds" data-kr="오리엔탈 클라우드" data-de="Orientalische Wolken">Oriental Clouds</h2>
+          <p data-en="Dynamic cloud patterns wrapping fluidly around the temple and head." data-kr="관자놀이와 머리 주변을 유연하게 감싸는 역동적인 구름 패턴." data-de="Dynamische Wolkenmuster, die sich fließend um Schläfe und Kopf legen.">Dynamic cloud patterns wrapping fluidly around the temple and head.</p>
+        </div>
+      </div>
 
-            <form id="inquiryForm" onsubmit="sendEmail(event)">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" required placeholder="Enter your name">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required placeholder="Enter your email">
-                    </div>
-                </div>
+      <div class="hero-slide">
+        <img src="artwork7.jpg" alt="KIWA Tattoo Artwork 7">
+        <div class="hero-content-overlay">
+          <h2 data-en="Color Dynamics" data-kr="컬러 다이나믹스" data-de="Farb-Dynamik">Color Dynamics</h2>
+          <p data-en="Vibrant blue gradients and intricate structural details accentuating joint lines." data-kr="관절 라인을 강조하는 생동감 넘치는 블루 그라데이션과 정교한 구조적 디테일." data-de="Lebendige blaue Farbverläufe und filigrane Strukturdetails, die Gelenklinie betonen.">Vibrant blue gradients and intricate structural details accentuating joint lines.</p>
+        </div>
+      </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="age">Age</label>
-                        <input type="number" id="age" name="age" required placeholder="Enter your age">
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
-                    </div>
-                </div>
+    </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="placement">Tattoo Placement</label>
-                        <input type="text" id="placement" name="placement" required placeholder="e.g., Forearm, Thigh, Chest">
-                    </div>
-                    <div class="form-group">
-                        <label for="size">Estimated Size (cm)</label>
-                        <input type="text" id="size" name="size" required placeholder="e.g., 15cm x 10cm">
-                    </div>
-                </div>
+    <div class="slider-arrow arrow-left" id="prevBtn">&#10094;</div>
+    <div class="slider-arrow arrow-right" id="nextBtn">&#10095;</div>
 
-                <div class="form-group">
-                    <label for="attachment">Reference Photo / File</label>
-                    <input type="file" id="attachment" name="attachment" accept="image/*">
-                </div>
+    <div class="dots-container" id="dotsContainer"></div>
+  </div>
 
-                <div class="form-group">
-                    <label for="details">Project Idea & Details</label>
-                    <textarea id="details" name="details" required placeholder="Describe your concept, preferred motifs (Dancheong, geometric, etc.)"></textarea>
-                </div>
+  <main class="container">
+    
+    <section class="fade-up">
+      <h2 class="section-title" data-en="About the Craft" data-kr="아티스트 소개" data-de="Über die Kunst">About the Craft</h2>
+      <p class="intro-text" 
+         data-en="Based in Frankfurt am Main, KIWA specializes in custom ornamental and geometric tattoos.<br>Bridging traditional Korean motifs—such as Dancheong, clouds, and snow—with contemporary linework and organic body flow to create timeless wearable art."
+         data-kr="프랑크푸르트 암 마인을 기반으로 활동하는 KIWA는 커스텀 오나멘탈 및 지오메트리 타투를 전문으로 합니다.<br>단청, 구름, 눈 등의 전통 한국적 모티브와 현대적인 라인워크, 유기적인 바디 플로우를 결합하여 시대를 초월한 웨어러블 아트를 창조합니다."
+         data-de="Mit Sitz in Frankfurt am Main spezialisiert sich KIWA auf individuelle Ornamental- und Geometrietattoos.<br>Traditionelle koreanische Motive – wie Dancheong, Wolken und Schnee – werden mit modernen Linien und organischem Körperfluss zu zeitloser Kunst verbunden.">
+        Based in Frankfurt am Main, KIWA specializes in custom ornamental and geometric tattoos.<br>
+        Bridging traditional Korean motifs—such as Dancheong, clouds, and snow—with contemporary linework and organic body flow to create timeless wearable art.
+      </p>
+    </section>
 
-                <button type="submit" class="btn" id="submitBtn">Submit Inquiry</button>
-                <a href="https://instagram.com/kiwa_jip" target="_blank" class="btn btn-outline">Or Contact via Instagram DM</a>
-            </form>
-        </section>
-    </main>
+    <!-- EmailJS 연동 폼 -->
+    <section class="booking-section fade-up">
+      <h2 class="section-title" style="margin-bottom: 0.5rem;" data-en="Booking Inquiry" data-kr="예약 문의" data-de="Buchungsanfrage">Booking Inquiry</h2>
+      <p style="color: var(--text-sub); font-size: 0.9rem; line-height: 1.5;"
+         data-en="Fill out the form below to send an email inquiry, or contact via Instagram DM."
+         data-kr="아래 양식을 채워 이메일로 문의하시거나, 인스타그램 DM으로 편하게 연락주세요."
+         data-de="Füllen Sie das Formular aus, um eine E-Mail-Anfrage zu senden, oder kontaktieren Sie uns über Instagram DM.">
+        Fill out the form below to send an email inquiry, or contact via Instagram DM.
+      </p>
+      
+      <form class="booking-form" id="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="from_name" data-en="YOUR NAME" data-kr="성함 (YOUR NAME)" data-de="NAME">YOUR NAME</label>
+            <input type="text" id="from_name" name="from_name" class="form-control" placeholder="Enter your name" required>
+          </div>
+          <div class="form-group">
+            <label for="from_email" data-en="EMAIL ADDRESS" data-kr="이메일 주소 (EMAIL)" data-de="E-MAIL-ADRESSE">EMAIL ADDRESS</label>
+            <input type="email" id="from_email" name="from_email" class="form-control" placeholder="Enter your email" required>
+          </div>
+        </div>
 
-    <footer>
-        <p>© 2026 KIWA. All rights reserved.</p>
-        <p>Frankfurt am Main, Germany</p>
-    </footer>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="placement" data-en="TATTOO PLACEMENT" data-kr="시술 부위 (PLACEMENT)" data-de="TATTOO-PLATZIERUNG">TATTOO PLACEMENT</label>
+            <input type="text" id="placement" name="placement" class="form-control" placeholder="e.g., Forearm, Thigh, Chest" required>
+          </div>
+          <div class="form-group">
+            <label for="size" data-en="ESTIMATED SIZE (CM)" data-kr="예상 사이즈 (SIZE)" data-de="GESCHÄTZTE GRÖSSE (CM)">ESTIMATED SIZE (CM)</label>
+            <input type="text" id="size" name="size" class="form-control" placeholder="e.g., 15cm x 10cm" required>
+          </div>
+        </div>
 
-    <!-- Scroll to Top Button -->
-    <button id="scrollTopBtn" onclick="scrollToTop()" title="Go to top">↑</button>
+        <div class="form-group">
+          <label for="message" data-en="PROJECT IDEA & DETAILS" data-kr="작업 아이디어 및 디테일 (IDEA)" data-de="PROJEKT-IDEE & DETAILS">PROJECT IDEA & DETAILS</label>
+          <textarea id="message" name="message" class="form-control" placeholder="Describe your concept, preferred motifs (Dancheong, geometric, etc.)" required></textarea>
+        </div>
 
-    <script>
-        // Language Switch Alert/Notice
-        function switchLang(lang) {
-            document.querySelectorAll('.lang-switch span').forEach(el => el.classList.remove('active'));
-            event.target.classList.add('active');
-            if(lang === 'kr') {
-                alert('한국어 페이지는 준비 중입니다. 영문 페이지를 이용해 주세요.');
-            } else if(lang === 'de') {
-                alert('Die deutsche Version ist bald verfügbar.');
-            }
+        <button type="submit" class="btn-submit" data-en="Send via Email" data-kr="이메일로 문의 보내기" data-de="Per E-Mail senden">Send via Email</button>
+      </form>
+
+      <a href="https://www.instagram.com/kiwa_jip" target="_blank" class="btn-instagram" data-en="Or Contact via Instagram DM" data-kr="또는 인스타그램 DM으로 문의하기" data-de="Oder per Instagram DM anfragen">
+        Or Contact via Instagram DM
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 KIWA. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // 언어 전환 기능
+    function setLanguage(lang) {
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      if(lang === 'en') document.querySelectorAll('.lang-btn')[0].classList.add('active');
+      if(lang === 'kr') document.querySelectorAll('.lang-btn')[1].classList.add('active');
+      if(lang === 'de') document.querySelectorAll('.lang-btn')[2].classList.add('active');
+
+      document.querySelectorAll('[data-en]').forEach(el => {
+        if (el.dataset[lang]) {
+          el.innerHTML = el.dataset[lang];
         }
+      });
+    }
 
-        // Scroll to Top Logic
-        const scrollBtn = document.getElementById('scrollTopBtn');
-        window.onscroll = function() {
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                scrollBtn.classList.add('show');
-            } else {
-                scrollBtn.classList.remove('show');
-            }
-        };
+    // EmailJS 폼 전송 기능
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault();
 
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // EmailJS form submission logic with file support
-        function fileToBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = error => reject(error);
+        emailjs.sendForm('service_kiwa', 'template_ahfvhka', this)
+            .then(function() {
+                alert('예약 문의가 성공적으로 전송되었습니다! 빠른 시일 내에 답변 드리겠습니다.');
+                document.getElementById('contact-form').reset();
+            }, function(error) {
+                alert('전송에 실패했습니다. 다시 시도해 주세요. (Error: ' + JSON.stringify(error) + ')');
             });
+    });
+
+    // 슬라이더 제어 스크립트
+    const track = document.getElementById('heroTrack');
+    const container = document.getElementById('sliderContainer');
+    const slides = Array.from(track.children);
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const dotsContainer = document.getElementById('dotsContainer');
+
+    let currentIndex = 0;
+    let autoSlideTimer = null;
+
+    slides.forEach((_, index) => {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      if (index === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => {
+        goToSlide(index);
+        resetAutoSlide();
+      });
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = Array.from(dotsContainer.children);
+
+    function updateDots() {
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+    }
+
+    function goToSlide(index) {
+      currentIndex = index;
+      if (currentIndex < 0) currentIndex = slides.length - 1;
+      if (currentIndex >= slides.length) currentIndex = 0;
+      
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      updateDots();
+    }
+
+    function startAutoSlide() {
+      autoSlideTimer = setInterval(() => {
+        goToSlide(currentIndex + 1);
+      }, 5000);
+    }
+
+    function resetAutoSlide() {
+      clearInterval(autoSlideTimer);
+      startAutoSlide();
+    }
+
+    nextBtn.addEventListener('click', () => {
+      goToSlide(currentIndex + 1);
+      resetAutoSlide();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      goToSlide(currentIndex - 1);
+      resetAutoSlide();
+    });
+
+    let startX = 0;
+    let endX = 0;
+
+    container.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    container.addEventListener('touchend', (e) => {
+      endX = e.changedTouches[0].clientX;
+      handleSwipe();
+    }, { passive: true });
+
+    container.addEventListener('mousedown', (e) => {
+      startX = e.clientX;
+    });
+
+    container.addEventListener('mouseup', (e) => {
+      endX = e.clientX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      const diffX = startX - endX;
+      const threshold = 50;
+
+      if (Math.abs(diffX) > threshold) {
+        if (diffX > 0) {
+          goToSlide(currentIndex + 1);
+        } else {
+          goToSlide(currentIndex - 1);
         }
+        resetAutoSlide();
+      }
+      startX = 0;
+      endX = 0;
+    }
 
-        async function sendEmail(event) {
-            event.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.disabled = true;
-            submitBtn.innerText = 'Sending Inquiry...';
+    startAutoSlide();
 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const age = document.getElementById('age').value;
-            const phone = document.getElementById('phone').value;
-            const placement = document.getElementById('placement').value;
-            const size = document.getElementById('size').value;
-            const details = document.getElementById('details').value;
-            const fileInput = document.getElementById('attachment');
+    // 페이드업 애니메이션
+    document.addEventListener("DOMContentLoaded", function () {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, { threshold: 0.1 });
 
-            let fileBase64 = '';
-            if (fileInput.files.length > 0) {
-                try {
-                    fileBase64 = await fileToBase64(fileInput.files[0]);
-                } catch (err) {
-                    console.error('File conversion error', err);
-                }
-            }
-
-            const templateParams = {
-                from_name: name,
-                reply_to: email,
-                age: age,
-                phone: phone,
-                placement: placement,
-                size: size,
-                details: details,
-                attachment: fileBase64
-            };
-
-            emailjs.send('service_default', 'template_default', templateParams)
-                .then(function(response) {
-                    alert('Inquiry submitted successfully! KIWA will get back to you soon.');
-                    document.getElementById('inquiryForm').reset();
-                    submitBtn.disabled = false;
-                    submitBtn.innerText = 'Submit Inquiry';
-                }, function(error) {
-                    alert('Failed to send inquiry. Please try again or contact via Instagram DM.');
-                    console.error('FAILED...', error);
-                    submitBtn.disabled = false;
-                    submitBtn.innerText = 'Submit Inquiry';
-                });
-        }
-    </script>
+      document.querySelectorAll(".fade-up").forEach((el) => {
+        observer.observe(el);
+      });
+    });
+  </script>
 </body>
 </html>
