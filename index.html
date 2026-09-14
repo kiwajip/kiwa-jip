@@ -256,7 +256,6 @@
       margin-bottom: 1.5rem;
     }
 
-    /* 스타일 뱃지 */
     .style-tags {
       display: flex;
       flex-wrap: wrap;
@@ -274,7 +273,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* 정보 카드 박스 */
     .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -318,7 +316,7 @@
       margin-bottom: 0.4rem;
     }
 
-    /* FAQ 및 케어 가이드 박스 */
+    /* FAQ 및 케어 가이드 박스 (아코디언 적용) */
     .content-section-box {
       background-color: var(--card-bg);
       border: 1px solid var(--border-color);
@@ -329,27 +327,61 @@
 
     .faq-item {
       border-bottom: 1px solid var(--border-color);
-      padding: 1rem 0;
+      padding: 0.8rem 0;
     }
 
     .faq-item:last-child {
       border-bottom: none;
     }
 
+    /* 아코디언 헤더 (클릭 가능 영역) */
     .faq-question {
       font-weight: 500;
       color: var(--text-main);
-      font-size: 1rem;
-      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.3s ease;
+      padding: 0.4rem 0;
     }
 
+    .faq-question:hover {
+      color: var(--accent-color);
+    }
+
+    /* 토글 화살표 아이콘 */
+    .faq-question::after {
+      content: '▼';
+      font-size: 0.75rem;
+      color: var(--text-sub);
+      transition: transform 0.3s ease;
+      margin-left: 10px;
+    }
+
+    .faq-item.active .faq-question::after {
+      transform: rotate(180deg);
+      color: var(--accent-color);
+    }
+
+    /* 아코디언 내용 영역 (접고 펼치기 애니메이션) */
     .faq-answer {
       color: var(--text-sub);
       font-size: 0.9rem;
       line-height: 1.6;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease-out, padding 0.35s ease-out;
+      padding: 0 0;
     }
 
-    /* 예약 폼 섹션 */
+    .faq-item.active .faq-answer {
+      max-height: 250px; /* 내용이 길 경우 충분한 높이 */
+      padding: 0.6rem 0 0.2rem 0;
+    }
+
     .booking-section {
       background-color: var(--card-bg);
       border-radius: 12px;
@@ -415,7 +447,6 @@
       min-height: 110px;
     }
 
-    /* 파일 업로드 스타일 */
     input[type="file"].form-control {
       padding: 0.6rem;
       color: var(--text-sub);
@@ -621,7 +652,7 @@
       </div>
     </section>
 
-    <!-- FAQ 및 예약 안내 -->
+    <!-- FAQ 및 예약 안내 (아코디언 적용) -->
     <section class="content-section-box fade-up">
       <h2 class="section-title" style="margin-bottom: 1.5rem;" data-en="Booking Guide & FAQ" data-kr="예약 안내 및 자주 묻는 질문" data-de="Buchungsanleitung & FAQ">Booking Guide & FAQ</h2>
       
@@ -634,7 +665,7 @@
         </div>
       </div>
 
-      <div class="faq-item" style="margin-top: 1rem;">
+      <div class="faq-item">
         <div class="faq-question" data-en="Q. How should I prepare for my session?" data-kr="Q. 작업 전 준비 사항이 있나요?" data-de="Q. Wie sollte ich mich auf die Sitzung vorbereiten?">Q. How should I prepare for my session?</div>
         <div class="faq-answer" data-en="Get a good night's sleep, eat a solid meal before coming, and stay well hydrated. Avoid alcohol and blood thinners 24 hours prior to your appointment." 
              data-kr="작업 전날 충분히 수면을 취하시고, 예약 당일 식사를 든든하게 하고 오세요. 수분 섭취를 충분히 해주시고, 방문 전 24시간 동안은 음주나 혈액순환을 방해하는 약물 복용을 피해주시기 바랍니다."
@@ -644,7 +675,7 @@
       </div>
     </section>
 
-    <!-- 타투 관리 방법 (Aftercare) -->
+    <!-- 타투 관리 방법 (Aftercare) (아코디언 적용) -->
     <section class="content-section-box fade-up">
       <h2 class="section-title" style="margin-bottom: 1.5rem;" data-en="Tattoo Aftercare Guide" data-kr="타투 관리 방법 (Best Aftercare)" data-de="Tattoo-Pflegeanleitung">Tattoo Aftercare Guide</h2>
       
@@ -657,7 +688,7 @@
         </div>
       </div>
 
-      <div class="faq-item" style="margin-top: 1rem;">
+      <div class="faq-item">
         <div class="faq-question" data-en="2. Moisturizing" data-kr="2. 보습 관리" data-de="2. Feuchtigkeitsversorgung">2. Moisturizing</div>
         <div class="faq-answer" data-en="Apply a thin layer of specialized tattoo aftercare ointment or fragrance-free lotion 2 to 3 times a day. Do not over-apply; the skin needs to breathe." 
              data-kr="타투 전용 연고나 향이 없는 로션을 하루에 2~3회 아주 얇게 펴 발라주세요. 너무 두껍게 바르면 피부 숨구멍을 막아 회복을 더디게 하므로 얇게 자주 발라주는 것이 좋습니다."
@@ -666,7 +697,7 @@
         </div>
       </div>
 
-      <div class="faq-item" style="margin-top: 1rem;">
+      <div class="faq-item">
         <div class="faq-question" data-en="3. Important Rules" data-kr="3. 주의사항 (절대 금지)" data-de="3. Wichtige Regeln">3. Important Rules</div>
         <div class="faq-answer" data-en="Do not pick, scratch, or peel the scabs/skin as it heals. Avoid swimming pools, saunas, direct sunlight, and intense workouts for at least 2 weeks." 
              data-kr="회복 과정에서 각질이나 딱지가 생겨도 절대 억지로 뜯거나 긁지 마세요. 최소 2주 동안은 수영장, 사우나, 직사광선 노출, 격렬한 운동을 피해주시기 바랍니다."
@@ -759,24 +790,24 @@
       });
     }
 
-    // EmailJS 폼 전송 기능 (파일 첨부 및 내 이메일 수신 포함)
+    // 아코디언 토글 기능
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.parentElement;
+        item.classList.toggle('active');
+      });
+    });
+
+    // EmailJS 폼 전송 기능
     document.getElementById('contact-form').addEventListener('submit', function(event) {
         event.preventDefault();
 
-        // 폼 데이터를 EmailJS가 인식할 수 있는 객체로 변환
         const myForm = this;
-        const formData = new FormData(myForm);
-        
-        // 파일이 첨부된 경우 처리를 위한 객체 구성
-        const fileInput = document.getElementById('attachment');
-        
-        // 안내 메시지 (전송 중 표시)
         const submitBtn = myForm.querySelector('.btn-submit');
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = "Sending...";
         submitBtn.disabled = true;
 
-        // EmailJS 전송 실행
         emailjs.sendForm('service_kiwa', 'template_ahfvhka', myForm)
             .then(function() {
                 alert('예약 문의가 성공적으로 전송되었습니다! 빠른 시일 내에 답변 드리겠습니다.');
@@ -850,6 +881,7 @@
       resetAutoSlide();
     });
 
+    // 스와이프 기능
     let startX = 0;
     let endX = 0;
 
@@ -857,7 +889,7 @@
       startX = e.touches[0].clientX;
     }, { passive: true });
 
-    container.addEventListener('touched', (e) => {
+    container.addEventListener('touchend', (e) => {
       endX = e.changedTouches[0].clientX;
       handleSwipe();
     }, { passive: true });
@@ -873,9 +905,7 @@
 
     function handleSwipe() {
       const diffX = startX - endX;
-      const threshold = 50;
-
-      if (Math.abs(diffX) > threshold) {
+      if (Math.abs(diffX) > 50) {
         if (diffX > 0) {
           goToSlide(currentIndex + 1);
         } else {
@@ -883,26 +913,9 @@
         }
         resetAutoSlide();
       }
-      startX = 0;
-      endX = 0;
     }
 
     startAutoSlide();
-
-    // 페이드업 애니메이션
-    document.addEventListener("DOMContentLoaded", function () {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      }, { threshold: 0.1 });
-
-      document.querySelectorAll(".fade-up").forEach((el) => {
-        observer.observe(el);
-      });
-    });
   </script>
 </body>
 </html>
