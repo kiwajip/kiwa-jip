@@ -17,6 +17,7 @@
   </script>
 
   <style>
+    /* 기본 다크모드 변수 */
     :root {
       --bg-color: #1a1918;
       --card-bg: #242220;
@@ -24,6 +25,22 @@
       --text-main: #f5f4f0;
       --text-sub: #a8a49e;
       --border-color: #3d3935;
+      --input-bg: #1a1918;
+      --header-grad-1: rgba(26,25,24,0.85);
+      --header-grad-2: rgba(26,25,24,0);
+    }
+
+    /* 라이트모드 (아이보리 & 클래식 골드) 변수 설정 */
+    [data-theme="light"] {
+      --bg-color: #f7f5f0;
+      --card-bg: #ffffff;
+      --accent-color: #b8860b;
+      --text-main: #221f1d;
+      --text-sub: #6c655f;
+      --border-color: #e2ded8;
+      --input-bg: #ffffff;
+      --header-grad-1: rgba(247,245,240,0.9);
+      --header-grad-2: rgba(247,245,240,0);
     }
 
     * {
@@ -39,6 +56,7 @@
       line-height: 1.6;
       overflow-x: hidden;
       width: 100%;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     header {
@@ -51,7 +69,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: linear-gradient(180deg, rgba(26,25,24,0.85) 0%, rgba(26,25,24,0) 100%);
+      background: linear-gradient(180deg, var(--header-grad-1) 0%, var(--header-grad-2) 100%);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .header-left {
@@ -76,6 +100,32 @@
       text-transform: uppercase;
     }
 
+    /* 테마 토글 버튼 스타일 */
+    .theme-toggle-btn {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    [data-theme="light"] .theme-toggle-btn {
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #ffffff;
+    }
+
     .lang-switch {
       display: flex;
       gap: 6px;
@@ -83,6 +133,10 @@
       padding: 4px;
       border-radius: 20px;
       border: 1px solid var(--border-color);
+    }
+
+    [data-theme="light"] .lang-switch {
+      background: rgba(255, 255, 255, 0.6);
     }
 
     .lang-btn {
@@ -150,6 +204,7 @@
       font-size: 1.8rem;
       margin-bottom: 0.4rem;
       letter-spacing: 2px;
+      color: #ffffff;
     }
 
     .hero-content-overlay p {
@@ -394,7 +449,7 @@
     }
 
     .form-control {
-      background-color: #1a1918;
+      background-color: var(--input-bg);
       border: 1px solid var(--border-color);
       border-radius: 6px;
       padding: 0.8rem 0.9rem;
@@ -415,26 +470,46 @@
       min-height: 110px;
     }
 
-    /* 파일 업로드 스타일 */
-    input[type="file"].form-control {
-      padding: 0.6rem;
-      color: var(--text-sub);
+    /* 커스텀 파일 업로드 스타일 */
+    .file-upload-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background-color: var(--input-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 0.6rem 0.9rem;
       cursor: pointer;
+      transition: border-color 0.3s ease;
     }
 
-    input[type="file"]::file-selector-button {
+    .file-upload-wrapper:hover {
+      border-color: var(--accent-color);
+    }
+
+    .file-upload-btn {
       background-color: var(--border-color);
       color: var(--text-main);
       border: none;
       padding: 6px 12px;
       border-radius: 4px;
       cursor: pointer;
-      margin-right: 10px;
+      font-size: 0.85rem;
       transition: background 0.3s;
+      white-space: nowrap;
     }
 
-    input[type="file"]::file-selector-button:hover {
+    .file-upload-btn:hover {
       background-color: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .file-name-display {
+      color: var(--text-sub);
+      font-size: 0.9rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .btn-submit {
@@ -453,8 +528,8 @@
     }
 
     .btn-submit:hover {
-      background-color: #ff851b;
-      box-shadow: 0 4px 15px rgba(255, 109, 0, 0.4);
+      opacity: 0.9;
+      box-shadow: 0 4px 15px rgba(184, 134, 11, 0.3);
     }
 
     .btn-instagram {
@@ -477,7 +552,7 @@
     .btn-instagram:hover {
       border-color: var(--accent-color);
       color: var(--accent-color);
-      background-color: rgba(255, 109, 0, 0.05);
+      background-color: rgba(184, 134, 11, 0.05);
     }
 
     footer {
@@ -497,10 +572,14 @@
       <a href="#" class="logo-title">KIWA</a>
       <span class="nav-tagline">Ornamental & Geometric</span>
     </div>
-    <div class="lang-switch">
-      <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
-      <button class="lang-btn" onclick="setLanguage('kr')">KR</button>
-      <button class="lang-btn" onclick="setLanguage('de')">DE</button>
+    <div class="header-right">
+      <!-- 테마 토글 버튼 (해/달 아이콘) -->
+      <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Theme">🌙</button>
+      <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+        <button class="lang-btn" onclick="setLanguage('kr')">KR</button>
+        <button class="lang-btn" onclick="setLanguage('de')">DE</button>
+      </div>
     </div>
   </header>
 
@@ -690,44 +769,65 @@
         <div class="form-row">
           <div class="form-group">
             <label for="from_name" data-en="YOUR NAME" data-kr="성함 (YOUR NAME)" data-de="NAME">YOUR NAME</label>
-            <input type="text" id="from_name" name="from_name" class="form-control" placeholder="Enter your name" required>
+            <input type="text" id="from_name" name="from_name" class="form-control" 
+                   data-en-ph="Enter your name" data-kr-ph="성함을 입력해주세요" data-de-ph="Geben Sie Ihren Namen ein" 
+                   placeholder="Enter your name" required>
           </div>
           <div class="form-group">
             <label for="from_email" data-en="EMAIL ADDRESS" data-kr="이메일 주소 (EMAIL)" data-de="E-MAIL-ADRESSE">EMAIL ADDRESS</label>
-            <input type="email" id="from_email" name="from_email" class="form-control" placeholder="Enter your email" required>
+            <input type="email" id="from_email" name="from_email" class="form-control" 
+                   data-en-ph="Enter your email" data-kr-ph="이메일 주소를 입력해주세요" data-de-ph="Geben Sie Ihre E-Mail ein" 
+                   placeholder="Enter your email" required>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label for="age" data-en="AGE" data-kr="나이 (AGE)" data-de="ALTER">AGE</label>
-            <input type="text" id="age" name="age" class="form-control" placeholder="Enter your age" required>
+            <input type="text" id="age" name="age" class="form-control" 
+                   data-en-ph="Enter your age" data-kr-ph="나이를 입력해주세요" data-de-ph="Geben Sie Ihr Alter ein" 
+                   placeholder="Enter your age" required>
           </div>
           <div class="form-group">
             <label for="phone" data-en="PHONE NUMBER" data-kr="전화번호 (PHONE)" data-de="TELEFONNUMMER">PHONE NUMBER</label>
-            <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone number" required>
+            <input type="tel" id="phone" name="phone" class="form-control" 
+                   data-en-ph="Enter your phone number" data-kr-ph="전화번호를 입력해주세요" data-de-ph="Geben Sie Ihre Telefonnummer ein" 
+                   placeholder="Enter your phone number" required>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label for="placement" data-en="TATTOO PLACEMENT" data-kr="시술 부위 (PLACEMENT)" data-de="TATTOO-PLATZIERUNG">TATTOO PLACEMENT</label>
-            <input type="text" id="placement" name="placement" class="form-control" placeholder="e.g., Forearm, Thigh, Chest" required>
+            <input type="text" id="placement" name="placement" class="form-control" 
+                   data-en-ph="e.g., Forearm, Thigh, Chest" data-kr-ph="예: 전완근, 허벅지, 가슴 등" data-de-ph="z.B. Unterarm, Oberschenkel, Brust" 
+                   placeholder="e.g., Forearm, Thigh, Chest" required>
           </div>
           <div class="form-group">
             <label for="size" data-en="ESTIMATED SIZE (CM)" data-kr="예상 사이즈 (SIZE)" data-de="GESCHÄTZTE GRÖSSE (CM)">ESTIMATED SIZE (CM)</label>
-            <input type="text" id="size" name="size" class="form-control" placeholder="e.g., 15cm x 10cm" required>
+            <input type="text" id="size" name="size" class="form-control" 
+                   data-en-ph="e.g., 15cm x 10cm" data-kr-ph="예: 15cm x 10cm" data-de-ph="z.B. 15cm x 10cm" 
+                   placeholder="e.g., 15cm x 10cm" required>
           </div>
         </div>
 
+        <!-- 커스텀 파일 업로드 영역 -->
         <div class="form-group">
           <label for="attachment" data-en="REFERENCE PHOTO / FILE" data-kr="참고 사진 첨부 (PHOTO / FILE)" data-de="REFERENZ-FOTO / DATEI">REFERENCE PHOTO / FILE</label>
-          <input type="file" id="attachment" name="attachment" class="form-control" accept="image/*">
+          <div class="file-upload-wrapper" onclick="document.getElementById('attachment').click();">
+            <button type="button" class="file-upload-btn" id="fileBtnText" data-en="Browse" data-kr="찾아보기" data-de="Durchsuchen">Browse</button>
+            <span class="file-name-display" id="fileNameDisplay" data-en="No file chosen" data-kr="선택된 파일 없음" data-de="Keine Datei ausgewählt">No file chosen</span>
+            <input type="file" id="attachment" name="attachment" accept="image/*" style="display: none;" onchange="updateFileName(this)">
+          </div>
         </div>
 
         <div class="form-group">
           <label for="message" data-en="PROJECT IDEA & DETAILS" data-kr="작업 아이디어 및 디테일 (IDEA)" data-de="PROJEKT-IDEE & DETAILS">PROJECT IDEA & DETAILS</label>
-          <textarea id="message" name="message" class="form-control" placeholder="Describe your concept, preferred motifs (Dancheong, geometric, etc.)" required></textarea>
+          <textarea id="message" name="message" class="form-control" 
+                    data-en-ph="Describe your concept, preferred motifs (Dancheong, geometric, etc.)" 
+                    data-kr-ph="원하시는 컨셉 및 선호하는 모티브(단청, 지오메트리 등)를 설명해주세요" 
+                    data-de-ph="Beschreiben Sie Ihr Konzept und bevorzugte Motive (Dancheong, Geometrie usw.)" 
+                    placeholder="Describe your concept, preferred motifs (Dancheong, geometric, etc.)" required></textarea>
         </div>
 
         <button type="submit" class="btn-submit" data-en="Submit Inquiry" data-kr="문의 제출하기" data-de="Anfrage absenden">Submit Inquiry</button>
@@ -745,46 +845,111 @@
   </footer>
 
   <script>
-    // 언어 전환 기능
+    // 현재 선택된 언어 상태 저장용 변수
+    let currentLang = 'en';
+
+    // 테마 토글 함수 (다크모드 <-> 라이트모드)
+    function toggleTheme() {
+      const htmlEl = document.documentElement;
+      const themeBtn = document.getElementById('themeToggleBtn');
+      
+      if (htmlEl.getAttribute('data-theme') === 'light') {
+        htmlEl.removeAttribute('data-theme');
+        themeBtn.textContent = '🌙';
+      } else {
+        htmlEl.setAttribute('data-theme', 'light');
+        themeBtn.textContent = '☀️';
+      }
+    }
+
+    // 파일 선택 시 이름 표시 및 번역 유지 함수
+    function updateFileName(input) {
+      const display = document.getElementById('fileNameDisplay');
+      if (input.files && input.files.length > 0) {
+        display.textContent = input.files[0].name;
+        display.style.color = 'var(--text-main)';
+      } else {
+        setFileDefaultText();
+      }
+    }
+
+    function setFileDefaultText() {
+      const display = document.getElementById('fileNameDisplay');
+      if (currentLang === 'en') display.textContent = "No file chosen";
+      if (currentLang === 'kr') display.textContent = "선택된 파일 없음";
+      if (currentLang === 'de') display.textContent = "Keine Datei ausgewählt";
+      display.style.color = 'var(--text-sub)';
+    }
+
+    // 언어 전환 기능 (버튼, 라벨, 인풋, 파일첨부 버튼까지 완벽 연동)
     function setLanguage(lang) {
+      currentLang = lang;
+      
       document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
       if(lang === 'en') document.querySelectorAll('.lang-btn')[0].classList.add('active');
       if(lang === 'kr') document.querySelectorAll('.lang-btn')[1].classList.add('active');
       if(lang === 'de') document.querySelectorAll('.lang-btn')[2].classList.add('active');
 
+      // 일반 텍스트 변경
       document.querySelectorAll('[data-en]').forEach(el => {
         if (el.dataset[lang]) {
           el.innerHTML = el.dataset[lang];
         }
       });
+
+      // 인풋 박스 Placeholder 변경
+      document.querySelectorAll('[data-en-ph]').forEach(input => {
+        const phKey = `${lang}-ph`;
+        if (input.dataset[phKey]) {
+          input.placeholder = input.dataset[phKey];
+        }
+      });
+
+      // 파일 업로드 버튼 텍스트 변경
+      const fileBtn = document.getElementById('fileBtnText');
+      if(lang === 'en') fileBtn.textContent = "Browse";
+      if(lang === 'kr') fileBtn.textContent = "찾아보기";
+      if(lang === 'de') fileBtn.textContent = "Durchsuchen";
+
+      // 파일이 선택되지 않은 상태라면 기본 안내 문구도 해당 언어로 변경
+      const fileInput = document.getElementById('attachment');
+      if (!fileInput.files || fileInput.files.length === 0) {
+        setFileDefaultText();
+      }
     }
 
-    // EmailJS 폼 전송 기능 (파일 첨부 및 내 이메일 수신 포함)
+    // EmailJS 폼 전송 기능
     document.getElementById('contact-form').addEventListener('submit', function(event) {
         event.preventDefault();
 
-        // 폼 데이터를 EmailJS가 인식할 수 있는 객체로 변환
         const myForm = this;
-        const formData = new FormData(myForm);
-        
-        // 파일이 첨부된 경우 처리를 위한 객체 구성
-        const fileInput = document.getElementById('attachment');
-        
-        // 안내 메시지 (전송 중 표시)
         const submitBtn = myForm.querySelector('.btn-submit');
         const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = "Sending...";
+        
+        let sendingText = "Sending...";
+        if(currentLang === 'kr') sendingText = "전송 중...";
+        if(currentLang === 'de') sendingText = "Wird gesendet...";
+        
+        submitBtn.innerHTML = sendingText;
         submitBtn.disabled = true;
 
-        // EmailJS 전송 실행
         emailjs.sendForm('service_kiwa', 'template_ahfvhka', myForm)
             .then(function() {
-                alert('예약 문의가 성공적으로 전송되었습니다! 빠른 시일 내에 답변 드리겠습니다.');
+                let successMsg = 'Inquiry sent successfully! We will get back to you soon.';
+                if(currentLang === 'kr') successMsg = '예약 문의가 성공적으로 전송되었습니다! 빠른 시일 내에 답변 드리겠습니다.';
+                if(currentLang === 'de') successMsg = 'Anfrage erfolgreich gesendet! Wir werden uns bald bei Ihnen melden.';
+                
+                alert(successMsg);
                 myForm.reset();
+                setFileDefaultText();
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             }, function(error) {
-                alert('전송에 실패했습니다. 다시 시도해 주세요. (Error: ' + JSON.stringify(error) + ')');
+                let failMsg = 'Failed to send. Please try again. (Error: ';
+                if(currentLang === 'kr') failMsg = '전송에 실패했습니다. 다시 시도해 주세요. (Error: ';
+                if(currentLang === 'de') failMsg = 'Senden fehlgeschlagen. Bitte versuchen Sie es erneut. (Error: ';
+
+                alert(failMsg + JSON.stringify(error) + ')');
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             });
