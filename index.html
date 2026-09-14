@@ -124,6 +124,7 @@
       height: 100%;
       position: relative;
       user-select: none;
+      cursor: pointer; /* 클릭 가능 표시 */
     }
 
     .hero-slide img {
@@ -256,7 +257,6 @@
       margin-bottom: 1.5rem;
     }
 
-    /* 스타일 뱃지 */
     .style-tags {
       display: flex;
       flex-wrap: wrap;
@@ -274,7 +274,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* 정보 카드 박스 */
     .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -318,7 +317,6 @@
       margin-bottom: 0.4rem;
     }
 
-    /* FAQ 및 케어 가이드 박스 */
     .content-section-box {
       background-color: var(--card-bg);
       border: 1px solid var(--border-color);
@@ -349,7 +347,6 @@
       line-height: 1.6;
     }
 
-    /* 예약 폼 섹션 */
     .booking-section {
       background-color: var(--card-bg);
       border-radius: 12px;
@@ -415,7 +412,6 @@
       min-height: 110px;
     }
 
-    /* 파일 업로드 스타일 */
     input[type="file"].form-control {
       padding: 0.6rem;
       color: var(--text-sub);
@@ -489,7 +485,7 @@
       margin-top: 3rem;
     }
 
-/* --- 사진 갤러리 모달창 스타일 --- */
+    /* --- 사진 갤러리 모달창 스타일 --- */
     .image-modal {
       display: none;
       position: fixed;
@@ -539,19 +535,16 @@
       from { transform: scale(0.95); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
     }
-
-    /* 슬라이더 이미지에 마우스 올렸을 때 클릭 가능 표시 */
-    .hero-slide img {
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
-<!-- 사진 확대 모달창 구조 -->
+
+  <!-- 사진 확대 모달창 구조 -->
   <div class="image-modal" id="imageModal">
     <span class="modal-close" id="modalClose">&times;</span>
     <img id="modalImg" src="" alt="Enlarged Artwork">
   </div>
+
   <header>
     <div class="header-left">
       <a href="#" class="logo-title">KIWA</a>
@@ -819,24 +812,16 @@
       });
     }
 
-    // EmailJS 폼 전송 기능 (파일 첨부 및 내 이메일 수신 포함)
+    // EmailJS 폼 전송 기능
     document.getElementById('contact-form').addEventListener('submit', function(event) {
         event.preventDefault();
 
-        // 폼 데이터를 EmailJS가 인식할 수 있는 객체로 변환
         const myForm = this;
-        const formData = new FormData(myForm);
-        
-        // 파일이 첨부된 경우 처리를 위한 객체 구성
-        const fileInput = document.getElementById('attachment');
-        
-        // 안내 메시지 (전송 중 표시)
         const submitBtn = myForm.querySelector('.btn-submit');
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = "Sending...";
         submitBtn.disabled = true;
 
-        // EmailJS 전송 실행
         emailjs.sendForm('service_kiwa', 'template_ahfvhka', myForm)
             .then(function() {
                 alert('예약 문의가 성공적으로 전송되었습니다! 빠른 시일 내에 답변 드리겠습니다.');
@@ -917,7 +902,7 @@
       startX = e.touches[0].clientX;
     }, { passive: true });
 
-    container.addEventListener('touched', (e) => {
+    container.addEventListener('touchend', (e) => {
       endX = e.changedTouches[0].clientX;
       handleSwipe();
     }, { passive: true });
@@ -964,17 +949,20 @@
       });
     });
 
-// --- 사진 갤러리 모달창 스크립트 ---
+    // --- 사진 갤러리 모달창 스크립트 ---
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImg');
     const modalClose = document.getElementById('modalClose');
-    const sliderImages = document.querySelectorAll('.hero-slide img');
+    const heroSlides = document.querySelectorAll('.hero-slide');
 
-    // 슬라이더 이미지를 누르면 모달창 열기
-    sliderImages.forEach(img => {
-      img.addEventListener('click', () => {
-        modal.classList.add('active');
-        modalImg.src = img.src;
+    // 슬라이드 영역을 누르면 모달창 열기 (안의 이미지를 가져옴)
+    heroSlides.forEach(slide => {
+      slide.addEventListener('click', () => {
+        const img = slide.querySelector('img');
+        if (img) {
+          modal.classList.add('active');
+          modalImg.src = img.src;
+        }
       });
     });
 
