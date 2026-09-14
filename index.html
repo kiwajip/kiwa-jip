@@ -1,274 +1,673 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KIWA | Ornamental & Geometric Tattoo</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+KR:wght@300;400&display=swap" rel="stylesheet">
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function() {
-            emailjs.init("dB0Q2cv_50XALAZq4");
-        })();
-    </script>
-    <style>
-        :root {
-            --bg-color: #1a1918;
-            --surface-color: #242221;
-            --text-primary: #e6e2dd;
-            --text-secondary: #a8a29e;
-            --accent-color: #c5b358;
-            --border-color: #383533;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KIWA | Ornamental & Geometric Tattoo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+      (function() {
+          emailjs.init("dB0Q2cv_50XALAZq4");
+      })();
+  </script>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <style>
+    :root {
+      --bg-color: #1a1918;
+      --card-bg: #242220;
+      --accent-color: #ff6d00;
+      --text-main: #f5f4f0;
+      --text-sub: #a8a49e;
+      --border-color: #3d3935;
+    }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            font-family: 'Noto Serif KR', serif;
-            line-height: 1.6;
-            letter-spacing: 0.05em;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        header {
-            padding: 4rem 2rem;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-        }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: 'Noto Sans KR', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      width: 100%;
+    }
 
-        header h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            letter-spacing: 0.2em;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.5rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(180deg, rgba(26,25,24,0.85) 0%, rgba(26,25,24,0) 100%);
+    }
 
-        header p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-        }
+    .header-left {
+      display: flex;
+      flex-direction: column;
+    }
 
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            padding: 1.5rem;
-            background-color: var(--surface-color);
-            border-bottom: 1px solid var(--border-color);
-        }
+    .logo-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      letter-spacing: 3px;
+      color: var(--text-main);
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 700;
+    }
 
-        nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            transition: color 0.3s ease;
-        }
+    .nav-tagline {
+      font-size: 0.75rem;
+      color: var(--accent-color);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
 
-        nav a:hover {
-            color: var(--accent-color);
-        }
+    .lang-switch {
+      display: flex;
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 4px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+    }
 
-        main {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-sub);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-        section {
-            margin-bottom: 5rem;
-        }
+    .lang-btn.active {
+      background: var(--accent-color);
+      color: #ffffff;
+    }
 
-        h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            letter-spacing: 0.15em;
-            color: var(--text-primary);
-        }
+    .hero-slider-container {
+      position: relative;
+      width: 100%;
+      height: 75vh;
+      min-height: 450px;
+      overflow: hidden;
+      background-color: #141312;
+      touch-action: pan-y;
+    }
 
-        /* Booking Form Styles */
-        .booking-container {
-            background-color: var(--surface-color);
-            padding: 3rem;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-        }
+    .hero-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
+    .hero-slide {
+      min-width: 100%;
+      height: 100%;
+      position: relative;
+      user-select: none;
+    }
 
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
+    .hero-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.8);
+      pointer-events: none;
+    }
 
-        input, textarea {
-            width: 100%;
-            padding: 0.9rem;
-            background-color: var(--bg-color);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            font-family: 'Noto Serif KR', serif;
-            font-size: 0.95rem;
-            border-radius: 2px;
-            transition: border-color 0.3s ease;
-        }
+    .hero-content-overlay {
+      position: absolute;
+      bottom: 3rem;
+      left: 5%;
+      right: 5%;
+      z-index: 10;
+      max-width: 650px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+      pointer-events: none;
+    }
 
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
+    .hero-content-overlay h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      margin-bottom: 0.4rem;
+      letter-spacing: 2px;
+    }
 
-        textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
+    .hero-content-overlay p {
+      color: #e6e4dc;
+      font-size: 0.9rem;
+      font-weight: 300;
+    }
 
-        button[type="submit"] {
-            width: 100%;
-            padding: 1rem;
-            background-color: var(--text-primary);
-            color: var(--bg-color);
-            border: none;
-            font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            cursor: pointer;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            margin-top: 1rem;
-        }
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.4);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 20;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
 
-        button[type="submit"]:hover {
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-        }
+    .slider-arrow:hover {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+    }
 
-        .instagram-link {
-            text-align: center;
-            margin-top: 2rem;
-        }
+    .arrow-left { left: 1rem; }
+    .arrow-right { right: 1rem; }
 
-        .instagram-link a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-size: 0.95rem;
-            letter-spacing: 0.1em;
-        }
+    .dots-container {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 20;
+    }
 
-        .instagram-link a:hover {
-            text-decoration: underline;
-        }
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-        footer {
-            text-align: center;
-            padding: 2rem;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            letter-spacing: 0.1em;
-        }
-    </style>
+    .dot.active {
+      background: var(--accent-color);
+      width: 18px;
+      border-radius: 3px;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 3rem 1rem;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      margin-bottom: 1.2rem;
+      color: var(--text-main);
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 40%;
+      height: 2px;
+      background-color: var(--accent-color);
+    }
+
+    .intro-text {
+      color: var(--text-sub);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .booking-section {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      padding: 2rem 1.2rem;
+      width: 100%;
+    }
+
+    .booking-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      width: 100%;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.0rem;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      width: 100%;
+    }
+
+    .form-group label {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      letter-spacing: 1px;
+    }
+
+    .form-control {
+      background-color: #1a1918;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 0.8rem 0.9rem;
+      color: var(--text-main);
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 0.95rem;
+      width: 100%;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent-color);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .btn-submit {
+      background-color: var(--accent-color);
+      color: #ffffff;
+      border: none;
+      padding: 0.9rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+
+    .btn-submit:hover {
+      background-color: #ff851b;
+      box-shadow: 0 4px 15px rgba(255, 109, 0, 0.4);
+    }
+
+    .btn-instagram {
+      display: block;
+      text-align: center;
+      background-color: transparent;
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 0.8rem 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      width: 100%;
+      margin-top: 0.8rem;
+    }
+
+    .btn-instagram:hover {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+      background-color: rgba(255, 109, 0, 0.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--text-sub);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>KIWA</h1>
-        <p>Ornamental & Geometric Tattoo Art</p>
-    </header>
+  <header>
+    <div class="header-left">
+      <a href="#" class="logo-title">KIWA</a>
+      <span class="nav-tagline">Ornamental & Geometric</span>
+    </div>
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+      <button class="lang-btn" onclick="setLanguage('kr')">KR</button>
+      <button class="lang-btn" onclick="setLanguage('de')">DE</button>
+    </div>
+  </header>
 
-    <nav>
-        <a href="#about">About</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#booking">Booking</a>
-    </nav>
+  <div class="hero-slider-container" id="sliderContainer">
+    <div class="hero-track" id="heroTrack">
+      
+      <div class="hero-slide">
+        <img src="artwork3.jpg" alt="KIWA Tattoo Artwork 3">
+        <div class="hero-content-overlay">
+          <h2 data-en="Core Geometry" data-kr="코어 지오메트리" data-de="Kerngeometrie">Core Geometry</h2>
+          <p data-en="Symmetrical core geometry capturing mesmerizing rhythm and body flow." data-kr="매혹적인 리듬과 신체 흐름을 포착한 대칭적 코어 지오메트리." data-de="Symmetrische Kerngeometrie mit faszinierendem Rhythmus und Körperfluss.">Symmetrical core geometry capturing mesmerizing rhythm and body flow.</p>
+        </div>
+      </div>
 
-    <main>
-        <!-- About Section -->
-        <section id="about">
-            <h2>About</h2>
-            <p style="text-align: center; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
-                Specializing in geometric patterns, mandalas, oriental linework, and traditional motifs. Based in Frankfurt am Main, Germany.
-            </p>
-        </section>
+      <div class="hero-slide">
+        <img src="artwork8.jpg" alt="KIWA Tattoo Artwork 8">
+        <div class="hero-content-overlay">
+          <h2 data-en="Linear Flow" data-kr="리니어 플로우" data-de="Linearem Fluss">Linear Flow</h2>
+          <p data-en="Hypnotic linear patterns flowing seamlessly down the legs." data-kr="다리를 따라 부드럽게 이어지는 최면적인 라인 패턴." data-de="Hypnotische Linearmuster, die nahtlos die Beine hinunterfließen.">Hypnotic linear patterns flowing seamlessly down the legs.</p>
+        </div>
+      </div>
 
-        <!-- Booking Section -->
-        <section id="booking">
-            <h2>Booking & Inquiry</h2>
-            <div class="booking-container">
-                <form id="contact-form">
-                    <div class="form-group">
-                        <label for="from_name">Name</label>
-                        <input type="text" id="from_name" name="from_name" required placeholder="Your Name">
-                    </div>
+      <div class="hero-slide">
+        <img src="artwork1.jpg" alt="KIWA Tattoo Artwork 1">
+        <div class="hero-content-overlay">
+          <h2 data-en="Organic Stippling" data-kr="오가닉 스티플링" data-de="Organisches Stippling">Organic Stippling</h2>
+          <p data-en="Soft dotwork gradients harmonizing with natural muscle contours." data-kr="자연스러운 근육 곡선과 조화를 이루는 부드러운 닷워크 그라데이션." data-de="Weiche Dotwork-Gradienten, die mit natürlichen Muskelkonturen harmonieren.">Soft dotwork gradients harmonizing with natural muscle contours.</p>
+        </div>
+      </div>
 
-                    <div class="form-group">
-                        <label for="from_email">Email</label>
-                        <input type="email" id="from_email" name="from_email" required placeholder="Your Email Address">
-                    </div>
+      <div class="hero-slide">
+        <img src="artwork2.jpg" alt="KIWA Tattoo Artwork 2">
+        <div class="hero-content-overlay">
+          <h2 data-en="Full Bodysuit Flow" data-kr="풀 바디슈트 플로우" data-de="Ganzkörperfluss">Full Bodysuit Flow</h2>
+          <p data-en="Bold blackwork and striking red contrasts sculpting the upper body." data-kr="상체를 조각하는 대담한 블랙워크와 강렬한 레드 포인트." data-de="Kühne Blackworks und markante rote Kontraste, die den Oberkörper formen.">Bold blackwork and striking red contrasts sculpting the upper body.</p>
+        </div>
+      </div>
 
-                    <div class="form-group">
-                        <label for="placement">Placement (시술 부위)</label>
-                        <input type="text" id="placement" name="placement" required placeholder="e.g., Forearm, Back">
-                    </div>
+      <div class="hero-slide">
+        <img src="artwork4.jpg" alt="KIWA Tattoo Artwork 4">
+        <div class="hero-content-overlay">
+          <h2 data-en="Radiant Motif" data-kr="래디언트 모티브" data-de="Strahlendes Motiv">Radiant Motif</h2>
+          <p data-en="A striking sunburst pattern radiating outward from the neck and chest." data-kr="목과 가슴에서 바깥쪽으로 뻗어나가는 인상적인 선버스트 패턴." data-de="Ein auffälliges Sonnenstrahlenmuster, das von Hals und Brust ausstrahlt.">A striking sunburst pattern radiating outward from the neck and chest.</p>
+        </div>
+      </div>
 
-                    <div class="form-group">
-                        <label for="size">Estimated Size (예상 사이즈)</label>
-                        <input type="text" id="size" name="size" required placeholder="e.g., 15cm x 10cm">
-                    </div>
+      <div class="hero-slide">
+        <img src="artwork5.jpg" alt="KIWA Tattoo Artwork 5">
+        <div class="hero-content-overlay">
+          <h2 data-en="Heritage Floral" data-kr="헤리티지 플로럴" data-de="Traditionelles Floral">Heritage Floral</h2>
+          <p data-en="Traditional Dancheong motifs elevated by delicate shading and linework." data-kr="섬세한 섀딩과 라인워크로 재해석한 전통 단청 모티브." data-de="Traditionelle Dancheong-Motive, veredelt durch feine Schattierungen und Linien.">Traditional Dancheong motifs elevated by delicate shading and linework.</p>
+        </div>
+      </div>
 
-                    <div class="form-group">
-                        <label for="message">Idea & Details (작업 아이디어 및 디테일)</label>
-                        <textarea id="message" name="message" required placeholder="Describe your concept, reference style, or ideas..."></textarea>
-                    </div>
+      <div class="hero-slide">
+        <img src="artwork6.jpg" alt="KIWA Tattoo Artwork 6">
+        <div class="hero-content-overlay">
+          <h2 data-en="Oriental Clouds" data-kr="오리엔탈 클라우드" data-de="Orientalische Wolken">Oriental Clouds</h2>
+          <p data-en="Dynamic cloud patterns wrapping fluidly around the temple and head." data-kr="관자놀이와 머리 주변을 유연하게 감싸는 역동적인 구름 패턴." data-de="Dynamische Wolkenmuster, die sich fließend um Schläfe und Kopf legen.">Dynamic cloud patterns wrapping fluidly around the temple and head.</p>
+        </div>
+      </div>
 
-                    <button type="submit">Send Inquiry</button>
-                </form>
+      <div class="hero-slide">
+        <img src="artwork7.jpg" alt="KIWA Tattoo Artwork 7">
+        <div class="hero-content-overlay">
+          <h2 data-en="Color Dynamics" data-kr="컬러 다이나믹스" data-de="Farb-Dynamik">Color Dynamics</h2>
+          <p data-en="Vibrant blue gradients and intricate structural details accentuating joint lines." data-kr="관절 라인을 강조하는 생동감 넘치는 블루 그라데이션과 정교한 구조적 디테일." data-de="Lebendige blaue Farbverläufe und filigrane Strukturdetails, die Gelenklinie betonen.">Vibrant blue gradients and intricate structural details accentuating joint lines.</p>
+        </div>
+      </div>
 
-                <div class="instagram-link">
-                    <p>Or direct message via Instagram: <a href="https://www.instagram.com/kiwa_jip" target="_blank">@kiwa_jip</a></p>
-                </div>
-            </div>
-        </section>
-    </main>
+    </div>
 
-    <footer>
-        <p>&copy; 2026 KIWA. All Rights Reserved.</p>
-    </footer>
+    <div class="slider-arrow arrow-left" id="prevBtn">&#10094;</div>
+    <div class="slider-arrow arrow-right" id="nextBtn">&#10095;</div>
 
-    <!-- EmailJS Submission Logic -->
-    <script>
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault();
+    <div class="dots-container" id="dotsContainer"></div>
+  </div>
 
-            // EmailJS 전송 실행 (Service ID, Template ID, Form 객체)
-            emailjs.sendForm('service_kiwa', 'template_ahfvhka', this)
-                .then(function() {
-                    alert('예약 문의가 성공적으로 전송되었습니다! 빠른 시일 내에 답변 드리겠습니다.');
-                    document.getElementById('contact-form').reset(); // 폼 초기화
-                }, function(error) {
-                    alert('전송에 실패했습니다. 다시 시도해 주세요. (Error: ' + JSON.stringify(error) + ')');
-                });
+  <main class="container">
+    
+    <section class="fade-up">
+      <h2 class="section-title" data-en="About the Craft" data-kr="아티스트 소개" data-de="Über die Kunst">About the Craft</h2>
+      <p class="intro-text" 
+         data-en="Based in Frankfurt am Main, KIWA specializes in custom ornamental and geometric tattoos.<br>Bridging traditional Korean motifs—such as Dancheong, clouds, and snow—with contemporary linework and organic body flow to create timeless wearable art."
+         data-kr="프랑크푸르트 암 마인을 기반으로 활동하는 KIWA는 커스텀 오나멘탈 및 지오메트리 타투를 전문으로 합니다.<br>단청, 구름, 눈 등의 전통 한국적 모티브와 현대적인 라인워크, 유기적인 바디 플로우를 결합하여 시대를 초월한 웨어러블 아트를 창조합니다."
+         data-de="Mit Sitz in Frankfurt am Main spezialisiert sich KIWA auf individuelle Ornamental- und Geometrietattoos.<br>Traditionelle koreanische Motive – wie Dancheong, Wolken und Schnee – werden mit modernen Linien und organischem Körperfluss zu zeitloser Kunst verbunden.">
+        Based in Frankfurt am Main, KIWA specializes in custom ornamental and geometric tattoos.<br>
+        Bridging traditional Korean motifs—such as Dancheong, clouds, and snow—with contemporary linework and organic body flow to create timeless wearable art.
+      </p>
+    </section>
+
+    <!-- EmailJS 연동 폼 -->
+    <section class="booking-section fade-up">
+      <h2 class="section-title" style="margin-bottom: 0.5rem;" data-en="Booking Inquiry" data-kr="예약 문의" data-de="Buchungsanfrage">Booking Inquiry</h2>
+      <p style="color: var(--text-sub); font-size: 0.9rem; line-height: 1.5;"
+         data-en="Fill out the form below to send an email inquiry, or contact via Instagram DM."
+         data-kr="아래 양식을 채워 이메일로 문의하시거나, 인스타그램 DM으로 편하게 연락주세요."
+         data-de="Füllen Sie das Formular aus, um eine E-Mail-Anfrage zu senden, oder kontaktieren Sie uns über Instagram DM.">
+        Fill out the form below to send an email inquiry, or contact via Instagram DM.
+      </p>
+      
+      <form class="booking-form" id="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="from_name" data-en="YOUR NAME" data-kr="성함 (YOUR NAME)" data-de="NAME">YOUR NAME</label>
+            <input type="text" id="from_name" name="from_name" class="form-control" placeholder="Enter your name" required>
+          </div>
+          <div class="form-group">
+            <label for="from_email" data-en="EMAIL ADDRESS" data-kr="이메일 주소 (EMAIL)" data-de="E-MAIL-ADRESSE">EMAIL ADDRESS</label>
+            <input type="email" id="from_email" name="from_email" class="form-control" placeholder="Enter your email" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="placement" data-en="TATTOO PLACEMENT" data-kr="시술 부위 (PLACEMENT)" data-de="TATTOO-PLATZIERUNG">TATTOO PLACEMENT</label>
+            <input type="text" id="placement" name="placement" class="form-control" placeholder="e.g., Forearm, Thigh, Chest" required>
+          </div>
+          <div class="form-group">
+            <label for="size" data-en="ESTIMATED SIZE (CM)" data-kr="예상 사이즈 (SIZE)" data-de="GESCHÄTZTE GRÖSSE (CM)">ESTIMATED SIZE (CM)</label>
+            <input type="text" id="size" name="size" class="form-control" placeholder="e.g., 15cm x 10cm" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="message" data-en="PROJECT IDEA & DETAILS" data-kr="작업 아이디어 및 디테일 (IDEA)" data-de="PROJEKT-IDEE & DETAILS">PROJECT IDEA & DETAILS</label>
+          <textarea id="message" name="message" class="form-control" placeholder="Describe your concept, preferred motifs (Dancheong, geometric, etc.)" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" data-en="Send via Email" data-kr="이메일로 문의 보내기" data-de="Per E-Mail senden">Send via Email</button>
+      </form>
+
+      <a href="https://www.instagram.com/kiwa_jip" target="_blank" class="btn-instagram" data-en="Or Contact via Instagram DM" data-kr="또는 인스타그램 DM으로 문의하기" data-de="Oder per Instagram DM anfragen">
+        Or Contact via Instagram DM
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 KIWA. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // 언어 전환 기능
+    function setLanguage(lang) {
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      if(lang === 'en') document.querySelectorAll('.lang-btn')[0].classList.add('active');
+      if(lang === 'kr') document.querySelectorAll('.lang-btn')[1].classList.add('active');
+      if(lang === 'de') document.querySelectorAll('.lang-btn')[2].classList.add('active');
+
+      document.querySelectorAll('[data-en]').forEach(el => {
+        if (el.dataset[lang]) {
+          el.innerHTML = el.dataset[lang];
+        }
+      });
+    }
+
+    // EmailJS 폼 전송 기능
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        emailjs.sendForm('service_kiwa', 'template_ahfvhka', this)
+            .then(function() {
+                alert('예약 문의가 성공적으로 전송되었습니다! 빠른 시일 내에 답변 드리겠습니다.');
+                document.getElementById('contact-form').reset();
+            }, function(error) {
+                alert('전송에 실패했습니다. 다시 시도해 주세요. (Error: ' + JSON.stringify(error) + ')');
+            });
+    });
+
+    // 슬라이더 제어 스크립트
+    const track = document.getElementById('heroTrack');
+    const container = document.getElementById('sliderContainer');
+    const slides = Array.from(track.children);
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const dotsContainer = document.getElementById('dotsContainer');
+
+    let currentIndex = 0;
+    let autoSlideTimer = null;
+
+    slides.forEach((_, index) => {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      if (index === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => {
+        goToSlide(index);
+        resetAutoSlide();
+      });
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = Array.from(dotsContainer.children);
+
+    function updateDots() {
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+    }
+
+    function goToSlide(index) {
+      currentIndex = index;
+      if (currentIndex < 0) currentIndex = slides.length - 1;
+      if (currentIndex >= slides.length) currentIndex = 0;
+      
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      updateDots();
+    }
+
+    function startAutoSlide() {
+      autoSlideTimer = setInterval(() => {
+        goToSlide(currentIndex + 1);
+      }, 5000);
+    }
+
+    function resetAutoSlide() {
+      clearInterval(autoSlideTimer);
+      startAutoSlide();
+    }
+
+    nextBtn.addEventListener('click', () => {
+      goToSlide(currentIndex + 1);
+      resetAutoSlide();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      goToSlide(currentIndex - 1);
+      resetAutoSlide();
+    });
+
+    let startX = 0;
+    let endX = 0;
+
+    container.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    container.addEventListener('touchend', (e) => {
+      endX = e.changedTouches[0].clientX;
+      handleSwipe();
+    }, { passive: true });
+
+    container.addEventListener('mousedown', (e) => {
+      startX = e.clientX;
+    });
+
+    container.addEventListener('mouseup', (e) => {
+      endX = e.clientX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      const diffX = startX - endX;
+      const threshold = 50;
+
+      if (Math.abs(diffX) > threshold) {
+        if (diffX > 0) {
+          goToSlide(currentIndex + 1);
+        } else {
+          goToSlide(currentIndex - 1);
+        }
+        resetAutoSlide();
+      }
+      startX = 0;
+      endX = 0;
+    }
+
+    startAutoSlide();
+
+    // 페이드업 애니메이션
+    document.addEventListener("DOMContentLoaded", function () {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
         });
-    </script>
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll(".fade-up").forEach((el) => {
+        observer.observe(el);
+      });
+    });
+  </script>
 </body>
 </html>
