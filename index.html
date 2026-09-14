@@ -45,6 +45,11 @@
       background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
     }
 
+    .header-left {
+      display: flex;
+      flex-direction: column;
+    }
+
     .logo-title {
       font-family: 'Cinzel', serif;
       font-size: 1.6rem;
@@ -60,6 +65,33 @@
       color: var(--accent-color);
       letter-spacing: 1px;
       text-transform: uppercase;
+    }
+
+    /* 언어 선택 버튼 스타일 */
+    .lang-switch {
+      display: flex;
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 4px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-sub);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .lang-btn.active {
+      background: var(--accent-color);
+      color: #ffffff;
     }
 
     .hero-slider-container {
@@ -216,7 +248,6 @@
       margin-bottom: 2.5rem;
     }
 
-    /* Booking Form Styles - 모바일 대응 수정 완료 */
     .booking-section {
       background-color: var(--card-bg);
       border-radius: 12px;
@@ -236,7 +267,7 @@
     .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      gap: 1.0rem;
       width: 100%;
     }
 
@@ -268,7 +299,6 @@
       font-family: 'Noto Sans KR', sans-serif;
       font-size: 0.95rem;
       width: 100%;
-      max-width: 100%;
       transition: border-color 0.3s ease;
     }
 
@@ -315,82 +345,82 @@
 <body>
 
   <header>
-    <a href="#" class="logo-title">KIWA</a>
-    <span class="nav-tagline">Ornamental & Geometric</span>
+    <div class="header-left">
+      <a href="#" class="logo-title">KIWA</a>
+      <span class="nav-tagline">Ornamental & Geometric</span>
+    </div>
+    <!-- 언어 전환 버튼 -->
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+      <button class="lang-btn" onclick="setLanguage('kr')">KR</button>
+      <button class="lang-btn" onclick="setLanguage('de')">DE</button>
+    </div>
   </header>
 
   <div class="hero-slider-container" id="sliderContainer">
     <div class="hero-track" id="heroTrack">
       
-      <!-- Slide 1: artwork3.jpg -->
       <div class="hero-slide">
         <img src="artwork3.jpg" alt="KIWA Tattoo Artwork 3">
         <div class="hero-content-overlay">
-          <h2>Core Geometry</h2>
-          <p>Symmetrical core geometry capturing mesmerizing rhythm and body flow.</p>
+          <h2 data-en="Core Geometry" data-kr="코어 지오메트리" data-de="Kerngeometrie">Core Geometry</h2>
+          <p data-en="Symmetrical core geometry capturing mesmerizing rhythm and body flow." data-kr="매혹적인 리듬과 신체 흐름을 포착한 대칭적 코어 지오메트리." data-de="Symmetrische Kerngeometrie mit faszinierendem Rhythmus und Körperfluss.">Symmetrical core geometry capturing mesmerizing rhythm and body flow.</p>
         </div>
       </div>
 
-      <!-- Slide 2: artwork8.jpg -->
       <div class="hero-slide">
         <img src="artwork8.jpg" alt="KIWA Tattoo Artwork 8">
         <div class="hero-content-overlay">
-          <h2>Linear Flow</h2>
-          <p>Hypnotic linear patterns flowing seamlessly down the legs.</p>
+          <h2 data-en="Linear Flow" data-kr="리니어 플로우" data-de="Linearem Fluss">Linear Flow</h2>
+          <p data-en="Hypnotic linear patterns flowing seamlessly down the legs." data-kr="다리를 따라 부드럽게 이어지는 최면적인 라인 패턴." data-de="Hypnotische Linearmuster, die nahtlos die Beine hinunterfließen.">Hypnotic linear patterns flowing seamlessly down the legs.</p>
         </div>
       </div>
 
-      <!-- Slide 3: artwork1.jpg -->
       <div class="hero-slide">
         <img src="artwork1.jpg" alt="KIWA Tattoo Artwork 1">
         <div class="hero-content-overlay">
-          <h2>Organic Stippling</h2>
-          <p>Soft dotwork gradients harmonizing with natural muscle contours.</p>
+          <h2 data-en="Organic Stippling" data-kr="오가닉 스티플링" data-de="Organisches Stippling">Organic Stippling</h2>
+          <p data-en="Soft dotwork gradients harmonizing with natural muscle contours." data-kr="자연스러운 근육 곡선과 조화를 이루는 부드러운 닷워크 그라데이션." data-de="Weiche Dotwork-Gradienten, die mit natürlichen Muskelkonturen harmonieren.">Soft dotwork gradients harmonizing with natural muscle contours.</p>
         </div>
       </div>
 
-      <!-- Slide 4: artwork2.jpg -->
       <div class="hero-slide">
         <img src="artwork2.jpg" alt="KIWA Tattoo Artwork 2">
         <div class="hero-content-overlay">
-          <h2>Full Bodysuit Flow</h2>
-          <p>Bold blackwork and striking red contrasts sculpting the upper body.</p>
+          <h2 data-en="Full Bodysuit Flow" data-kr="풀 바디슈트 플로우" data-de="Ganzkörperfluss">Full Bodysuit Flow</h2>
+          <p data-en="Bold blackwork and striking red contrasts sculpting the upper body." data-kr="상체를 조각하는 대담한 블랙워크와 강렬한 레드 포인트." data-de="Kühne Blackworks und markante rote Kontraste, die den Oberkörper formen.">Bold blackwork and striking red contrasts sculpting the upper body.</p>
         </div>
       </div>
 
-      <!-- Slide 5: artwork4.jpg -->
       <div class="hero-slide">
         <img src="artwork4.jpg" alt="KIWA Tattoo Artwork 4">
         <div class="hero-content-overlay">
-          <h2>Radiant Motif</h2>
-          <p>A striking sunburst pattern radiating outward from the neck and chest.</p>
+          <h2 data-en="Radiant Motif" data-kr="래디언트 모티브" data-de="Strahlendes Motiv">Radiant Motif</h2>
+          <p data-en="A striking sunburst pattern radiating outward from the neck and chest." data-kr="목과 가슴에서 바깥쪽으로 뻗어나가는 인상적인 선버스트 패턴." data-de="Ein auffälliges Sonnenstrahlenmuster, das von Hals und Brust ausstrahlt.">A striking sunburst pattern radiating outward from the neck and chest.</p>
         </div>
       </div>
 
-      <!-- Slide 6: artwork5.jpg -->
       <div class="hero-slide">
         <img src="artwork5.jpg" alt="KIWA Tattoo Artwork 5">
         <div class="hero-content-overlay">
-          <h2>Heritage Floral</h2>
-          <p>Traditional Dancheong motifs elevated by delicate shading and linework.</p>
+          <h2 data-en="Heritage Floral" data-kr="헤리티지 플로럴" data-de="Traditionelles Floral">Heritage Floral</h2>
+          <p data-en="Traditional Dancheong motifs elevated by delicate shading and linework." data-kr="섬세한 섀딩과 라인워크로 재해석한 전통 단청 모티브." data-de="Traditionelle Dancheong-Motive, veredelt durch feine Schattierungen und Linien.">Traditional Dancheong motifs elevated by delicate shading and linework.</p>
         </div>
       </div>
 
-      <!-- Slide 7: artwork6.jpg -->
       <div class="hero-slide">
         <img src="artwork6.jpg" alt="KIWA Tattoo Artwork 6">
         <div class="hero-content-overlay">
-          <h2>Oriental Clouds</h2>
-          <p>Dynamic cloud patterns wrapping fluidly around the temple and head.</p>
+          <h2 data-en="Oriental Clouds" data-kr="오리엔탈 클라우드" data-de="Orientalische Wolken">Oriental Clouds</h2>
+          <p data-en="Dynamic cloud patterns wrapping fluidly around the temple and head." data-kr="관자놀이와 머리 주변을 유연하게 감싸는 역동적인 구름 패턴." data-de="Dynamische Wolkenmuster, die sich fließend um Schläfe und Kopf legen.">Dynamic cloud patterns wrapping fluidly around the temple and head.</p>
         </div>
       </div>
 
-      <!-- Slide 8: artwork7.jpg -->
       <div class="hero-slide">
         <img src="artwork7.jpg" alt="KIWA Tattoo Artwork 7">
         <div class="hero-content-overlay">
-          <h2>Color Dynamics</h2>
-          <p>Vibrant blue gradients and intricate structural details accentuating joint lines.</p>
+          <h2 data-en="Color Dynamics" data-kr="컬러 다이나믹스" data-de="Farb-Dynamik">Color Dynamics</h2>
+          <p data-en="Vibrant blue gradients and intricate structural details accentuating joint lines." data-kr="관절 라인을 강조하는 생동감 넘치는 블루 그라데이션과 정교한 구조적 디테일." data-de="Lebendige blaue Farbverläufe und filigrane Strukturdetails, die Gelenklinie betonen.">Vibrant blue gradients and intricate structural details accentuating joint lines.</p>
         </div>
       </div>
 
@@ -405,55 +435,54 @@
   <main class="container">
     
     <section class="fade-up">
-      <h2 class="section-title">About the Craft</h2>
-      <p class="intro-text">
+      <h2 class="section-title" data-en="About the Craft" data-kr="아티스트 소개" data-de="Über die Kunst">About the Craft</h2>
+      <p class="intro-text" 
+         data-en="Based in Frankfurt am Main, KIWA specializes in custom ornamental and geometric tattoos.<br>Bridging traditional Korean motifs—such as Dancheong, clouds, and snow—with contemporary linework and organic body flow to create timeless wearable art."
+         data-kr="프랑크푸르트 암 마인을 기반으로 활동하는 KIWA는 커스텀 오나멘탈 및 지오메트리 타투를 전문으로 합니다.<br>단청, 구름, 눈 등의 전통 한국적 모티브와 현대적인 라인워크, 유기적인 바디 플로우를 결합하여 시대를 초월한 웨어러블 아트를 창조합니다."
+         data-de="Mit Sitz in Frankfurt am Main spezialisiert sich KIWA auf individuelle Ornamental- und Geometrietattoos.<br>Traditionelle koreanische Motive – wie Dancheong, Wolken und Schnee – werden mit modernen Linien und organischem Körperfluss zu zeitloser Kunst verbunden.">
         Based in Frankfurt am Main, KIWA specializes in custom ornamental and geometric tattoos.<br>
         Bridging traditional Korean motifs—such as Dancheong, clouds, and snow—with contemporary linework and organic body flow to create timeless wearable art.
       </p>
     </section>
 
     <section class="booking-section fade-up">
-      <h2 class="section-title" style="margin-bottom: 0.5rem;">Booking Inquiry</h2>
-      <p style="color: var(--text-sub); font-size: 0.9rem; line-height: 1.5;">
-        Fill out the form below to request a studio appointment in Frankfurt.
+      <h2 class="section-title" style="margin-bottom: 0.5rem;" data-en="Booking Inquiry" data-kr="예약 문의" data-de="Buchungsanfrage">Booking Inquiry</h2>
+      <p style="color: var(--text-sub); font-size: 0.9rem; line-height: 1.5;"
+         data-en="Fill out the form below to open your email client and send an inquiry for Frankfurt."
+         data-kr="아래 양식을 채우고 버튼을 누르면 이메일 앱이 열리며 프랑크푸르트 예약 문의가 바로 전송됩니다."
+         data-de="Füllen Sie das Formular aus, um Ihr E-Mail-Programm zu öffnen und eine Anfrage für Frankfurt zu senden.">
+        Fill out the form below to open your email client and send an inquiry for Frankfurt.
       </p>
       
-      <!-- Netlify Forms 연동 폼 (netlify 및 data-netlify 속성 적용) -->
-      <form class="booking-form" id="bookingForm" name="booking-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <!-- 봇 스팸 방지 허니팟 필드 -->
-        <input type="hidden" name="form-name" value="booking-inquiry">
-        <p style="display:none;">
-          <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
-        </p>
-
+      <form class="booking-form" id="bookingForm" onsubmit="sendEmail(event)">
         <div class="form-row">
           <div class="form-group">
-            <label for="name">YOUR NAME</label>
-            <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>
+            <label for="name" data-en="YOUR NAME" data-kr="성함 (YOUR NAME)" data-de="NAME">YOUR NAME</label>
+            <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
           </div>
           <div class="form-group">
-            <label for="email">EMAIL ADDRESS</label>
-            <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+            <label for="email" data-en="EMAIL ADDRESS" data-kr="이메일 주소 (EMAIL)" data-de="E-MAIL-ADRESSE">EMAIL ADDRESS</label>
+            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
-            <label for="placement">TATTOO PLACEMENT</label>
-            <input type="text" id="placement" name="placement" class="form-control" placeholder="e.g., Forearm, Thigh, Chest" required>
+            <label for="placement" data-en="TATTOO PLACEMENT" data-kr="시술 부위 (PLACEMENT)" data-de="TATTOO-PLATZIERUNG">TATTOO PLACEMENT</label>
+            <input type="text" id="placement" class="form-control" placeholder="e.g., Forearm, Thigh, Chest" required>
           </div>
           <div class="form-group">
-            <label for="size">ESTIMATED SIZE (CM)</label>
-            <input type="text" id="size" name="size" class="form-control" placeholder="e.g., 15cm x 10cm" required>
+            <label for="size" data-en="ESTIMATED SIZE (CM)" data-kr="예상 사이즈 (SIZE)" data-de="GESCHÄTZTE GRÖSSE (CM)">ESTIMATED SIZE (CM)</label>
+            <input type="text" id="size" class="form-control" placeholder="e.g., 15cm x 10cm" required>
           </div>
         </div>
 
         <div class="form-group">
-          <label for="idea">PROJECT IDEA & DETAILS</label>
-          <textarea id="idea" name="idea" class="form-control" placeholder="Describe your concept, preferred motifs (Dancheong, geometric, etc.)" required></textarea>
+          <label for="idea" data-en="PROJECT IDEA & DETAILS" data-kr="작업 아이디어 및 디테일 (IDEA)" data-de="PROJEKT-IDEE & DETAILS">PROJECT IDEA & DETAILS</label>
+          <textarea id="idea" class="form-control" placeholder="Describe your concept, preferred motifs (Dancheong, geometric, etc.)" required></textarea>
         </div>
 
-        <button type="submit" class="btn-submit">Submit Inquiry</button>
+        <button type="submit" class="btn-submit" data-en="Send via Email" data-kr="이메일로 문의 보내기" data-de="Per E-Mail senden">Send via Email</button>
       </form>
     </section>
 
@@ -464,6 +493,46 @@
   </footer>
 
   <script>
+    // 다국어 텍스트 데이터 딕셔너리
+    function setLanguage(lang) {
+      // 버튼 활성화 디자인 변경
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      if(lang === 'en') document.querySelectorAll('.lang-btn')[0].classList.add('active');
+      if(lang === 'kr') document.querySelectorAll('.lang-btn')[1].classList.add('active');
+      if(lang === 'de') document.querySelectorAll('.lang-btn')[2].classList.add('active');
+
+      // 일반 텍스트 및 속성 변경
+      document.querySelectorAll('[data-en]').forEach(el => {
+        if (el.dataset[lang]) {
+          el.innerHTML = el.dataset[lang];
+        }
+      });
+    }
+
+    // 메일 앱 연동 전송 함수 (서버 불필요, 사장님 메일로 직행)
+    function sendEmail(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const placement = document.getElementById('placement').value;
+      const size = document.getElementById('size').value;
+      const idea = document.getElementById('idea').value;
+
+      const recipient = "kiwajip@gmail.com"; // 사장님 이메일 주소 (필요시 변경하세요)
+      const subject = encodeURIComponent(`[Tattoo Inquiry] From ${name}`);
+      const body = encodeURIComponent(
+        `Name: ${name}\n` +
+        `Email: ${email}\n` +
+        `Placement: ${placement}\n` +
+        `Size: ${size}\n\n` +
+        `Project Idea:\n${idea}`
+      );
+
+      window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    }
+
+    // 슬라이더 및 기타 스크립트
     const track = document.getElementById('heroTrack');
     const container = document.getElementById('sliderContainer');
     const slides = Array.from(track.children);
@@ -560,29 +629,7 @@
       endX = 0;
     }
 
-    startAutoSlide();
-
-    // Netlify 폼 제출 처리 (AJAX 비동기 전송으로 페이지 안 넘어가고 알림창만 뜨게 처리)
-    const bookingForm = document.getElementById('bookingForm');
-    bookingForm.addEventListener('submit', function (event) {
-      event.preventDefault();
-      
-      const formData = new FormData(bookingForm);
-
-      fetch('/', {
-        method: 'POST',
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData).toString()
-      })
-      .then(() => {
-        alert("Thank you for your inquiry! Your request has been successfully submitted.");
-        bookingForm.reset();
-      })
-      .catch((error) => {
-        alert("Oops! Something went wrong. Please try again.");
-        console.error(error);
-      });
-    });
+    startAutoScale = startAutoSlide();
 
     document.addEventListener("DOMContentLoaded", function () {
       const observer = new IntersectionObserver((entries) => {
