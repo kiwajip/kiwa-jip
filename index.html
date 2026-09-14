@@ -332,6 +332,30 @@
       box-shadow: 0 4px 15px rgba(230, 81, 0, 0.4);
     }
 
+    /* 인스타그램 링크 버튼 스타일 추가 */
+    .btn-instagram {
+      display: block;
+      text-align: center;
+      background-color: transparent;
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 0.8rem 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      width: 100%;
+      margin-top: 0.8rem;
+    }
+
+    .btn-instagram:hover {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+      background-color: rgba(230, 81, 0, 0.05);
+    }
+
     footer {
       text-align: center;
       padding: 2rem 1rem;
@@ -448,10 +472,10 @@
     <section class="booking-section fade-up">
       <h2 class="section-title" style="margin-bottom: 0.5rem;" data-en="Booking Inquiry" data-kr="예약 문의" data-de="Buchungsanfrage">Booking Inquiry</h2>
       <p style="color: var(--text-sub); font-size: 0.9rem; line-height: 1.5;"
-         data-en="Fill out the form below to open your email client and send an inquiry for Frankfurt."
-         data-kr="아래 양식을 채우고 버튼을 누르면 이메일 앱이 열리며 프랑크푸르트 예약 문의가 바로 전송됩니다."
-         data-de="Füllen Sie das Formular aus, um Ihr E-Mail-Programm zu öffnen und eine Anfrage für Frankfurt zu senden.">
-        Fill out the form below to open your email client and send an inquiry for Frankfurt.
+         data-en="Fill out the form below to send an email inquiry, or contact via Instagram DM."
+         data-kr="아래 양식을 채워 이메일로 문의하시거나, 인스타그램 DM으로 편하게 연락주세요."
+         data-de="Füllen Sie das Formular aus, um eine E-Mail-Anfrage zu senden, oder kontaktieren Sie uns über Instagram DM.">
+        Fill out the form below to send an email inquiry, or contact via Instagram DM.
       </p>
       
       <form class="booking-form" id="bookingForm" onsubmit="sendEmail(event)">
@@ -484,6 +508,11 @@
 
         <button type="submit" class="btn-submit" data-en="Send via Email" data-kr="이메일로 문의 보내기" data-de="Per E-Mail senden">Send via Email</button>
       </form>
+
+      <!-- 인스타그램 링크 버튼 (여기에 인스타 주소를 넣으시면 됩니다) -->
+      <a href="https://www.instagram.com/kiwajip" target="_blank" class="btn-instagram" data-en="Or Contact via Instagram DM" data-kr="또는 인스타그램 DM으로 문의하기" data-de="Oder per Instagram DM anfragen">
+        Or Contact via Instagram DM
+      </a>
     </section>
 
   </main>
@@ -495,13 +524,11 @@
   <script>
     // 다국어 텍스트 데이터 딕셔너리
     function setLanguage(lang) {
-      // 버튼 활성화 디자인 변경
       document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
       if(lang === 'en') document.querySelectorAll('.lang-btn')[0].classList.add('active');
       if(lang === 'kr') document.querySelectorAll('.lang-btn')[1].classList.add('active');
       if(lang === 'de') document.querySelectorAll('.lang-btn')[2].classList.add('active');
 
-      // 일반 텍스트 및 속성 변경
       document.querySelectorAll('[data-en]').forEach(el => {
         if (el.dataset[lang]) {
           el.innerHTML = el.dataset[lang];
@@ -509,7 +536,7 @@
       });
     }
 
-    // 메일 앱 연동 전송 함수 (서버 불필요, 사장님 메일로 직행)
+    // 메일 앱 연동 전송 함수
     function sendEmail(event) {
       event.preventDefault();
       
@@ -519,7 +546,7 @@
       const size = document.getElementById('size').value;
       const idea = document.getElementById('idea').value;
 
-      const recipient = "kiwajip@gmail.com"; // 사장님 이메일 주소 (필요시 변경하세요)
+      const recipient = "kiwajip@gmail.com"; 
       const subject = encodeURIComponent(`[Tattoo Inquiry] From ${name}`);
       const body = encodeURIComponent(
         `Name: ${name}\n` +
@@ -629,7 +656,7 @@
       endX = 0;
     }
 
-    startAutoScale = startAutoSlide();
+    startAutoSlide();
 
     document.addEventListener("DOMContentLoaded", function () {
       const observer = new IntersectionObserver((entries) => {
