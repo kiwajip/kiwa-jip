@@ -100,43 +100,46 @@
       text-transform: uppercase;
     }
 
-    /* 테마 토글 버튼 스타일 */
+    /* 테마 토글 버튼 스타일 (언어 그룹 내부에 맞게 컴팩트하게 조정) */
     .theme-toggle-btn {
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid var(--border-color);
+      background: transparent;
+      border: none;
       color: var(--text-main);
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       transition: all 0.3s ease;
     }
 
-    [data-theme="light"] .theme-toggle-btn {
-      background: rgba(255, 255, 255, 0.6);
-    }
-
     .theme-toggle-btn:hover {
-      background: var(--accent-color);
-      border-color: var(--accent-color);
-      color: #ffffff;
+      color: var(--accent-color);
     }
 
+    /* 언어 선택 및 테마 버튼 통합 바 */
     .lang-switch {
       display: flex;
-      gap: 6px;
+      align-items: center;
+      gap: 4px;
       background: rgba(0, 0, 0, 0.3);
-      padding: 4px;
+      padding: 3px 6px;
       border-radius: 20px;
       border: 1px solid var(--border-color);
     }
 
     [data-theme="light"] .lang-switch {
       background: rgba(255, 255, 255, 0.6);
+    }
+
+    .lang-divider {
+      width: 1px;
+      height: 14px;
+      background-color: var(--border-color);
+      margin: 0 2px;
     }
 
     .lang-btn {
@@ -573,9 +576,10 @@
       <span class="nav-tagline">Ornamental & Geometric</span>
     </div>
     <div class="header-right">
-      <!-- 테마 토글 버튼 (해/달 아이콘) -->
-      <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Theme">🌙</button>
+      <!-- 언어 선택 및 테마 토글 통합 바 -->
       <div class="lang-switch">
+        <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Theme">🌙</button>
+        <div class="lang-divider"></div>
         <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
         <button class="lang-btn" onclick="setLanguage('kr')">KR</button>
         <button class="lang-btn" onclick="setLanguage('de')">DE</button>
