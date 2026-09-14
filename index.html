@@ -253,15 +253,110 @@
       color: var(--text-sub);
       font-size: 0.95rem;
       line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    /* 스타일 뱃지 */
+    .style-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
       margin-bottom: 2.5rem;
     }
 
+    .tag {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      font-size: 0.8rem;
+      padding: 6px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    /* 정보 카드 박스 (게스트스팟 등) */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .info-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .info-card h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      color: var(--accent-color);
+      margin-bottom: 0.8rem;
+      letter-spacing: 1px;
+    }
+
+    .info-card p, .info-card li {
+      color: var(--text-sub);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .info-card ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .info-card li {
+      margin-bottom: 0.4rem;
+    }
+
+    /* FAQ 및 케어 가이드 아코디언 스타일 */
+    .content-section-box {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      font-weight: 500;
+      color: var(--text-main);
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .faq-answer {
+      color: var(--text-sub);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* 예약 폼 섹션 */
     .booking-section {
       background-color: var(--card-bg);
       border-radius: 12px;
       border: 1px solid var(--border-color);
       padding: 2rem 1.2rem;
       width: 100%;
+      margin-bottom: 3rem;
     }
 
     .booking-form {
@@ -464,6 +559,7 @@
 
   <main class="container">
     
+    <!-- 아티스트 소개 및 태그 -->
     <section class="fade-up">
       <h2 class="section-title" data-en="About the Craft" data-kr="아티스트 소개" data-de="Über die Kunst">About the Craft</h2>
       <p class="intro-text" 
@@ -473,16 +569,99 @@
         Based in Frankfurt am Main, KIWA specializes in custom ornamental and geometric tattoos.<br>
         Bridging traditional Korean motifs—such as Dancheong, clouds, and snow—with contemporary linework and organic body flow to create timeless wearable art.
       </p>
+
+      <div class="style-tags">
+        <span class="tag">Geometric</span>
+        <span class="tag">Ornamental</span>
+        <span class="tag">Dancheong (단청)</span>
+        <span class="tag">Dotwork & Stippling</span>
+        <span class="tag">Blackwork</span>
+        <span class="tag">Organic Body Flow</span>
+      </div>
     </section>
 
-    <!-- EmailJS 연동 폼 -->
+    <!-- 위치 및 게스트 스팟 정보 -->
+    <section class="info-grid fade-up">
+      <div class="info-card">
+        <h3 data-en="Base & Location" data-kr="작업실 위치" data-de="Standort">Base & Location</h3>
+        <p data-en="Primary Studio: Frankfurt am Main, Germany.<br>Appointments are strictly private and booked in advance." 
+           data-kr="메인 스튜디오: 독일 프랑크푸르트 암 마인<br>모든 작업은 프라이빗 예약제로 운영됩니다."
+           data-de="Hauptstudio: Frankfurt am Main, Deutschland.<br>Termine nur nach vorheriger Absprache.">
+          Primary Studio: Frankfurt am Main, Germany.<br>Appointments are strictly private and booked in advance.
+        </p>
+      </div>
+      <div class="info-card">
+        <h3 data-en="Guest Spot Schedule" data-kr="게스트 스팟 일정" data-de="Gastspot-Zeitplan">Guest Spot Schedule</h3>
+        <ul>
+          <li><strong>Amsterdam:</strong> Sep 24 – Sep 27, 2026</li>
+          <li style="color: var(--text-main); margin-top: 0.4rem;" data-en="* More guest spots will be announced via Instagram." data-kr="* 추가 게스트 스팟 일정은 인스타그램을 통해 공지됩니다." data-de="* Weitere Gastspots werden über Instagram bekannt gegeben.">* More guest spots will be announced via Instagram.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FAQ 및 예약 안내 -->
+    <section class="content-section-box fade-up">
+      <h2 class="section-title" style="margin-bottom: 1.5rem;" data-en="Booking Guide & FAQ" data-kr="예약 안내 및 자주 묻는 질문" data-de="Buchungsanleitung & FAQ">Booking Guide & FAQ</h2>
+      
+      <div class="faq-item">
+        <div class="faq-question" data-en="Q. How does custom design work and what about the deposit?" data-kr="Q. 도안 커스텀과 예약금은 어떻게 진행되나요?" data-de="Q. Wie funktioniert das individuelle Design und die Anzahlung?">Q. How does custom design work and what about the deposit?</div>
+        <div class="faq-answer" data-en="Custom designs include a deposit requirement of €100 to secure your date. This deposit is fully included in the total tattoo price, so you do not need to pay it twice." 
+             data-kr="도안 커스텀은 예약 확정을 위해 100유로의 보증금을 받고 진행하고 있습니다. 이 보증금은 전체 금액에 포함된 금액이므로 현장에서 추가로 내실 필요가 없습니다."
+             data-de="Individuelle Designs erfordern eine Anzahlung von 100 €, um Ihren Termin zu sichern. Diese Anzahlung ist vollständig im Gesamtpreis enthalten, sodass Sie sie nicht doppelt bezahlen müssen.">
+          Custom designs include a deposit requirement of €100 to secure your date. This deposit is fully included in the total tattoo price, so you do not need to pay it twice.
+        </div>
+      </div>
+
+      <div class="faq-item" style="margin-top: 1rem;">
+        <div class="faq-question" data-en="Q. How should I prepare for my session?" data-kr="Q. 작업 전 준비 사항이 있나요?" data-de="Q. Wie sollte ich mich auf die Sitzung vorbereiten?">Q. How should I prepare for my session?</div>
+        <div class="faq-answer" data-en="Get a good night's sleep, eat a solid meal before coming, and stay well hydrated. Avoid alcohol and blood thinners 24 hours prior to your appointment." 
+             data-kr="작업 전날 충분히 수면을 취하시고, 예약 당일 식사를 든든하게 하고 오세요. 수분 섭취를 충분히 해주시고, 방문 전 24시간 동안은 음주나 혈액순환을 방해하는 약물 복용을 피해주시기 바랍니다."
+             data-de="Schlafen Sie gut, essen Sie vor der Sitzung eine Mahlzeit und trinken Sie ausreichend Wasser. Vermeiden Sie 24 Stunden vor dem Termin Alkohol und Blutverdünner.">
+          Get a good night's sleep, eat a solid meal before coming, and stay well hydrated. Avoid alcohol and blood thinners 24 hours prior to your appointment.
+        </div>
+      </div>
+    </section>
+
+    <!-- 타투 관리 방법 (Aftercare) -->
+    <section class="content-section-box fade-up">
+      <h2 class="section-title" style="margin-bottom: 1.5rem;" data-en="Tattoo Aftercare Guide" data-kr="타투 관리 방법 (Best Aftercare)" data-de="Tattoo-Pflegeanleitung">Tattoo Aftercare Guide</h2>
+      
+      <div class="faq-item">
+        <div class="faq-question" data-en="1. Film / Bandage Removal" data-kr="1. 보호필름 제거" data-de="1. Entfernung der Folie">1. Film / Bandage Removal</div>
+        <div class="faq-answer" data-en="If using protective film, leave it on for 3 to 4 days. If fluid pools excessively, you can remove it earlier. Gently wash the area with lukewarm water and mild soap." 
+             data-kr="보호필름(더마르 등)을 부착한 경우 3~4일 동안 유지한 뒤 제거하세요. 내부에 진물이 너무 많이 고이면 일찍 제거해도 좋습니다. 미지근한 물과 저자극 비누로 부드럽게 씻어내세요."
+             data-de="Wenn Sie Schutzfolie verwenden, lassen Sie diese 3 bis 4 Tage auf der Haut. Waschen Sie den Bereich anschließend vorsichtig mit lauwarmem Wasser und milder Seife.">
+          If using protective film, leave it on for 3 to 4 days. If fluid pools excessively, you can remove it earlier. Gently wash the area with lukewarm water and mild soap.
+        </div>
+      </div>
+
+      <div class="faq-item" style="margin-top: 1rem;">
+        <div class="faq-question" data-en="2. Moisturizing" data-kr="2. 보습 관리" data-de="2. Feuchtigkeitsversorgung">2. Moisturizing</div>
+        <div class="faq-answer" data-en="Apply a thin layer of specialized tattoo aftercare ointment or fragrance-free lotion 2 to 3 times a day. Do not over-apply; the skin needs to breathe." 
+             data-kr="타투 전용 연고나 향이 없는 로션을 하루에 2~3회 아주 얇게 펴 발라주세요. 너무 두껍게 바르면 피부 숨구멍을 막아 회복을 더디게 하므로 얇게 자주 발라주는 것이 좋습니다."
+             data-de="Tragen Sie 2-3 Mal täglich eine dünne Schicht Tattoo-Pflegecreme oder parfümfreie Lotion auf. Tragen Sie nicht zu viel auf, damit die Haut atmen kann.">
+          Apply a thin layer of specialized tattoo aftercare ointment or fragrance-free lotion 2 to 3 times a day. Do not over-apply; the skin needs to breathe.
+        </div>
+      </div>
+
+      <div class="faq-item" style="margin-top: 1rem;">
+        <div class="faq-question" data-en="3. Important Rules" data-kr="3. 주의사항 (절대 금지)" data-de="3. Wichtige Regeln">3. Important Rules</div>
+        <div class="faq-answer" data-en="Do not pick, scratch, or peel the scabs/skin as it heals. Avoid swimming pools, saunas, direct sunlight, and intense workouts for at least 2 weeks." 
+             data-kr="회복 과정에서 각질이나 딱지가 생겨도 절대 억지로 뜯거나 긁지 마세요. 최소 2주 동안은 수영장, 사우나, 직사광선 노출, 격렬한 운동을 피해주시기 바랍니다."
+             data-de="Kratzen oder ziehen Sie nicht an sich bildenden Schuppen oder Krusten. Vermeiden Sie mindestens 2 Wochen lang Schwimmbäder, Saunen, direkte Sonneneinstrahlung und intensives Training.">
+          Do not pick, scratch, or peel the scabs/skin as it heals. Avoid swimming pools, saunas, direct sunlight, and intense workouts for at least 2 weeks.
+        </div>
+      </div>
+    </section>
+
+    <!-- EmailJS 연동 예약 폼 -->
     <section class="booking-section fade-up">
       <h2 class="section-title" style="margin-bottom: 0.5rem;" data-en="Booking Inquiry" data-kr="예약 문의" data-de="Buchungsanfrage">Booking Inquiry</h2>
       <p style="color: var(--text-sub); font-size: 0.9rem; line-height: 1.5;"
-         data-en="Fill out the form below to send an email inquiry, or contact via Instagram DM."
-         data-kr="아래 양식을 채워 이메일로 문의하시거나, 인스타그램 DM으로 편하게 연락주세요."
-         data-de="Füllen Sie das Formular aus, um eine E-Mail-Anfrage zu senden, oder kontaktieren Sie uns über Instagram DM.">
-        Fill out the form below to send an email inquiry, or contact via Instagram DM.
+         data-en="Fill out the form below to submit your inquiry, or contact via Instagram DM."
+         data-kr="아래 양식을 채워 문의를 제출하시거나, 인스타그램 DM으로 편하게 연락주세요."
+         data-de="Füllen Sie das Formular aus, um Ihre Anfrage abzusenden, oder kontaktieren Sie uns über Instagram DM.">
+        Fill out the form below to submit your inquiry, or contact via Instagram DM.
       </p>
       
       <form class="booking-form" id="contact-form">
@@ -513,7 +692,7 @@
           <textarea id="message" name="message" class="form-control" placeholder="Describe your concept, preferred motifs (Dancheong, geometric, etc.)" required></textarea>
         </div>
 
-        <button type="submit" class="btn-submit" data-en="Submit Inquiry" data-kr="문의 제출하기" data-de="Absenden">Submit Inquiry</button>
+        <button type="submit" class="btn-submit" data-en="Submit Inquiry" data-kr="문의 제출하기" data-de="Anfrage absenden">Submit Inquiry</button>
       </form>
 
       <a href="https://www.instagram.com/kiwa_jip" target="_blank" class="btn-instagram" data-en="Or Contact via Instagram DM" data-kr="또는 인스타그램 DM으로 문의하기" data-de="Oder per Instagram DM anfragen">
