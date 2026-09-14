@@ -9,12 +9,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-color: #0d0d0d;
-      --card-bg: #161616;
-      --accent-color: #e65100;
-      --text-main: #f5f5f5;
-      --text-sub: #a0a0a0;
-      --border-color: #262626;
+      /* 단청과 닷워크 감성에 어울리는 따뜻하고 고급스러운 웜 토프/그레이 톤 */
+      --bg-color: #1a1918;
+      --card-bg: #242220;
+      --accent-color: #ff6d00;
+      --text-main: #f5f4f0;
+      --text-sub: #a8a49e;
+      --border-color: #3d3935;
     }
 
     * {
@@ -42,7 +43,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
+      background: linear-gradient(180deg, rgba(26,25,24,0.85) 0%, rgba(26,25,24,0) 100%);
     }
 
     .header-left {
@@ -71,7 +72,7 @@
     .lang-switch {
       display: flex;
       gap: 6px;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.3);
       padding: 4px;
       border-radius: 20px;
       border: 1px solid var(--border-color);
@@ -100,7 +101,7 @@
       height: 75vh;
       min-height: 450px;
       overflow: hidden;
-      background-color: #050505;
+      background-color: #141312;
       touch-action: pan-y;
     }
 
@@ -122,7 +123,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: brightness(0.75);
+      filter: brightness(0.8);
       pointer-events: none;
     }
 
@@ -145,7 +146,7 @@
     }
 
     .hero-content-overlay p {
-      color: #dddddd;
+      color: #e6e4dc;
       font-size: 0.9rem;
       font-weight: 300;
     }
@@ -291,7 +292,7 @@
     }
 
     .form-control {
-      background-color: #0f0f0f;
+      background-color: #1a1918;
       border: 1px solid var(--border-color);
       border-radius: 6px;
       padding: 0.8rem 0.9rem;
@@ -328,11 +329,10 @@
     }
 
     .btn-submit:hover {
-      background-color: #ff6d00;
-      box-shadow: 0 4px 15px rgba(230, 81, 0, 0.4);
+      background-color: #ff851b;
+      box-shadow: 0 4px 15px rgba(255, 109, 0, 0.4);
     }
 
-    /* 인스타그램 링크 버튼 스타일 추가 */
     .btn-instagram {
       display: block;
       text-align: center;
@@ -353,7 +353,7 @@
     .btn-instagram:hover {
       border-color: var(--accent-color);
       color: var(--accent-color);
-      background-color: rgba(230, 81, 0, 0.05);
+      background-color: rgba(255, 109, 0, 0.05);
     }
 
     footer {
@@ -373,7 +373,6 @@
       <a href="#" class="logo-title">KIWA</a>
       <span class="nav-tagline">Ornamental & Geometric</span>
     </div>
-    <!-- 언어 전환 버튼 -->
     <div class="lang-switch">
       <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
       <button class="lang-btn" onclick="setLanguage('kr')">KR</button>
@@ -509,8 +508,7 @@
         <button type="submit" class="btn-submit" data-en="Send via Email" data-kr="이메일로 문의 보내기" data-de="Per E-Mail senden">Send via Email</button>
       </form>
 
-      <!-- 인스타그램 링크 버튼 (여기에 인스타 주소를 넣으시면 됩니다) -->
-      <a href="https://www.instagram.com/kiwajip" target="_blank" class="btn-instagram" data-en="Or Contact via Instagram DM" data-kr="또는 인스타그램 DM으로 문의하기" data-de="Oder per Instagram DM anfragen">
+      <a href="https://www.instagram.com/kiwa_jip" target="_blank" class="btn-instagram" data-en="Or Contact via Instagram DM" data-kr="또는 인스타그램 DM으로 문의하기" data-de="Oder per Instagram DM anfragen">
         Or Contact via Instagram DM
       </a>
     </section>
@@ -522,7 +520,6 @@
   </footer>
 
   <script>
-    // 다국어 텍스트 데이터 딕셔너리
     function setLanguage(lang) {
       document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
       if(lang === 'en') document.querySelectorAll('.lang-btn')[0].classList.add('active');
@@ -536,7 +533,6 @@
       });
     }
 
-    // 메일 앱 연동 전송 함수
     function sendEmail(event) {
       event.preventDefault();
       
@@ -559,7 +555,6 @@
       window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
     }
 
-    // 슬라이더 및 기타 스크립트
     const track = document.getElementById('heroTrack');
     const container = document.getElementById('sliderContainer');
     const slides = Array.from(track.children);
