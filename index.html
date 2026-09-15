@@ -17,7 +17,6 @@
   </script>
 
   <style>
-    /* 기본 다크모드 변수 */
     :root {
       --bg-color: #1a1918;
       --card-bg: #242220;
@@ -30,7 +29,6 @@
       --header-grad-2: rgba(26,25,24,0);
     }
 
-    /* 라이트모드 (아이보리 & 클래식 골드) 변수 설정 */
     [data-theme="light"] {
       --bg-color: #f7f5f0;
       --card-bg: #ffffff;
@@ -100,7 +98,6 @@
       text-transform: uppercase;
     }
 
-    /* 테마 토글 버튼 스타일 */
     .theme-toggle-btn {
       background: transparent;
       border: none;
@@ -112,15 +109,24 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 0.85rem;
       transition: all 0.3s ease;
+    }
+
+    .theme-toggle-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+      transition: transform 0.3s ease;
     }
 
     .theme-toggle-btn:hover {
       color: var(--accent-color);
     }
 
-    /* 언어 선택 및 테마 버튼 통합 바 */
+    .theme-toggle-btn:hover svg {
+      transform: rotate(15deg);
+    }
+
     .lang-switch {
       display: flex;
       align-items: center;
@@ -169,6 +175,18 @@
       touch-action: pan-y;
     }
 
+    .hero-slider-container::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: linear-gradient(to top, var(--bg-color), transparent);
+      z-index: 15;
+      pointer-events: none;
+    }
+
     .hero-track {
       display: flex;
       width: 100%;
@@ -193,10 +211,10 @@
 
     .hero-content-overlay {
       position: absolute;
-      bottom: 3rem;
+      bottom: 3.5rem;
       left: 5%;
       right: 5%;
-      z-index: 10;
+      z-index: 20;
       max-width: 650px;
       text-shadow: 0 2px 10px rgba(0,0,0,0.8);
       pointer-events: none;
@@ -223,14 +241,14 @@
       background: rgba(0, 0, 0, 0.4);
       color: #fff;
       border: 1px solid rgba(255, 255, 255, 0.2);
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      z-index: 20;
+      z-index: 25;
       font-size: 1rem;
       transition: all 0.3s ease;
       user-select: none;
@@ -241,17 +259,17 @@
       border-color: var(--accent-color);
     }
 
-    .arrow-left { left: 1rem; }
-    .arrow-right { right: 1rem; }
+    .arrow-left { left: 1.2rem; }
+    .arrow-right { right: 1.2rem; }
 
     .dots-container {
       position: absolute;
-      bottom: 1rem;
+      bottom: 1.2rem;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
       gap: 6px;
-      z-index: 20;
+      z-index: 25;
     }
 
     .dot {
@@ -273,7 +291,7 @@
       max-width: 900px;
       width: 100%;
       margin: 0 auto;
-      padding: 3rem 1rem;
+      padding: 3.5rem 1.2rem;
     }
 
     .fade-up {
@@ -289,7 +307,7 @@
 
     .section-title {
       font-family: 'Cinzel', serif;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       letter-spacing: 2px;
       margin-bottom: 1.2rem;
       color: var(--text-main);
@@ -302,7 +320,7 @@
       position: absolute;
       bottom: -6px;
       left: 0;
-      width: 40%;
+      width: 45%;
       height: 2px;
       background-color: var(--accent-color);
     }
@@ -310,15 +328,15 @@
     .intro-text {
       color: var(--text-sub);
       font-size: 0.95rem;
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
+      line-height: 1.75;
+      margin-bottom: 1.4rem;
     }
 
     .style-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 2.5rem;
+      margin-bottom: 3rem;
     }
 
     .tag {
@@ -334,7 +352,7 @@
     .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
+      gap: 1.5rem;
       margin-bottom: 3rem;
     }
 
@@ -348,12 +366,12 @@
       background-color: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 12px;
-      padding: 1.5rem;
+      padding: 1.8rem;
     }
 
     .info-card h3 {
       font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: var(--accent-color);
       margin-bottom: 0.8rem;
       letter-spacing: 1px;
@@ -378,53 +396,76 @@
       background-color: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 12px;
-      padding: 2rem 1.5rem;
+      padding: 2rem 1.8rem;
       margin-bottom: 3rem;
     }
 
-    .faq-item {
+    .accordion-item {
       border-bottom: 1px solid var(--border-color);
-      padding: 1rem 0;
+      padding: 1.1rem 0;
     }
 
-    .faq-item:last-child {
+    .accordion-item:last-child {
       border-bottom: none;
+      padding-bottom: 0;
     }
 
-    .faq-question {
+    .accordion-item:first-of-type {
+      padding-top: 0;
+    }
+
+    .accordion-question {
       font-weight: 500;
       color: var(--text-main);
-      font-size: 1rem;
-      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
     }
 
-    .faq-answer {
-      color: var(--text-sub);
+    .accordion-question span.toggle-icon {
+      font-size: 1.2rem;
+      color: var(--accent-color);
+      font-weight: bold;
+    }
+
+    .accordion-answer {
+      color: var(--text-main);
       font-size: 0.9rem;
-      line-height: 1.6;
+      line-height: 1.7;
+      margin-top: 0.8rem;
+      padding-left: 0.2rem;
+      opacity: 0.9;
+      display: none;
+    }
+
+    .accordion-item.active .accordion-answer {
+      display: block;
     }
 
     .booking-section {
       background-color: var(--card-bg);
       border-radius: 12px;
       border: 1px solid var(--border-color);
-      padding: 2rem 1.2rem;
+      padding: 2.2rem 1.8rem;
       width: 100%;
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
     }
 
     .booking-form {
       display: flex;
       flex-direction: column;
       gap: 1.2rem;
-      margin-top: 1.5rem;
+      margin-top: 1.4rem;
       width: 100%;
     }
 
     .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.0rem;
+      gap: 1.1rem;
       width: 100%;
     }
 
@@ -442,26 +483,28 @@
     }
 
     .form-group label {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-sub);
       letter-spacing: 1px;
+      font-weight: 500;
     }
 
     .form-control {
       background-color: var(--input-bg);
       border: 1px solid var(--border-color);
-      border-radius: 6px;
-      padding: 0.8rem 0.9rem;
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
       color: var(--text-main);
       font-family: 'Noto Sans KR', sans-serif;
       font-size: 0.95rem;
       width: 100%;
-      transition: border-color 0.3s ease;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .form-control:focus {
       outline: none;
       border-color: var(--accent-color);
+      box-shadow: 0 0 0 2px rgba(255, 109, 0, 0.15);
     }
 
     textarea.form-control {
@@ -469,7 +512,6 @@
       min-height: 110px;
     }
 
-    /* 사진 안내 박스 스타일 */
     .photo-notice-box {
       background-color: rgba(184, 134, 11, 0.08);
       border: 1px dashed var(--accent-color);
@@ -493,16 +535,16 @@
       font-size: 0.95rem;
       font-weight: 500;
       letter-spacing: 1px;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      transition: opacity 0.3s ease, box-shadow 0.3s ease;
       width: 100%;
-      margin-top: 0.5rem;
+      margin-top: 0.4rem;
     }
 
     .btn-submit:hover {
       opacity: 0.9;
-      box-shadow: 0 4px 15px rgba(184, 134, 11, 0.3);
+      box-shadow: 0 4px 15px rgba(255, 109, 0, 0.25);
     }
 
     .btn-instagram {
@@ -511,11 +553,11 @@
       background-color: transparent;
       color: var(--text-main);
       border: 1px solid var(--border-color);
-      padding: 0.8rem 1.5rem;
+      padding: 0.85rem 1.5rem;
       font-size: 0.9rem;
       font-weight: 500;
       letter-spacing: 1px;
-      border-radius: 6px;
+      border-radius: 8px;
       text-decoration: none;
       transition: all 0.3s ease;
       width: 100%;
@@ -525,12 +567,12 @@
     .btn-instagram:hover {
       border-color: var(--accent-color);
       color: var(--accent-color);
-      background-color: rgba(184, 134, 11, 0.05);
+      background-color: rgba(255, 109, 0, 0.05);
     }
 
     footer {
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 2.5rem 1rem;
       color: var(--text-sub);
       font-size: 0.8rem;
       border-top: 1px solid var(--border-color);
@@ -547,7 +589,11 @@
     </div>
     <div class="header-right">
       <div class="lang-switch">
-        <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Theme">🌙</button>
+        <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Theme">
+          <svg id="themeIcon" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
         <div class="lang-divider"></div>
         <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
         <button class="lang-btn" onclick="setLanguage('kr')">KR</button>
@@ -558,7 +604,7 @@
 
   <div class="hero-slider-container" id="sliderContainer">
     <div class="hero-track" id="heroTrack">
-      
+      <!-- 첫 번째 슬라이드 (안전하게 이미지를 첫 슬라이드로 구성) -->
       <div class="hero-slide">
         <img src="artwork3.jpg" alt="KIWA Tattoo Artwork 3">
         <div class="hero-content-overlay">
@@ -566,7 +612,6 @@
           <p data-en="Symmetrical core geometry capturing mesmerizing rhythm and body flow." data-kr="매혹적인 리듬과 신체 흐름을 포착한 대칭적 코어 지오메트리." data-de="Symmetrische Kerngeometrie mit faszinierendem Rhythmus und Körperfluss.">Symmetrical core geometry capturing mesmerizing rhythm and body flow.</p>
         </div>
       </div>
-
       <div class="hero-slide">
         <img src="artwork8.jpg" alt="KIWA Tattoo Artwork 8">
         <div class="hero-content-overlay">
@@ -574,7 +619,6 @@
           <p data-en="Hypnotic linear patterns flowing seamlessly down the legs." data-kr="다리를 따라 부드럽게 이어지는 최면적인 라인 패턴." data-de="Hypnotische Linearmuster, die nahtlos die Beine hinunterfließen.">Hypnotic linear patterns flowing seamlessly down the legs.</p>
         </div>
       </div>
-
       <div class="hero-slide">
         <img src="artwork1.jpg" alt="KIWA Tattoo Artwork 1">
         <div class="hero-content-overlay">
@@ -582,7 +626,6 @@
           <p data-en="Soft dotwork gradients harmonizing with natural muscle contours." data-kr="자연스러운 근육 곡선과 조화를 이루는 부드러운 닷워크 그라데이션." data-de="Weiche Dotwork-Gradienten, die mit natürlichen Muskelkonturen harmonieren.">Soft dotwork gradients harmonizing with natural muscle contours.</p>
         </div>
       </div>
-
       <div class="hero-slide">
         <img src="artwork2.jpg" alt="KIWA Tattoo Artwork 2">
         <div class="hero-content-overlay">
@@ -590,7 +633,6 @@
           <p data-en="Bold blackwork and striking red contrasts sculpting the upper body." data-kr="상체를 조각하는 대담한 블랙워크와 강렬한 레드 포인트." data-de="Kühne Blackworks und markante rote Kontraste, die den Oberkörper formen.">Bold blackwork and striking red contrasts sculpting the upper body.</p>
         </div>
       </div>
-
       <div class="hero-slide">
         <img src="artwork4.jpg" alt="KIWA Tattoo Artwork 4">
         <div class="hero-content-overlay">
@@ -598,7 +640,6 @@
           <p data-en="A striking sunburst pattern radiating outward from the neck and chest." data-kr="목과 가슴에서 바깥쪽으로 뻗어나가는 인상적인 선버스트 패턴." data-de="Ein auffälliges Sonnenstrahlenmuster, das von Hals und Brust ausstrahlt.">A striking sunburst pattern radiating outward from the neck and chest.</p>
         </div>
       </div>
-
       <div class="hero-slide">
         <img src="artwork5.jpg" alt="KIWA Tattoo Artwork 5">
         <div class="hero-content-overlay">
@@ -606,7 +647,6 @@
           <p data-en="Traditional Dancheong motifs elevated by delicate shading and linework." data-kr="섬세한 섀딩과 라인워크로 재해석한 전통 단청 모티브." data-de="Traditionelle Dancheong-Motive, veredelt durch feine Schattierungen und Linien.">Traditional Dancheong motifs elevated by delicate shading and linework.</p>
         </div>
       </div>
-
       <div class="hero-slide">
         <img src="artwork6.jpg" alt="KIWA Tattoo Artwork 6">
         <div class="hero-content-overlay">
@@ -614,7 +654,6 @@
           <p data-en="Dynamic cloud patterns wrapping fluidly around the temple and head." data-kr="관자놀이와 머리 주변을 유연하게 감싸는 역동적인 구름 패턴." data-de="Dynamische Wolkenmuster, die sich fließend um Schläfe und Kopf legen.">Dynamic cloud patterns wrapping fluidly around the temple and head.</p>
         </div>
       </div>
-
       <div class="hero-slide">
         <img src="artwork7.jpg" alt="KIWA Tattoo Artwork 7">
         <div class="hero-content-overlay">
@@ -622,12 +661,10 @@
           <p data-en="Vibrant blue gradients and intricate structural details accentuating joint lines." data-kr="관절 라인을 강조하는 생동감 넘치는 블루 그라데이션과 정교한 구조적 디테일." data-de="Lebendige blaue Farbverläufe und filigrane Strukturdetails, die Gelenklinie betonen.">Vibrant blue gradients and intricate structural details accentuating joint lines.</p>
         </div>
       </div>
-
     </div>
 
     <div class="slider-arrow arrow-left" id="prevBtn">&#10094;</div>
     <div class="slider-arrow arrow-right" id="nextBtn">&#10095;</div>
-
     <div class="dots-container" id="dotsContainer"></div>
   </div>
 
@@ -666,147 +703,168 @@
         <h3 data-en="Guest Spot Schedule" data-kr="게스트 스팟 일정" data-de="Gastspot-Zeitplan">Guest Spot Schedule</h3>
         <ul>
           <li><strong>Amsterdam:</strong> Sep 24 – Sep 27, 2026</li>
-          <li style="color: var(--text-main); margin-top: 0.4rem;" data-en="* More guest spots will be announced via Instagram." data-kr="* 추가 게스트 스팟 일정은 인스타그램을 통해 공지됩니다." data-de="* Weitere Gastspots werden über Instagram bekannt gegeben.">* More guest spots will be announced via Instagram.</li>
+          <li style="color: var(--text-main); margin-top: 0.4rem; font-size: 0.85rem;" data-en="* More guest spots via Instagram." data-kr="* 추가 일정은 인스타그램을 통해 공지됩니다." data-de="* Weitere Gastspots über Instagram.">* More guest spots via Instagram.</li>
         </ul>
       </div>
     </section>
 
     <section class="content-section-box fade-up">
-      <h2 class="section-title" style="margin-bottom: 1.5rem;" data-en="Booking Guide & FAQ" data-kr="예약 안내 및 자주 묻는 질문" data-de="Buchungsanleitung & FAQ">Booking Guide & FAQ</h2>
+      <h2 class="section-title" style="margin-bottom: 1.2rem;" data-en="Booking Guide & FAQ" data-kr="예약 안내 및 자주 묻는 질문" data-de="Buchungsanleitung & FAQ">Booking Guide & FAQ</h2>
       
-      <div class="faq-item">
-        <div class="faq-question" data-en="Q. How does custom design work and what about the deposit?" data-kr="Q. 도안 커스텀과 예약금은 어떻게 진행되나요?" data-de="Q. Wie funktioniert das individuelle Design und die Anzahlung?">Q. How does custom design work and what about the deposit?</div>
-        <div class="faq-answer" data-en="Custom designs include a deposit requirement of €100 to secure your date. This deposit is fully included in the total tattoo price, so you do not need to pay it twice." 
-             data-kr="도안 커스텀은 예약 확정을 위해 100유로의 보증금을 받고 진행하고 있습니다. 이 보증금은 전체 금액에 포함된 금액이므로 현장에서 추가로 내실 필요가 없습니다."
-             data-de="Individuelle Designs erfordern eine Anzahlung von 100 €, um Ihren Termin zu sichern. Diese Anzahlung ist vollständig im Gesamtpreis enthalten, sodass Sie sie nicht doppelt bezahlen müssen.">
-          Custom designs include a deposit requirement of €100 to secure your date. This deposit is fully included in the total tattoo price, so you do not need to pay it twice.
+      <div class="accordion-item">
+        <div class="accordion-question" onclick="toggleAccordion(this)">
+          <span data-en="Q. How does custom design work and what about the deposit?" 
+                data-kr="Q. 도안 커스텀과 예약금은 어떻게 진행되나요?" 
+                data-de="Q. Wie funktioniert das individuelle Design und die Anzahlung?">
+            Q. How does custom design work and what about the deposit?
+          </span>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="accordion-answer" 
+             data-en="Custom designs include a deposit requirement of €100 to secure your date. This deposit is fully included in the total tattoo price." 
+             data-kr="도안 커스텀은 예약 확정을 위해 100유로의 보증금을 받고 진행하며, 전체 금액에 포함되어 추가로 내실 필요가 없습니다."
+             data-de="Individuelle Designs erfordern eine Anzahlung von 100 €, um Ihren Termin zu sichern. Diese ist im Gesamtpreis enthalten.">
+          Custom designs include a deposit requirement of €100 to secure your date. This deposit is fully included in the total tattoo price.
         </div>
       </div>
 
-      <div class="faq-item" style="margin-top: 1rem;">
-        <div class="faq-question" data-en="Q. How should I prepare for my session?" data-kr="Q. 작업 전 준비 사항이 있나요?" data-de="Q. Wie sollte ich mich auf die Sitzung vorbereiten?">Q. How should I prepare for my session?</div>
-        <div class="faq-answer" data-en="Get a good night's sleep, eat a solid meal before coming, and stay well hydrated. Avoid alcohol and blood thinners 24 hours prior to your appointment." 
-             data-kr="작업 전날 충분히 수면을 취하시고, 예약 당일 식사를 든든하게 하고 오세요. 수분 섭취를 충분히 해주시고, 방문 전 24시간 동안은 음주나 혈액순환을 방해하는 약물 복용을 피해주시기 바랍니다."
-             data-de="Schlafen Sie gut, essen Sie vor der Sitzung eine Mahlzeit und trinken Sie ausreichend Wasser. Vermeiden Sie 24 Stunden vor dem Termin Alkohol und Blutverdünner.">
-          Get a good night's sleep, eat a solid meal before coming, and stay well hydrated. Avoid alcohol and blood thinners 24 hours prior to your appointment.
+      <div class="accordion-item">
+        <div class="accordion-question" onclick="toggleAccordion(this)">
+          <span data-en="Q. How should I prepare for my session?" 
+                data-kr="Q. 작업 전 준비 사항이 있나요?" 
+                data-de="Q. Wie sollte ich mich vorbereiten?">
+            Q. How should I prepare for my session?
+          </span>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="accordion-answer" 
+             data-en="Get a good night's sleep, eat a solid meal, and stay well hydrated. Avoid alcohol and blood thinners 24 hours prior." 
+             data-kr="전날 충분한 수면, 당일 든든한 식사와 수분 섭취를 해주시고, 24시간 전부터 음주 및 혈액순환제를 피해주시기 바랍니다."
+             data-de="Schlafen Sie gut, essen Sie vorab eine Mahlzeit und trinken Sie Wasser. Vermeiden Sie 24 Stunden zuvor Alkohol.">
+          Get a good night's sleep, eat a solid meal, and stay well hydrated. Avoid alcohol and blood thinners 24 hours prior.
         </div>
       </div>
     </section>
 
     <section class="content-section-box fade-up">
-      <h2 class="section-title" style="margin-bottom: 1.5rem;" data-en="Tattoo Aftercare Guide" data-kr="타투 관리 방법 (Best Aftercare)" data-de="Tattoo-Pflegeanleitung">Tattoo Aftercare Guide</h2>
+      <h2 class="section-title" style="margin-bottom: 1.2rem;" data-en="Tattoo Aftercare Guide" data-kr="타투 관리 방법" data-de="Tattoo-Pflegeanleitung">Tattoo Aftercare Guide</h2>
       
-      <div class="faq-item">
-        <div class="faq-question" data-en="1. Film / Bandage Removal" data-kr="1. 보호필름 제거" data-de="1. Entfernung der Folie">1. Film / Bandage Removal</div>
-        <div class="faq-answer" data-en="If using protective film, leave it on for 3 to 4 days. If fluid pools excessively, you can remove it earlier. Gently wash the area with lukewarm water and mild soap." 
-             data-kr="보호필름(더마르 등)을 부착한 경우 3~4일 동안 유지한 뒤 제거하세요. 내부에 진물이 너무 많이 고이면 일찍 제거해도 좋습니다. 미지근한 물과 저자극 비누로 부드럽게 씻어내세요."
-             data-de="Wenn Sie Schutzfolie verwenden, lassen Sie diese 3 bis 4 Tage auf der Haut. Waschen Sie den Bereich anschließend vorsichtig mit lauwarmem Wasser und milder Seife.">
-          If using protective film, leave it on for 3 to 4 days. If fluid pools excessively, you can remove it earlier. Gently wash the area with lukewarm water and mild soap.
+      <div class="accordion-item">
+        <div class="accordion-question" onclick="toggleAccordion(this)">
+          <span data-en="1. Film / Bandage Removal" 
+                data-kr="1. 보호필름 제거" 
+                data-de="1. Entfernung der Folie">
+            1. Film / Bandage Removal
+          </span>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="accordion-answer" 
+             data-en="Leave protective film on for 3 to 4 days. Gently wash the area with lukewarm water and mild soap after removal." 
+             data-kr="보호필름은 3~4일 동안 유지한 뒤 제거하고, 미지근한 물과 저자극 비누로 부드럽게 씻어내세요."
+             data-de="Lassen Sie die Schutzfolie 3 bis 4 Tage auf der Haut. Waschen Sie den Bereich danach mit lauwarmem Wasser und milder Seife.">
+          Leave protective film on for 3 to 4 days. Gently wash the area with lukewarm water and mild soap after removal.
         </div>
       </div>
 
-      <div class="faq-item" style="margin-top: 1rem;">
-        <div class="faq-question" data-en="2. Moisturizing" data-kr="2. 보습 관리" data-de="2. Feuchtigkeitsversorgung">2. Moisturizing</div>
-        <div class="faq-answer" data-en="Apply a thin layer of specialized tattoo aftercare ointment or fragrance-free lotion 2 to 3 times a day. Do not over-apply; the skin needs to breathe." 
-             data-kr="타투 전용 연고나 향이 없는 로션을 하루에 2~3회 아주 얇게 펴 발라주세요. 너무 두껍게 바르면 피부 숨구멍을 막아 회복을 더디게 하므로 얇게 자주 발라주는 것이 좋습니다."
-             data-de="Tragen Sie 2-3 Mal täglich eine dünne Schicht Tattoo-Pflegecreme oder parfümfreie Lotion auf. Tragen Sie nicht zu viel auf, damit die Haut atmen kann.">
-          Apply a thin layer of specialized tattoo aftercare ointment or fragrance-free lotion 2 to 3 times a day. Do not over-apply; the skin needs to breathe.
+      <div class="accordion-item">
+        <div class="accordion-question" onclick="toggleAccordion(this)">
+          <span data-en="2. Moisturizing" 
+                data-kr="2. 보습 관리" 
+                data-de="2. Feuchtigkeitsversorgung">
+            2. Moisturizing
+          </span>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="accordion-answer" 
+             data-en="Apply a thin layer of specialized tattoo ointment or fragrance-free lotion 2 to 3 times a day." 
+             data-kr="전용 연고나 무향 로션을 하루 2~3회 아주 얇게 펴 발라 피부가 숨을 쉴 수 있도록 해주세요."
+             data-de="Tragen Sie 2-3 Mal täglich eine dünne Schicht Tattoo-Pflegecreme oder parfümfreie Lotion auf.">
+          Apply a thin layer of specialized tattoo ointment or fragrance-free lotion 2 to 3 times a day.
         </div>
       </div>
 
-      <div class="faq-item" style="margin-top: 1rem;">
-        <div class="faq-question" data-en="3. Important Rules" data-kr="3. 주의사항 (절대 금지)" data-de="3. Wichtige Regeln">3. Important Rules</div>
-        <div class="faq-answer" data-en="Do not pick, scratch, or peel the scabs/skin as it heals. Avoid swimming pools, saunas, direct sunlight, and intense workouts for at least 2 weeks." 
-             data-kr="회복 과정에서 각질이나 딱지가 생겨도 절대 억지로 뜯거나 긁지 마세요. 최소 2주 동안은 수영장, 사우나, 직사광선 노출, 격렬한 운동을 피해주시기 바랍니다."
-             data-de="Kratzen oder ziehen Sie nicht an sich bildenden Schuppen oder Krusten. Vermeiden Sie mindestens 2 Wochen lang Schwimmbäder, Saunen, direkte Sonneneinstrahlung und intensives Training.">
-          Do not pick, scratch, or peel the scabs/skin as it heals. Avoid swimming pools, saunas, direct sunlight, and intense workouts for at least 2 weeks.
+      <div class="accordion-item">
+        <div class="accordion-question" onclick="toggleAccordion(this)">
+          <span data-en="3. Important Rules (Don'ts)" 
+                data-kr="3. 주의사항 (절대 금지)" 
+                data-de="3. Wichtige Regeln">
+            3. Important Rules (Don'ts)
+          </span>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="accordion-answer" 
+             data-en="Do not pick scabs. Avoid pools, saunas, direct sun, and intense workouts for at least 2 weeks." 
+             data-kr="딱지를 억지로 뜯지 마시고, 최소 2주 동안은 수영장, 사우나, 직사광선, 격렬한 운동을 금지합니다."
+             data-de="Kratzen Sie nicht an Krusten. Vermeiden Sie 2 Wochen lang Schwimmbäder, Saunen, Sonne und intensives Training.">
+          Do not pick scabs. Avoid pools, saunas, direct sun, and intense workouts for at least 2 weeks.
         </div>
       </div>
     </section>
 
-    <!-- EmailJS 연동 예약 폼 -->
     <section class="booking-section fade-up">
-      <h2 class="section-title" style="margin-bottom: 0.5rem;" data-en="Booking Inquiry" data-kr="예약 문의" data-de="Buchungsanfrage">Booking Inquiry</h2>
-      <p style="color: var(--text-sub); font-size: 0.9rem; line-height: 1.5;"
-         data-en="Fill out the form below to submit your inquiry, or contact via Instagram DM."
-         data-kr="아래 양식을 채워 문의를 제출하시거나, 인스타그램 DM으로 편하게 연락주세요."
-         data-de="Füllen Sie das Formular aus, um Ihre Anfrage abzusenden, oder kontaktieren Sie uns über Instagram DM.">
-        Fill out the form below to submit your inquiry, or contact via Instagram DM.
+      <h2 class="section-title" style="margin-bottom: 0.4rem;" data-en="Booking Inquiry" data-kr="예약 문의" data-de="Buchungsanfrage">Booking Inquiry</h2>
+      <p style="color: var(--text-sub); font-size: 0.88rem; line-height: 1.5;"
+         data-en="Fill out the form below or contact via Instagram DM."
+         data-kr="아래 양식을 채워 문의를 남겨주시거나 인스타그램 DM으로 연락주세요."
+         data-de="Füllen Sie das Formular aus oder kontaktieren Sie uns per Instagram DM.">
+        Fill out the form below or contact via Instagram DM.
       </p>
       
       <form class="booking-form" id="contact-form">
         <div class="form-row">
           <div class="form-group">
-            <label for="from_name" data-en="YOUR NAME" data-kr="성함 (YOUR NAME)" data-de="NAME">YOUR NAME</label>
-            <input type="text" id="from_name" name="from_name" class="form-control" 
-                   data-en-ph="Enter your name" data-kr-ph="성함을 입력해주세요" data-de-ph="Geben Sie Ihren Namen ein" 
-                   placeholder="Enter your name" required>
+            <label for="from_name" data-en="YOUR NAME" data-kr="성함" data-de="NAME">YOUR NAME</label>
+            <input type="text" id="from_name" name="from_name" class="form-control" placeholder="Enter your name" required>
           </div>
           <div class="form-group">
-            <label for="from_email" data-en="EMAIL ADDRESS" data-kr="이메일 주소 (EMAIL)" data-de="E-MAIL-ADRESSE">EMAIL ADDRESS</label>
-            <input type="email" id="from_email" name="from_email" class="form-control" 
-                   data-en-ph="Enter your email" data-kr-ph="이메일 주소를 입력해주세요" data-de-ph="Geben Sie Ihre E-Mail ein" 
-                   placeholder="Enter your email" required>
+            <label for="from_email" data-en="EMAIL ADDRESS" data-kr="이메일" data-de="E-MAIL">EMAIL ADDRESS</label>
+            <input type="email" id="from_email" name="from_email" class="form-control" placeholder="Enter your email" required>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
-            <label for="age" data-en="AGE" data-kr="나이 (AGE)" data-de="ALTER">AGE</label>
-            <input type="text" id="age" name="age" class="form-control" 
-                   data-en-ph="Enter your age" data-kr-ph="나이를 입력해주세요" data-de-ph="Geben Sie Ihr Alter ein" 
-                   placeholder="Enter your age" required>
+            <label for="age" data-en="AGE" data-kr="나이" data-de="ALTER">AGE</label>
+            <input type="text" id="age" name="age" class="form-control" placeholder="Enter your age" required>
           </div>
           <div class="form-group">
-            <label for="phone" data-en="PHONE NUMBER" data-kr="전화번호 (PHONE)" data-de="TELEFONNUMMER">PHONE NUMBER</label>
-            <input type="tel" id="phone" name="phone" class="form-control" 
-                   data-en-ph="Enter your phone number" data-kr-ph="전화번호를 입력해주세요" data-de-ph="Geben Sie Ihre Telefonnummer ein" 
-                   placeholder="Enter your phone number" required>
+            <label for="phone" data-en="PHONE NUMBER" data-kr="전화번호" data-de="TELEFON">PHONE NUMBER</label>
+            <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone number" required>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
-            <label for="placement" data-en="TATTOO PLACEMENT" data-kr="시술 부위 (PLACEMENT)" data-de="TATTOO-PLATZIERUNG">TATTOO PLACEMENT</label>
-            <input type="text" id="placement" name="placement" class="form-control" 
-                   data-en-ph="e.g., Forearm, Thigh, Chest" data-kr-ph="예: 전완근, 허벅지, 가슴 등" data-de-ph="z.B. Unterarm, Oberschenkel, Brust" 
-                   placeholder="e.g., Forearm, Thigh, Chest" required>
+            <label for="placement" data-en="TATTOO PLACEMENT" data-kr="시술 부위" data-de="PLATZIERUNG">TATTOO PLACEMENT</label>
+            <input type="text" id="placement" name="placement" class="form-control" placeholder="e.g., Forearm, Thigh, Chest" required>
           </div>
           <div class="form-group">
-            <label for="size" data-en="ESTIMATED SIZE (CM)" data-kr="예상 사이즈 (SIZE)" data-de="GESCHÄTZTE GRÖSSE (CM)">ESTIMATED SIZE (CM)</label>
-            <input type="text" id="size" name="size" class="form-control" 
-                   data-en-ph="e.g., 15cm x 10cm" data-kr-ph="예: 15cm x 10cm" data-de-ph="z.B. 15cm x 10cm" 
-                   placeholder="e.g., 15cm x 10cm" required>
+            <label for="size" data-en="ESTIMATED SIZE (CM)" data-kr="예상 사이즈" data-de="GRÖSSE (CM)">ESTIMATED SIZE (CM)</label>
+            <input type="text" id="size" name="size" class="form-control" placeholder="e.g., 15cm x 10cm" required>
           </div>
         </div>
 
-        <!-- 프로젝트 타입 선택 칸 추가 -->
         <div class="form-group">
-          <label for="project_type" data-en="PROJECT TYPE" data-kr="작업 종류 (PROJECT TYPE)" data-de="PROJEKT-TYP">PROJECT TYPE</label>
+          <label for="project_type" data-en="PROJECT TYPE" data-kr="작업 종류" data-de="PROJEKT-TYP">PROJECT TYPE</label>
           <select id="project_type" name="project_type" class="form-control" required>
-            <option value="" disabled selected data-en="Select project type" data-kr="작업 종류를 선택해주세요" data-de="Projekt-Typ auswählen">Select project type</option>
-            <option value="Custom Design" data-en="Custom Design (New Concept)" data-kr="커스텀 도안 제작 (새로운 컨셉)" data-de="Individuelles Design">Custom Design (New Concept)</option>
-            <option value="Available Flash" data-en="Available Flash Design" data-kr="기존 플래시 도안 예약" data-de="Verfügbares Flash-Design">Available Flash Design</option>
-            <option value="Cover-up / Touch-up" data-en="Cover-up / Touch-up" data-kr="커버업 / 터치업" data-de="Cover-up / Touch-up">Cover-up / Touch-up</option>
+            <option value="" disabled selected data-en="Select project type" data-kr="작업 종류를 선택해주세요" data-de="Auswählen">Select project type</option>
+            <option value="Custom Design">Custom Design (New Concept)</option>
+            <option value="Available Flash">Available Flash Design</option>
+            <option value="Cover-up / Touch-up">Cover-up / Touch-up</option>
           </select>
         </div>
 
-        <!-- 파일 업로드 대신 세련된 안내 문구 박스 배치 -->
         <div class="photo-notice-box">
           <span data-en="💡 After submitting this form, please send your reference photos via <strong>Instagram DM</strong> or <strong>Email</strong> with your name."
-                data-kr="💡 문의 제출 후, 성함과 함께 레퍼런스 사진을 <strong>인스타그램 DM</strong> 또는 <strong>이메일</strong>로 보내주시면 더욱 원활한 상담이 가능합니다."
-                data-de="💡 Senden Sie nach dem Absenden Ihre Referenzfotos mit Ihrem Namen per <strong>Instagram DM</strong> oder <strong>E-Mail</strong>.">
+                data-kr="💡 문의 제출 후, 레퍼런스 사진은 <strong>인스타그램 DM</strong>이나 <strong>이메일</strong>로 성함과 함께 보내주세요."
+                data-de="💡 Senden Sie Referenzfotos nach dem Absenden per <strong>Instagram DM</strong> oder <strong>E-Mail</strong> mit Ihrem Namen.">
             💡 After submitting this form, please send your reference photos via <strong>Instagram DM</strong> or <strong>Email</strong> with your name.
           </span>
         </div>
 
         <div class="form-group">
-          <label for="message" data-en="PROJECT IDEA & DETAILS" data-kr="작업 아이디어 및 디테일 (IDEA)" data-de="PROJEKT-IDEE & DETAILS">PROJECT IDEA & DETAILS</label>
-          <textarea id="message" name="message" class="form-control" 
-                    data-en-ph="Describe your concept, preferred motifs (Dancheong, geometric, etc.)" 
-                    data-kr-ph="원하시는 컨셉 및 선호하는 모티브(단청, 지오메트리 등)를 설명해주세요" 
-                    data-de-ph="Beschreiben Sie Ihr Konzept und bevorzugte Motive (Dancheong, Geometrie usw.)" 
-                    placeholder="Describe your concept, preferred motifs (Dancheong, geometric, etc.)" required></textarea>
+          <label for="message" data-en="PROJECT IDEA & DETAILS" data-kr="작업 아이디어 및 디테일" data-de="DETAILS">PROJECT IDEA & DETAILS</label>
+          <textarea id="message" name="message" class="form-control" placeholder="Describe your concept, preferred motifs (Dancheong, geometric, etc.)" required></textarea>
         </div>
 
         <button type="submit" class="btn-submit" data-en="Submit Inquiry" data-kr="문의 제출하기" data-de="Anfrage absenden">Submit Inquiry</button>
@@ -828,14 +886,25 @@
 
     function toggleTheme() {
       const htmlEl = document.documentElement;
-      const themeBtn = document.getElementById('themeToggleBtn');
+      const themeIcon = document.getElementById('themeIcon');
       
       if (htmlEl.getAttribute('data-theme') === 'light') {
         htmlEl.removeAttribute('data-theme');
-        themeBtn.textContent = '🌙';
+        themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
       } else {
         htmlEl.setAttribute('data-theme', 'light');
-        themeBtn.textContent = '☀️';
+        themeIcon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+      }
+    }
+
+    function toggleAccordion(element) {
+      const item = element.parentElement;
+      const icon = element.querySelector('.toggle-icon');
+      item.classList.toggle('active');
+      if (item.classList.contains('active')) {
+        icon.textContent = '-';
+      } else {
+        icon.textContent = '+';
       }
     }
 
@@ -852,19 +921,10 @@
           el.innerHTML = el.dataset[lang];
         }
       });
-
-      document.querySelectorAll('[data-en-ph]').forEach(input => {
-        const phKey = `${lang}-ph`;
-        if (input.dataset[phKey]) {
-          input.placeholder = input.dataset[phKey];
-        }
-      });
     }
 
-    // EmailJS 폼 전송 기능 (파일첨부 로직 제거 완료)
     document.getElementById('contact-form').addEventListener('submit', function(event) {
         event.preventDefault();
-
         const myForm = this;
         const submitBtn = myForm.querySelector('.btn-submit');
         const originalText = submitBtn.innerHTML;
@@ -878,26 +938,20 @@
 
         emailjs.sendForm('service_kiwa', 'template_ahfvhka', myForm)
             .then(function() {
-                let successMsg = 'Inquiry sent successfully! We will get back to you soon.';
-                if(currentLang === 'kr') successMsg = '예약 문의가 성공적으로 전송되었습니다! 빠른 시일 내에 답변 드리겠습니다.';
-                if(currentLang === 'de') successMsg = 'Anfrage erfolgreich gesendet! Wir werden uns bald bei Ihnen melden.';
-                
+                let successMsg = 'Inquiry sent successfully!';
+                if(currentLang === 'kr') successMsg = '예약 문의가 성공적으로 전송되었습니다!';
+                if(currentLang === 'de') successMsg = 'Anfrage erfolgreich gesendet!';
                 alert(successMsg);
                 myForm.reset();
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             }, function(error) {
-                let failMsg = 'Failed to send. Please try again. (Error: ';
-                if(currentLang === 'kr') failMsg = '전송에 실패했습니다. 다시 시도해 주세요. (Error: ';
-                if(currentLang === 'de') failMsg = 'Senden fehlgeschlagen. Bitte versuchen Sie es erneut. (Error: ';
-
-                alert(failMsg + JSON.stringify(error) + ')');
+                alert('Failed to send. (Error: ' + JSON.stringify(error) + ')');
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             });
     });
 
-    // 슬라이더 제어 스크립트
     const track = document.getElementById('heroTrack');
     const container = document.getElementById('sliderContainer');
     const slides = Array.from(track.children);
@@ -931,7 +985,6 @@
       currentIndex = index;
       if (currentIndex < 0) currentIndex = slides.length - 1;
       if (currentIndex >= slides.length) currentIndex = 0;
-      
       track.style.transform = `translateX(-${currentIndex * 100}%)`;
       updateDots();
     }
@@ -960,38 +1013,18 @@
     let startX = 0;
     let endX = 0;
 
-    container.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-    }, { passive: true });
-
-    container.addEventListener('touched', (e) => {
-      endX = e.changedTouches[0].clientX;
-      handleSwipe();
-    }, { passive: true });
-
-    container.addEventListener('mousedown', (e) => {
-      startX = e.clientX;
-    });
-
-    container.addEventListener('mouseup', (e) => {
-      endX = e.clientX;
-      handleSwipe();
-    });
+    container.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+    container.addEventListener('touchend', (e) => { endX = e.changedTouches[0].clientX; handleSwipe(); }, { passive: true });
+    container.addEventListener('mousedown', (e) => { startX = e.clientX; });
+    container.addEventListener('mouseup', (e) => { endX = e.clientX; handleSwipe(); });
 
     function handleSwipe() {
       const diffX = startX - endX;
-      const threshold = 50;
-
-      if (Math.abs(diffX) > threshold) {
-        if (diffX > 0) {
-          goToSlide(currentIndex + 1);
-        } else {
-          goToSlide(currentIndex - 1);
-        }
+      if (Math.abs(diffX) > 50) {
+        if (diffX > 0) goToSlide(currentIndex + 1);
+        else goToSlide(currentIndex - 1);
         resetAutoSlide();
       }
-      startX = 0;
-      endX = 0;
     }
 
     startAutoSlide();
@@ -999,15 +1032,11 @@
     document.addEventListener("DOMContentLoaded", function () {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
+          if (entry.isIntersecting) entry.target.classList.add("visible");
         });
       }, { threshold: 0.1 });
 
-      document.querySelectorAll(".fade-up").forEach((el) => {
-        observer.observe(el);
-      });
+      document.querySelectorAll(".fade-up").forEach((el) => observer.observe(el));
     });
   </script>
 </body>
