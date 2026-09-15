@@ -6,7 +6,7 @@
   <title>KIWA | Ornamental & Geometric Tattoo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
   
   <!-- EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -63,7 +63,7 @@
       left: 0;
       width: 100%;
       z-index: 100;
-      padding: 1.5rem 1.5rem;
+      padding: 1.2rem 1.2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -83,27 +83,28 @@
 
     .logo-title {
       font-family: 'Cinzel', serif;
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       letter-spacing: 3px;
       color: var(--text-main);
       text-transform: uppercase;
       text-decoration: none;
-      font-weight: 700;
+      font-weight: 600;
     }
 
     .nav-tagline {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: var(--accent-color);
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       text-transform: uppercase;
+      font-weight: 300;
     }
 
     .theme-toggle-btn {
-      background: transparent;
-      border: none;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border-color);
       color: var(--text-main);
-      width: 28px;
-      height: 28px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -112,27 +113,30 @@
       transition: all 0.3s ease;
     }
 
+    [data-theme="light"] .theme-toggle-btn {
+      background: rgba(255, 255, 255, 0.6);
+    }
+
     .theme-toggle-btn svg {
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
-      transition: transform 0.3s ease;
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
-    .theme-toggle-btn:hover {
-      color: var(--accent-color);
-    }
-
-    .theme-toggle-btn:hover svg {
-      transform: rotate(15deg);
-    }
+    .icon-sun { display: none; }
+    .icon-moon { display: block; }
+    [data-theme="light"] .icon-sun { display: block; }
+    [data-theme="light"] .icon-moon { display: none; }
 
     .lang-switch {
       display: flex;
-      align-items: center;
       gap: 4px;
       background: rgba(0, 0, 0, 0.3);
-      padding: 3px 6px;
+      padding: 3px;
       border-radius: 20px;
       border: 1px solid var(--border-color);
     }
@@ -141,21 +145,14 @@
       background: rgba(255, 255, 255, 0.6);
     }
 
-    .lang-divider {
-      width: 1px;
-      height: 14px;
-      background-color: var(--border-color);
-      margin: 0 2px;
-    }
-
     .lang-btn {
       background: transparent;
       border: none;
       color: var(--text-sub);
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 600;
-      padding: 4px 8px;
-      border-radius: 12px;
+      padding: 3px 6px;
+      border-radius: 10px;
       cursor: pointer;
       transition: all 0.3s ease;
     }
@@ -165,138 +162,389 @@
       color: #ffffff;
     }
 
-    .hero-slider-container {
+    /* 첫 화면 비디오 3개 영역 */
+    .hero-videos-wrapper {
       position: relative;
       width: 100%;
-      height: 75vh;
-      min-height: 450px;
+      height: 60vh;
+      min-height: 350px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      background-color: #0d0c0b;
       overflow: hidden;
-      background-color: #141312;
-      touch-action: pan-y;
     }
 
-    .hero-slider-container::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 80px;
-      background: linear-gradient(to top, var(--bg-color), transparent);
-      z-index: 15;
-      pointer-events: none;
-    }
-
-    .hero-track {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-
-    .hero-slide {
-      min-width: 100%;
-      height: 100%;
+    .hero-video-box {
       position: relative;
-      user-select: none;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
     }
 
-    .hero-slide img {
+    .hero-video-box video {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: brightness(0.8);
+      filter: brightness(0.45) contrast(1.15) saturate(0.85);
       pointer-events: none;
+    }
+
+    .hero-videos-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(26,25,24,0.2) 50%, var(--bg-color) 100%);
+      pointer-events: none;
+      z-index: 2;
     }
 
     .hero-content-overlay {
       position: absolute;
-      bottom: 3.5rem;
+      bottom: 2.5rem;
       left: 5%;
       right: 5%;
-      z-index: 20;
-      max-width: 650px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+      z-index: 10;
+      max-width: 750px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.95);
       pointer-events: none;
     }
 
     .hero-content-overlay h2 {
       font-family: 'Cinzel', serif;
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       margin-bottom: 0.4rem;
       letter-spacing: 2px;
+      font-weight: 500;
       color: #ffffff;
+      line-height: 1.3;
     }
 
     .hero-content-overlay p {
-      color: #e6e4dc;
-      font-size: 0.9rem;
+      color: #d1cfc7;
+      font-size: 0.85rem;
       font-weight: 300;
+      letter-spacing: 1px;
     }
 
-    .slider-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.4);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
+    @media (max-width: 768px) {
+      .hero-videos-wrapper {
+        height: 42vh;
+        min-height: 280px;
+      }
+      .hero-content-overlay {
+        bottom: 1.8rem;
+        left: 4%;
+        right: 4%;
+      }
+      .hero-content-overlay h2 {
+        font-size: 1.25rem;
+        letter-spacing: 1.5px;
+      }
+      .hero-content-overlay p {
+        font-size: 0.75rem;
+      }
+    }
+
+    /* 갤러리 섹션 및 아티스트 작업 사진 배너 */
+    .tattoo-gallery-section {
+      margin-bottom: 2.5rem;
+    }
+
+    .reference-gallery-banner {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 1rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
       display: flex;
       align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 25;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      user-select: none;
     }
 
-    .slider-arrow:hover {
+    .ref-bg-artist {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .ref-bg-artist img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      filter: grayscale(100%) brightness(0.65) contrast(1.15);
+    }
+
+    .ref-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.25);
+    }
+
+    .ref-title-text {
+      position: absolute;
+      top: 50%;
+      left: 6%;
+      transform: translateY(-50%);
+      z-index: 2;
+    }
+
+    .ref-title-text h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      color: #ffffff;
+      letter-spacing: 2px;
+      font-weight: 500;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+
+    .ref-floating-card {
+      position: absolute;
+      bottom: 20px;
+      right: 4%;
+      width: 200px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      z-index: 5;
+      padding: 8px;
+    }
+
+    .ref-card-img {
+      width: 100%;
+      height: 200px;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .ref-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .ref-btn {
+      display: block;
+      width: 100%;
+      background-color: #ffffff;
+      color: #1a1918;
+      text-align: center;
+      padding: 8px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .ref-btn:hover {
+      background-color: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .tattoo-photos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 0.8rem;
+    }
+
+    .tattoo-photo-card {
+      position: relative;
+      width: 100%;
+      height: 260px; 
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      background-color: var(--card-bg);
+    }
+
+    .tattoo-photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.95);
+      transition: transform 0.4s ease, filter 0.3s ease;
+    }
+
+    .tattoo-photo-card:hover img {
+      transform: scale(1.03);
+      filter: brightness(1);
+    }
+
+    /* 플래시 디자인 전용 섹션 스타일 */
+    .flash-book-section {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .flash-book-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .flash-filters {
+      display: flex;
+      gap: 6px;
+    }
+
+    .flash-filter-btn {
+      background: var(--input-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-sub);
+      font-size: 0.75rem;
+      padding: 5px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .flash-filter-btn.active, .flash-filter-btn:hover {
       background: var(--accent-color);
+      color: #ffffff;
       border-color: var(--accent-color);
     }
 
-    .arrow-left { left: 1.2rem; }
-    .arrow-right { right: 1.2rem; }
+    .flash-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
 
-    .dots-container {
-      position: absolute;
-      bottom: 1.2rem;
-      left: 50%;
-      transform: translateX(-50%);
+    .flash-item-card {
+      background: var(--input-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .flash-item-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .flash-img-wrap {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+    }
+
+    .flash-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .flash-info {
+      padding: 10px;
       display: flex;
-      gap: 6px;
-      z-index: 25;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.4);
-      cursor: pointer;
-      transition: all 0.3s ease;
+    .flash-name {
+      font-size: 0.8rem;
+      color: var(--text-main);
+      font-weight: 400;
     }
 
-    .dot.active {
-      background: var(--accent-color);
-      width: 18px;
-      border-radius: 3px;
+    .flash-status {
+      font-size: 0.65rem;
+      color: var(--accent-color);
+      font-weight: 500;
+      background: rgba(255, 109, 0, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 768px) {
+      .reference-gallery-banner {
+        height: auto;
+        min-height: 260px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.5rem 1rem;
+      }
+      .ref-bg-artist {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .ref-title-text {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        margin-bottom: 1rem;
+        z-index: 2;
+      }
+      .ref-title-text h3 {
+        font-size: 1.1rem;
+        text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+      }
+      .ref-floating-card {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        width: 130px;
+        margin-top: auto;
+        padding: 6px;
+        z-index: 5;
+        background: rgba(36, 34, 32, 0.9);
+      }
+      .ref-card-img {
+        height: 120px;
+      }
+      .tattoo-photos-grid, .flash-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+      }
+      .tattoo-photo-card {
+        height: 140px;
+      }
+      .flash-img-wrap {
+        height: 130px;
+      }
     }
 
     .container {
       max-width: 900px;
       width: 100%;
       margin: 0 auto;
-      padding: 3.5rem 1.2rem;
+      padding: 2.5rem 1rem;
     }
 
     .fade-up {
       opacity: 0;
-      transform: translateY(35px);
+      transform: translateY(25px);
       transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -307,53 +555,46 @@
 
     .section-title {
       font-family: 'Cinzel', serif;
-      font-size: 1.4rem;
+      font-size: 1.25rem;
+      font-weight: 400;
       letter-spacing: 2px;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
       color: var(--text-main);
       position: relative;
       display: inline-block;
+      text-transform: uppercase;
+    }
+
+    @media (min-width: 769px) {
+      .section-title {
+        font-size: 1.4rem;
+      }
     }
 
     .section-title::after {
       content: '';
       position: absolute;
-      bottom: -6px;
+      bottom: -4px;
       left: 0;
-      width: 45%;
-      height: 2px;
+      width: 30%;
+      height: 1px;
       background-color: var(--accent-color);
     }
 
     .intro-text {
-      color: var(--text-sub);
+      color: #e6e4df;
       font-size: 0.95rem;
-      line-height: 1.75;
-      margin-bottom: 1.4rem;
-    }
-
-    .style-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 3rem;
-    }
-
-    .tag {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
-      font-size: 0.8rem;
-      padding: 6px 12px;
-      border-radius: 20px;
-      letter-spacing: 0.5px;
+      font-weight: 300;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      letter-spacing: 0.3px;
     }
 
     .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 3rem;
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
     }
 
     @media (max-width: 768px) {
@@ -366,21 +607,23 @@
       background-color: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 12px;
-      padding: 1.8rem;
+      padding: 1.4rem;
     }
 
     .info-card h3 {
       font-family: 'Cinzel', serif;
-      font-size: 1.05rem;
+      font-size: 0.95rem;
+      font-weight: 400;
       color: var(--accent-color);
       margin-bottom: 0.8rem;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
     }
 
     .info-card p, .info-card li {
       color: var(--text-sub);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       line-height: 1.6;
+      font-weight: 300;
     }
 
     .info-card ul {
@@ -396,76 +639,109 @@
       background-color: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 12px;
-      padding: 2rem 1.8rem;
-      margin-bottom: 3rem;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
     }
 
-    .accordion-item {
-      border-bottom: 1px solid var(--border-color);
-      padding: 1.1rem 0;
-    }
-
-    .accordion-item:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .accordion-item:first-of-type {
-      padding-top: 0;
-    }
-
-    .accordion-question {
-      font-weight: 500;
-      color: var(--text-main);
-      font-size: 0.95rem;
+    .accordion-header {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 1.2rem 1.4rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
-      user-select: none;
+      text-align: left;
     }
 
-    .accordion-question span.toggle-icon {
-      font-size: 1.2rem;
-      color: var(--accent-color);
-      font-weight: bold;
+    .accordion-header .section-title {
+      margin-bottom: 0;
+      font-size: 1.1rem;
     }
 
-    .accordion-answer {
-      color: var(--text-main);
-      font-size: 0.9rem;
-      line-height: 1.7;
-      margin-top: 0.8rem;
-      padding-left: 0.2rem;
-      opacity: 0.9;
+    @media (min-width: 769px) {
+      .accordion-header .section-title {
+        font-size: 1.25rem;
+      }
+    }
+
+    .accordion-header .section-title::after {
       display: none;
     }
 
-    .accordion-item.active .accordion-answer {
-      display: block;
+    .accordion-icon {
+      font-size: 0.85rem;
+      color: var(--accent-color);
+      transition: transform 0.3s ease;
+    }
+
+    .content-section-box.active .accordion-icon {
+      transform: rotate(180deg);
+    }
+
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+      padding: 0 1.4rem;
+    }
+
+    .content-section-box.active .accordion-body {
+      max-height: 1500px;
+      transition: max-height 0.5s ease-in-out;
+      padding-bottom: 1.4rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 0;
+    }
+
+    .faq-item:first-child {
+      padding-top: 0.2rem;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      font-weight: 400;
+      color: var(--text-main);
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.3px;
+    }
+
+    .faq-answer {
+      color: var(--text-sub);
+      font-size: 0.85rem;
+      font-weight: 300;
+      line-height: 1.6;
     }
 
     .booking-section {
       background-color: var(--card-bg);
       border-radius: 12px;
       border: 1px solid var(--border-color);
-      padding: 2.2rem 1.8rem;
+      padding: 1.8rem 1.4rem;
       width: 100%;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
 
     .booking-form {
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
-      margin-top: 1.4rem;
+      gap: 1.1rem;
+      margin-top: 1.2rem;
       width: 100%;
     }
 
     .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.1rem;
+      gap: 1rem;
       width: 100%;
     }
 
@@ -483,28 +759,28 @@
     }
 
     .form-group label {
-      font-size: 0.78rem;
-      color: var(--text-sub);
-      letter-spacing: 1px;
+      font-size: 0.7rem;
       font-weight: 500;
+      color: var(--text-sub);
+      letter-spacing: 1.5px;
     }
 
     .form-control {
       background-color: var(--input-bg);
       border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 0.8rem 1rem;
+      border-radius: 6px;
+      padding: 0.75rem 0.9rem;
       color: var(--text-main);
       font-family: 'Noto Sans KR', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       width: 100%;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      transition: border-color 0.3s ease;
+      font-weight: 300;
     }
 
     .form-control:focus {
       outline: none;
       border-color: var(--accent-color);
-      box-shadow: 0 0 0 2px rgba(255, 109, 0, 0.15);
     }
 
     textarea.form-control {
@@ -512,34 +788,37 @@
       min-height: 110px;
     }
 
-    .photo-notice-box {
-      background-color: rgba(184, 134, 11, 0.08);
+    .notice-box {
+      background-color: var(--input-bg);
       border: 1px dashed var(--accent-color);
-      border-radius: 8px;
-      padding: 1rem;
-      text-align: center;
+      border-radius: 6px;
+      padding: 0.9rem;
       color: var(--text-sub);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 300;
+      text-align: center;
       line-height: 1.5;
     }
 
-    .photo-notice-box strong {
+    .notice-box span {
       color: var(--accent-color);
+      font-weight: 400;
     }
 
     .btn-submit {
       background-color: var(--accent-color);
       color: #ffffff;
       border: none;
-      padding: 0.9rem 1.5rem;
-      font-size: 0.95rem;
+      padding: 0.9rem 1.2rem;
+      font-size: 0.85rem;
       font-weight: 500;
-      letter-spacing: 1px;
-      border-radius: 8px;
+      letter-spacing: 1.5px;
+      border-radius: 6px;
       cursor: pointer;
       transition: opacity 0.3s ease, box-shadow 0.3s ease;
       width: 100%;
-      margin-top: 0.4rem;
+      margin-top: 0.5rem;
+      text-transform: uppercase;
     }
 
     .btn-submit:hover {
@@ -553,30 +832,33 @@
       background-color: transparent;
       color: var(--text-main);
       border: 1px solid var(--border-color);
-      padding: 0.85rem 1.5rem;
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 1px;
-      border-radius: 8px;
+      padding: 0.8rem 1.2rem;
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      border-radius: 6px;
       text-decoration: none;
       transition: all 0.3s ease;
       width: 100%;
       margin-top: 0.8rem;
+      text-transform: uppercase;
     }
 
     .btn-instagram:hover {
       border-color: var(--accent-color);
       color: var(--accent-color);
-      background-color: rgba(255, 109, 0, 0.05);
+      background-color: rgba(255, 109, 0, 0.04);
     }
 
     footer {
       text-align: center;
-      padding: 2.5rem 1rem;
+      padding: 2rem 1rem;
       color: var(--text-sub);
-      font-size: 0.8rem;
+      font-size: 0.75rem;
+      font-weight: 300;
+      letter-spacing: 1px;
       border-top: 1px solid var(--border-color);
-      margin-top: 3rem;
+      margin-top: 2rem;
     }
   </style>
 </head>
@@ -588,13 +870,11 @@
       <span class="nav-tagline">Ornamental & Geometric</span>
     </div>
     <div class="header-right">
+      <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Theme">
+        <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      </button>
       <div class="lang-switch">
-        <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Theme">
-          <svg id="themeIcon" viewBox="0 0 24 24">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-        </button>
-        <div class="lang-divider"></div>
         <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
         <button class="lang-btn" onclick="setLanguage('kr')">KR</button>
         <button class="lang-btn" onclick="setLanguage('de')">DE</button>
@@ -602,94 +882,52 @@
     </div>
   </header>
 
-  <div class="hero-slider-container" id="sliderContainer">
-    <div class="hero-track" id="heroTrack">
-      <!-- 첫 번째 슬라이드 (안전하게 이미지를 첫 슬라이드로 구성) -->
-      <div class="hero-slide">
-        <img src="artwork3.jpg" alt="KIWA Tattoo Artwork 3">
-        <div class="hero-content-overlay">
-          <h2 data-en="Core Geometry" data-kr="코어 지오메트리" data-de="Kerngeometrie">Core Geometry</h2>
-          <p data-en="Symmetrical core geometry capturing mesmerizing rhythm and body flow." data-kr="매혹적인 리듬과 신체 흐름을 포착한 대칭적 코어 지오메트리." data-de="Symmetrische Kerngeometrie mit faszinierendem Rhythmus und Körperfluss.">Symmetrical core geometry capturing mesmerizing rhythm and body flow.</p>
-        </div>
-      </div>
-      <div class="hero-slide">
-        <img src="artwork8.jpg" alt="KIWA Tattoo Artwork 8">
-        <div class="hero-content-overlay">
-          <h2 data-en="Linear Flow" data-kr="리니어 플로우" data-de="Linearem Fluss">Linear Flow</h2>
-          <p data-en="Hypnotic linear patterns flowing seamlessly down the legs." data-kr="다리를 따라 부드럽게 이어지는 최면적인 라인 패턴." data-de="Hypnotische Linearmuster, die nahtlos die Beine hinunterfließen.">Hypnotic linear patterns flowing seamlessly down the legs.</p>
-        </div>
-      </div>
-      <div class="hero-slide">
-        <img src="artwork1.jpg" alt="KIWA Tattoo Artwork 1">
-        <div class="hero-content-overlay">
-          <h2 data-en="Organic Stippling" data-kr="오가닉 스티플링" data-de="Organisches Stippling">Organic Stippling</h2>
-          <p data-en="Soft dotwork gradients harmonizing with natural muscle contours." data-kr="자연스러운 근육 곡선과 조화를 이루는 부드러운 닷워크 그라데이션." data-de="Weiche Dotwork-Gradienten, die mit natürlichen Muskelkonturen harmonieren.">Soft dotwork gradients harmonizing with natural muscle contours.</p>
-        </div>
-      </div>
-      <div class="hero-slide">
-        <img src="artwork2.jpg" alt="KIWA Tattoo Artwork 2">
-        <div class="hero-content-overlay">
-          <h2 data-en="Full Bodysuit Flow" data-kr="풀 바디슈트 플로우" data-de="Ganzkörperfluss">Full Bodysuit Flow</h2>
-          <p data-en="Bold blackwork and striking red contrasts sculpting the upper body." data-kr="상체를 조각하는 대담한 블랙워크와 강렬한 레드 포인트." data-de="Kühne Blackworks und markante rote Kontraste, die den Oberkörper formen.">Bold blackwork and striking red contrasts sculpting the upper body.</p>
-        </div>
-      </div>
-      <div class="hero-slide">
-        <img src="artwork4.jpg" alt="KIWA Tattoo Artwork 4">
-        <div class="hero-content-overlay">
-          <h2 data-en="Radiant Motif" data-kr="래디언트 모티브" data-de="Strahlendes Motiv">Radiant Motif</h2>
-          <p data-en="A striking sunburst pattern radiating outward from the neck and chest." data-kr="목과 가슴에서 바깥쪽으로 뻗어나가는 인상적인 선버스트 패턴." data-de="Ein auffälliges Sonnenstrahlenmuster, das von Hals und Brust ausstrahlt.">A striking sunburst pattern radiating outward from the neck and chest.</p>
-        </div>
-      </div>
-      <div class="hero-slide">
-        <img src="artwork5.jpg" alt="KIWA Tattoo Artwork 5">
-        <div class="hero-content-overlay">
-          <h2 data-en="Heritage Floral" data-kr="헤리티지 플로럴" data-de="Traditionelles Floral">Heritage Floral</h2>
-          <p data-en="Traditional Dancheong motifs elevated by delicate shading and linework." data-kr="섬세한 섀딩과 라인워크로 재해석한 전통 단청 모티브." data-de="Traditionelle Dancheong-Motive, veredelt durch feine Schattierungen und Linien.">Traditional Dancheong motifs elevated by delicate shading and linework.</p>
-        </div>
-      </div>
-      <div class="hero-slide">
-        <img src="artwork6.jpg" alt="KIWA Tattoo Artwork 6">
-        <div class="hero-content-overlay">
-          <h2 data-en="Oriental Clouds" data-kr="오리엔탈 클라우드" data-de="Orientalische Wolken">Oriental Clouds</h2>
-          <p data-en="Dynamic cloud patterns wrapping fluidly around the temple and head." data-kr="관자놀이와 머리 주변을 유연하게 감싸는 역동적인 구름 패턴." data-de="Dynamische Wolkenmuster, die sich fließend um Schläfe und Kopf legen.">Dynamic cloud patterns wrapping fluidly around the temple and head.</p>
-        </div>
-      </div>
-      <div class="hero-slide">
-        <img src="artwork7.jpg" alt="KIWA Tattoo Artwork 7">
-        <div class="hero-content-overlay">
-          <h2 data-en="Color Dynamics" data-kr="컬러 다이나믹스" data-de="Farb-Dynamik">Color Dynamics</h2>
-          <p data-en="Vibrant blue gradients and intricate structural details accentuating joint lines." data-kr="관절 라인을 강조하는 생동감 넘치는 블루 그라데이션과 정교한 구조적 디테일." data-de="Lebendige blaue Farbverläufe und filigrane Strukturdetails, die Gelenklinie betonen.">Vibrant blue gradients and intricate structural details accentuating joint lines.</p>
-        </div>
-      </div>
+  <!-- 첫 화면 비디오 3개 영역 -->
+  <div class="hero-videos-wrapper">
+    <div class="hero-video-box">
+      <video autoplay muted loop playsinline>
+        <source src="hero-video1.mp4" type="video/mp4">
+      </video>
     </div>
-
-    <div class="slider-arrow arrow-left" id="prevBtn">&#10094;</div>
-    <div class="slider-arrow arrow-right" id="nextBtn">&#10095;</div>
-    <div class="dots-container" id="dotsContainer"></div>
+    <div class="hero-video-box">
+      <video autoplay muted loop playsinline>
+        <source src="hero-video2.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-video-box">
+      <video autoplay muted loop playsinline>
+        <source src="hero-video3.mp4" type="video/mp4">
+      </video>
+    </div>
+    
+    <div class="hero-content-overlay">
+      <h2 data-en="Oriental Motifs & Sacred Geometry" 
+          data-kr="오리엔탈 모티브 & 세이크리드 지오메트리" 
+          data-de="Orientalische Motive & Heilige Geometrie">
+        Oriental Motifs & Sacred Geometry
+      </h2>
+      <p data-en="Harmonizing profound tradition with precise geometric lines." 
+         data-kr="깊이 있는 전통적 결합과 정교한 기하학적 선의 조화." 
+         data-de="Harmonisierung tiefer Tradition mit präzisen geometrischen Linien.">
+        Harmonizing profound tradition with precise geometric lines.
+      </p>
+    </div>
   </div>
 
   <main class="container">
     
+    <!-- 아티스트 소개 -->
     <section class="fade-up">
       <h2 class="section-title" data-en="About the Craft" data-kr="아티스트 소개" data-de="Über die Kunst">About the Craft</h2>
       <p class="intro-text" 
-         data-en="Based in Frankfurt am Main, KIWA specializes in custom ornamental and geometric tattoos.<br>Bridging traditional Korean motifs—such as Dancheong, clouds, and snow—with contemporary linework and organic body flow to create timeless wearable art."
-         data-kr="프랑크푸르트 암 마인을 기반으로 활동하는 KIWA는 커스텀 오나멘탈 및 지오메트리 타투를 전문으로 합니다.<br>단청, 구름, 눈 등의 전통 한국적 모티브와 현대적인 라인워크, 유기적인 바디 플로우를 결합하여 시대를 초월한 웨어러블 아트를 창조합니다."
-         data-de="Mit Sitz in Frankfurt am Main spezialisiert sich KIWA auf individuelle Ornamental- und Geometrietattoos.<br>Traditionelle koreanische Motive – wie Dancheong, Wolken und Schnee – werden mit modernen Linien und organischem Körperfluss zu zeitloser Kunst verbunden.">
-        Based in Frankfurt am Main, KIWA specializes in custom ornamental and geometric tattoos.<br>
-        Bridging traditional Korean motifs—such as Dancheong, clouds, and snow—with contemporary linework and organic body flow to create timeless wearable art.
+         data-en="Custom oriental and geometric tattoos based in Frankfurt. Merging traditional motifs like Dancheong with intricate dotwork and sacred geometry."
+         data-kr="프랑크푸르트를 기반으로 활동하는 커스텀 오리엔탈 및 지오메트리 타투. 단청 등의 전통 모티브와 섬세한 닷워크, 신성 기하학을 결합합니다."
+         data-de="Individuelle orientalische & geometrische Tattoos in Frankfurt. Verschmelzung traditioneller Motive wie Dancheong mit filigraner Dotwork und heiliger Geometrie.">
+        Custom oriental and geometric tattoos based in Frankfurt. Merging traditional motifs like Dancheong with intricate dotwork and sacred geometry.
       </p>
-
-      <div class="style-tags">
-        <span class="tag">Geometric</span>
-        <span class="tag">Ornamental</span>
-        <span class="tag">Dancheong (단청)</span>
-        <span class="tag">Dotwork & Stippling</span>
-        <span class="tag">Blackwork</span>
-        <span class="tag">Organic Body Flow</span>
-      </div>
     </section>
 
+    <!-- 위치 및 게스트 스팟 정보 -->
     <section class="info-grid fade-up">
       <div class="info-card">
         <h3 data-en="Base & Location" data-kr="작업실 위치" data-de="Standort">Base & Location</h3>
@@ -703,168 +941,246 @@
         <h3 data-en="Guest Spot Schedule" data-kr="게스트 스팟 일정" data-de="Gastspot-Zeitplan">Guest Spot Schedule</h3>
         <ul>
           <li><strong>Amsterdam:</strong> Sep 24 – Sep 27, 2026</li>
-          <li style="color: var(--text-main); margin-top: 0.4rem; font-size: 0.85rem;" data-en="* More guest spots via Instagram." data-kr="* 추가 일정은 인스타그램을 통해 공지됩니다." data-de="* Weitere Gastspots über Instagram.">* More guest spots via Instagram.</li>
+          <li style="color: var(--text-main); margin-top: 0.4rem;" data-en="* More guest spots will be announced via Instagram." data-kr="* 추가 게스트 스팟 일정은 인스타그램을 통해 공지됩니다." data-de="* Weitere Gastspots werden über Instagram bekannt gegeben.">* More guest spots will be announced via Instagram.</li>
         </ul>
       </div>
     </section>
 
-    <section class="content-section-box fade-up">
-      <h2 class="section-title" style="margin-bottom: 1.2rem;" data-en="Booking Guide & FAQ" data-kr="예약 안내 및 자주 묻는 질문" data-de="Buchungsanleitung & FAQ">Booking Guide & FAQ</h2>
-      
-      <div class="accordion-item">
-        <div class="accordion-question" onclick="toggleAccordion(this)">
-          <span data-en="Q. How does custom design work and what about the deposit?" 
-                data-kr="Q. 도안 커스텀과 예약금은 어떻게 진행되나요?" 
-                data-de="Q. Wie funktioniert das individuelle Design und die Anzahlung?">
-            Q. How does custom design work and what about the deposit?
-          </span>
-          <span class="toggle-icon">+</span>
+    <!-- 갤러리 섹션 -->
+    <section class="tattoo-gallery-section fade-up">
+      <h2 class="section-title" 
+          data-en="Gallery" 
+          data-kr="갤러리" 
+          data-de="Galerie">
+        Gallery
+      </h2>
+
+      <div class="reference-gallery-banner">
+        <div class="ref-bg-artist">
+          <img src="5E309FE2-C3FB-4163-8A68-5ED0A10A93CD_3.jpg" alt="Kiwan Kim Working">
         </div>
-        <div class="accordion-answer" 
-             data-en="Custom designs include a deposit requirement of €100 to secure your date. This deposit is fully included in the total tattoo price." 
-             data-kr="도안 커스텀은 예약 확정을 위해 100유로의 보증금을 받고 진행하며, 전체 금액에 포함되어 추가로 내실 필요가 없습니다."
-             data-de="Individuelle Designs erfordern eine Anzahlung von 100 €, um Ihren Termin zu sichern. Diese ist im Gesamtpreis enthalten.">
-          Custom designs include a deposit requirement of €100 to secure your date. This deposit is fully included in the total tattoo price.
+        <div class="ref-overlay"></div>
+        <div class="ref-title-text">
+          <h3 data-en="CUSTOM WORK & FLASH" data-kr="커스텀 & 플래시 작업" data-de="CUSTOM WORK & FLASH">CUSTOM WORK & FLASH</h3>
+        </div>
+
+        <div class="ref-floating-card">
+          <div class="ref-card-img">
+            <img src="tattoo3_3.jpg" alt="Flash Book">
+          </div>
+          <a href="#flash-section" class="ref-btn" data-en="View Flash Book" data-kr="플래시 북 보기" data-de="View Flash Book">View Flash Book</a>
         </div>
       </div>
 
-      <div class="accordion-item">
-        <div class="accordion-question" onclick="toggleAccordion(this)">
-          <span data-en="Q. How should I prepare for my session?" 
-                data-kr="Q. 작업 전 준비 사항이 있나요?" 
-                data-de="Q. Wie sollte ich mich vorbereiten?">
-            Q. How should I prepare for my session?
-          </span>
-          <span class="toggle-icon">+</span>
+      <!-- 기존 3개 사진 그리드 -->
+      <div class="tattoo-photos-grid">
+        <div class="tattoo-photo-card">
+          <img src="tattoo1.jpg" alt="">
         </div>
-        <div class="accordion-answer" 
-             data-en="Get a good night's sleep, eat a solid meal, and stay well hydrated. Avoid alcohol and blood thinners 24 hours prior." 
-             data-kr="전날 충분한 수면, 당일 든든한 식사와 수분 섭취를 해주시고, 24시간 전부터 음주 및 혈액순환제를 피해주시기 바랍니다."
-             data-de="Schlafen Sie gut, essen Sie vorab eine Mahlzeit und trinken Sie Wasser. Vermeiden Sie 24 Stunden zuvor Alkohol.">
-          Get a good night's sleep, eat a solid meal, and stay well hydrated. Avoid alcohol and blood thinners 24 hours prior.
+        <div class="tattoo-photo-card">
+          <img src="tattoo2.jpg" alt="">
         </div>
-      </div>
-    </section>
-
-    <section class="content-section-box fade-up">
-      <h2 class="section-title" style="margin-bottom: 1.2rem;" data-en="Tattoo Aftercare Guide" data-kr="타투 관리 방법" data-de="Tattoo-Pflegeanleitung">Tattoo Aftercare Guide</h2>
-      
-      <div class="accordion-item">
-        <div class="accordion-question" onclick="toggleAccordion(this)">
-          <span data-en="1. Film / Bandage Removal" 
-                data-kr="1. 보호필름 제거" 
-                data-de="1. Entfernung der Folie">
-            1. Film / Bandage Removal
-          </span>
-          <span class="toggle-icon">+</span>
-        </div>
-        <div class="accordion-answer" 
-             data-en="Leave protective film on for 3 to 4 days. Gently wash the area with lukewarm water and mild soap after removal." 
-             data-kr="보호필름은 3~4일 동안 유지한 뒤 제거하고, 미지근한 물과 저자극 비누로 부드럽게 씻어내세요."
-             data-de="Lassen Sie die Schutzfolie 3 bis 4 Tage auf der Haut. Waschen Sie den Bereich danach mit lauwarmem Wasser und milder Seife.">
-          Leave protective film on for 3 to 4 days. Gently wash the area with lukewarm water and mild soap after removal.
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <div class="accordion-question" onclick="toggleAccordion(this)">
-          <span data-en="2. Moisturizing" 
-                data-kr="2. 보습 관리" 
-                data-de="2. Feuchtigkeitsversorgung">
-            2. Moisturizing
-          </span>
-          <span class="toggle-icon">+</span>
-        </div>
-        <div class="accordion-answer" 
-             data-en="Apply a thin layer of specialized tattoo ointment or fragrance-free lotion 2 to 3 times a day." 
-             data-kr="전용 연고나 무향 로션을 하루 2~3회 아주 얇게 펴 발라 피부가 숨을 쉴 수 있도록 해주세요."
-             data-de="Tragen Sie 2-3 Mal täglich eine dünne Schicht Tattoo-Pflegecreme oder parfümfreie Lotion auf.">
-          Apply a thin layer of specialized tattoo ointment or fragrance-free lotion 2 to 3 times a day.
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <div class="accordion-question" onclick="toggleAccordion(this)">
-          <span data-en="3. Important Rules (Don'ts)" 
-                data-kr="3. 주의사항 (절대 금지)" 
-                data-de="3. Wichtige Regeln">
-            3. Important Rules (Don'ts)
-          </span>
-          <span class="toggle-icon">+</span>
-        </div>
-        <div class="accordion-answer" 
-             data-en="Do not pick scabs. Avoid pools, saunas, direct sun, and intense workouts for at least 2 weeks." 
-             data-kr="딱지를 억지로 뜯지 마시고, 최소 2주 동안은 수영장, 사우나, 직사광선, 격렬한 운동을 금지합니다."
-             data-de="Kratzen Sie nicht an Krusten. Vermeiden Sie 2 Wochen lang Schwimmbäder, Saunen, Sonne und intensives Training.">
-          Do not pick scabs. Avoid pools, saunas, direct sun, and intense workouts for at least 2 weeks.
+        <div class="tattoo-photo-card">
+          <img src="tattoo3.jpg" alt="">
         </div>
       </div>
     </section>
 
-    <section class="booking-section fade-up">
-      <h2 class="section-title" style="margin-bottom: 0.4rem;" data-en="Booking Inquiry" data-kr="예약 문의" data-de="Buchungsanfrage">Booking Inquiry</h2>
-      <p style="color: var(--text-sub); font-size: 0.88rem; line-height: 1.5;"
-         data-en="Fill out the form below or contact via Instagram DM."
-         data-kr="아래 양식을 채워 문의를 남겨주시거나 인스타그램 DM으로 연락주세요."
-         data-de="Füllen Sie das Formular aus oder kontaktieren Sie uns per Instagram DM.">
-        Fill out the form below or contact via Instagram DM.
+    <!-- Available Flash & Design Book 전용 섹션 -->
+    <section class="flash-book-section fade-up" id="flash-section">
+      <div class="flash-book-header">
+        <h2 class="section-title" style="margin-bottom:0;" data-en="Available Flash Book" data-kr="예약 가능 플래시 북" data-de="Verfügbares Flash-Buch">Available Flash Book</h2>
+        <div class="flash-filters">
+          <button class="flash-filter-btn active" data-en="All" data-kr="전체" data-de="Alle">All</button>
+          <button class="flash-filter-btn" data-en="Geometric" data-kr="지오메트리" data-de="Geometrisch">Geometric</button>
+          <button class="flash-filter-btn" data-en="Oriental" data-kr="오리엔탈" data-de="Orientalisch">Oriental</button>
+        </div>
+      </div>
+      <p style="color: var(--text-sub); font-size: 0.85rem; font-weight: 300; margin-bottom: 1.2rem;"
+         data-en="Selectable flash designs for upcoming tattoo sessions. Each piece can be adjusted for your placement."
+         data-kr="타투 작업으로 바로 예약 가능한 플래시 디자인들입니다. 시술 부위에 맞춰 크기와 구성을 조절할 수 있습니다."
+         data-de="Auswählbare Flash-Designs für kommende Sitzungen. Jedes Motiv kann an Ihre Platzierung angepasst werden.">
+        Selectable flash designs for upcoming tattoo sessions. Each piece can be adjusted for your placement.
+      </p>
+
+      <div class="flash-grid">
+        <!-- 첫 번째 도안 -->
+        <div class="flash-item-card">
+          <div class="flash-img-wrap">
+            <img src="artwork6.jpg" alt="Flash 1">
+          </div>
+          <div class="flash-info">
+            <span class="flash-name" data-en="Geometric Fan Mandala" data-kr="기하학 부채 만다라" data-de="Geometrisches Fächer-Mandala">Geometric Fan Mandala</span>
+            <span class="flash-status" data-en="Available" data-kr="예약가능" data-de="Verfügbar">Available</span>
+          </div>
+        </div>
+
+        <!-- 두 번째 도안 -->
+        <div class="flash-item-card">
+          <div class="flash-img-wrap">
+            <img src="artwork11.jpg" alt="Flash 2">
+          </div>
+          <div class="flash-info">
+            <span class="flash-name" data-en="Oriental Cloud Flow" data-kr="오리엔탈 구름 결" data-de="Orientalischer Wolkenfluss">Oriental Cloud Flow</span>
+            <span class="flash-status" data-en="Available" data-kr="예약가능" data-de="Verfügbar">Available</span>
+          </div>
+        </div>
+
+        <!-- 세 번째 도안 -->
+        <div class="flash-item-card">
+          <div class="flash-img-wrap">
+            <img src="IMG_0438.jpg" alt="Flash 3">
+          </div>
+          <div class="flash-info">
+            <span class="flash-name" data-en="Mystic Eye & Hand Floral" data-kr="미스틱 아이 & 핸드 플로럴" data-de="Mystisches Auge & Hand Floral">Mystic Eye & Hand Floral</span>
+            <span class="flash-status" data-en="Available" data-kr="예약가능" data-de="Verfügbar">Available</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- [접이식 아코디언 1] FAQ 및 예약 안내 -->
+    <section class="content-section-box fade-up">
+      <button class="accordion-header" onclick="toggleAccordion(this)">
+        <h2 class="section-title" data-en="Booking Guide & FAQ" data-kr="예약 안내 및 자주 묻는 질문" data-de="Buchungsanleitung & FAQ">Booking Guide & FAQ</h2>
+        <span class="accordion-icon">▼</span>
+      </button>
+      <div class="accordion-body">
+        <div class="faq-item">
+          <div class="faq-question" data-en="Q. How does custom design work and what about the deposit?" data-kr="Q. 도안 커스텀과 예약금은 어떻게 진행되나요?" data-de="Q. Wie funktioniert das individuelle Design und die Anzahlung?">Q. How does custom design work and what about the deposit?</div>
+          <div class="faq-answer" data-en="Custom designs include a deposit requirement of €100 to secure your date. This deposit is fully included in the total tattoo price, so you do not need to pay it twice." 
+               data-kr="도안 커스텀은 예약 확정을 위해 100유로의 보증금을 받고 진행하고 있습니다. 이 보증금은 전체 금액에 포함된 금액이므로 현장에서 추가로 내실 필요가 없습니다."
+               data-de="Individuelle Designs erfordern eine Anzahlung von 100 €, um Ihren Termin zu sichern. Diese Anzahlung ist vollständig im Gesamtpreis enthalten, sodass Sie sie nicht doppelt bezahlen müssen.">
+            Custom designs include a deposit requirement of €100 to secure your date. This deposit is fully included in the total tattoo price, so you do not need to pay it twice.
+          </div>
+        </div>
+
+        <div class="faq-item" style="margin-top: 0.4rem;">
+          <div class="faq-question" data-en="Q. How should I prepare for my session?" data-kr="Q. 작업 전 준비 사항이 있나요?" data-de="Q. Wie sollte ich mich auf die Sitzung vorbereiten?">Q. How should I prepare for my session?</div>
+          <div class="faq-answer" data-en="Get a good night's sleep, eat a solid meal before coming, and stay well hydrated. Avoid alcohol and blood thinners 24 hours prior to your appointment." 
+               data-kr="작업 전날 충분히 수면을 취하시고, 예약 당일 식사를 든든하게 하고 오세요. 수분 섭취를 충분히 해주시고, 방문 전 24시간 동안은 음주나 혈액순환을 방해하는 약물 복용을 피해주시기 바랍니다."
+               data-de="Schlafen Sie gut, essen Sie vor der Sitzung eine Mahlzeit und trinken Sie ausreichend Wasser. Vermeiden Sie 24 Stunden vor dem Termin Alkohol und Blutverdünner.">
+            Get a good night's sleep, eat a solid meal before coming, and stay well hydrated. Avoid alcohol and blood thinners 24 hours prior to your appointment.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- [접이식 아코디언 2] 타투 관리 방법 (Aftercare) -->
+    <section class="content-section-box fade-up">
+      <button class="accordion-header" onclick="toggleAccordion(this)">
+        <h2 class="section-title" data-en="Tattoo Aftercare Guide" data-kr="타투 관리 방법 (Best Aftercare)" data-de="Tattoo-Pflegeanleitung">Tattoo Aftercare Guide</h2>
+        <span class="accordion-icon">▼</span>
+      </button>
+      <div class="accordion-body">
+        <div class="faq-item">
+          <div class="faq-question" data-en="1. Film / Bandage Removal" data-kr="1. 보호필름 제거" data-de="1. Entfernung der Folie">1. Film / Bandage Removal</div>
+          <div class="faq-answer" data-en="If using protective film, leave it on for 3 to 4 days. If fluid pools excessively, you can remove it earlier. Gently wash the area with lukewarm water and mild soap." 
+               data-kr="보호필름(더마르 등)을 부착한 경우 3~4일 동안 유지한 뒤 제거하세요. 내부에 진물이 너무 많이 고이면 일찍 제거해도 좋습니다. 미지근한 물과 저자극 비누로 부드럽게 씻어내세요."
+               data-de="Wenn Sie Schutzfolie verwenden, lassen Sie diese 3 bis 4 Tage auf der Haut. Waschen Sie den Bereich anschließend vorsichtig mit lauwarmem Wasser und milder Seife.">
+            If using protective film, leave it on for 3 to 4 days. If fluid pools excessively, you can remove it earlier. Gently wash the area with lukewarm water and mild soap.
+          </div>
+        </div>
+
+        <div class="faq-item" style="margin-top: 0.4rem;">
+          <div class="faq-question" data-en="2. Moisturizing" data-kr="2. 보습 관리" data-de="2. Feuchtigkeitsversorgung">2. Moisturizing</div>
+          <div class="faq-answer" data-en="Apply a thin layer of specialized tattoo aftercare ointment or fragrance-free lotion 2 to 3 times a day. Do not over-apply; the skin needs to breathe." 
+               data-kr="타투 전용 연고나 향이 없는 로션을 하루에 2~3회 아주 얇게 펴 발라주세요. 너무 두껍게 바르면 피부 숨구멍을 막아 회복을 더디게 하므로 얇게 자주 발라주는 것이 좋습니다."
+               data-de="Tragen Sie 2-3 Mal täglich eine dünne Schicht Tattoo-Pflegecreme oder parfümfreie Lotion auf. Tragen Sie nicht zu viel auf, damit die Haut atmen kann.">
+            Apply a thin layer of specialized tattoo aftercare ointment or fragrance-free lotion 2 to 3 times a day. Do not over-apply; the skin needs to breathe.
+          </div>
+        </div>
+
+        <div class="faq-item" style="margin-top: 0.4rem;">
+          <div class="faq-question" data-en="3. Important Rules" data-kr="3. 주의사항 (절대 금지)" data-de="3. Wichtige Regeln">3. Important Rules</div>
+          <div class="faq-answer" data-en="Do not pick, scratch, or peel the scabs/skin as it heals. Avoid swimming pools, saunas, direct sunlight, and intense workouts for at least 2 weeks." 
+               data-kr="회복 과정에서 각질이나 딱지가 생겨도 절대 억지로 뜯거나 긁지 마세요. 최소 2주 동안은 수영장, 사우나, 직사광선 노출, 격렬한 운동을 피해주시기 바랍니다."
+               data-de="Kratzen oder ziehen Sie nicht an sich bildenden Schuppen oder Krusten. Vermeiden Sie mindestens 2 Wochen lang Schwimmbäder, Saunen, direkte Sonneneinstrahlung und intensives Training.">
+            Do not pick, scratch, or peel the scabs/skin as it heals. Avoid swimming pools, saunas, direct sunlight, and intense workouts for at least 2 weeks.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EmailJS 연동 예약 폼 -->
+    <section class="booking-section fade-up" id="booking">
+      <h2 class="section-title" style="margin-bottom: 0.5rem;" data-en="Booking Inquiry" data-kr="예약 문의" data-de="Buchungsanfrage">Booking Inquiry</h2>
+      <p style="color: var(--text-sub); font-size: 0.85rem; font-weight: 300; line-height: 1.6;"
+         data-en="Fill out the form below to submit your inquiry, or contact via Instagram DM."
+         data-kr="아래 양식을 채워 문의를 제출하시거나, 인스타그램 DM으로 편하게 연락주세요."
+         data-de="Füllen Sie das Formular aus, um Ihre Anfrage abzusenden, oder kontaktieren Sie uns über Instagram DM.">
+        Fill out the form below to submit your inquiry, or contact via Instagram DM.
       </p>
       
       <form class="booking-form" id="contact-form">
         <div class="form-row">
           <div class="form-group">
-            <label for="from_name" data-en="YOUR NAME" data-kr="성함" data-de="NAME">YOUR NAME</label>
-            <input type="text" id="from_name" name="from_name" class="form-control" placeholder="Enter your name" required>
+            <label for="from_name" data-en="YOUR NAME" data-kr="성함 (YOUR NAME)" data-de="NAME">YOUR NAME</label>
+            <input type="text" id="from_name" name="from_name" class="form-control" 
+                   data-en-ph="Enter your name" data-kr-ph="성함을 입력해주세요" data-de-ph="Geben Sie Ihren Namen ein" 
+                   placeholder="Enter your name" required>
           </div>
           <div class="form-group">
-            <label for="from_email" data-en="EMAIL ADDRESS" data-kr="이메일" data-de="E-MAIL">EMAIL ADDRESS</label>
-            <input type="email" id="from_email" name="from_email" class="form-control" placeholder="Enter your email" required>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="age" data-en="AGE" data-kr="나이" data-de="ALTER">AGE</label>
-            <input type="text" id="age" name="age" class="form-control" placeholder="Enter your age" required>
-          </div>
-          <div class="form-group">
-            <label for="phone" data-en="PHONE NUMBER" data-kr="전화번호" data-de="TELEFON">PHONE NUMBER</label>
-            <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone number" required>
+            <label for="from_email" data-en="EMAIL ADDRESS" data-kr="이메일 주소 (EMAIL)" data-de="E-MAIL-ADRESSE">EMAIL ADDRESS</label>
+            <input type="email" id="from_email" name="from_email" class="form-control" 
+                   data-en-ph="Enter your email" data-kr-ph="이메일 주소를 입력해주세요" data-de-ph="Geben Sie Ihre E-Mail ein" 
+                   placeholder="Enter your email" required>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
-            <label for="placement" data-en="TATTOO PLACEMENT" data-kr="시술 부위" data-de="PLATZIERUNG">TATTOO PLACEMENT</label>
-            <input type="text" id="placement" name="placement" class="form-control" placeholder="e.g., Forearm, Thigh, Chest" required>
+            <label for="age" data-en="AGE" data-kr="나이 (AGE)" data-de="ALTER">AGE</label>
+            <input type="text" id="age" name="age" class="form-control" 
+                   data-en-ph="Enter your age" data-kr-ph="나이를 입력해주세요" data-de-ph="Geben Sie Ihr Alter ein" 
+                   placeholder="Enter your age" required>
           </div>
           <div class="form-group">
-            <label for="size" data-en="ESTIMATED SIZE (CM)" data-kr="예상 사이즈" data-de="GRÖSSE (CM)">ESTIMATED SIZE (CM)</label>
-            <input type="text" id="size" name="size" class="form-control" placeholder="e.g., 15cm x 10cm" required>
+            <label for="phone" data-en="PHONE NUMBER" data-kr="전화번호 (PHONE)" data-de="TELEFONNUMMER">PHONE NUMBER</label>
+            <input type="tel" id="phone" name="phone" class="form-control" 
+                   data-en-ph="Enter your phone number" data-kr-ph="전화번호를 입력해주세요" data-de-ph="Geben Sie Ihre Telefonnummer ein" 
+                   placeholder="Enter your phone number" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="placement" data-en="TATTOO PLACEMENT" data-kr="시술 부위 (PLACEMENT)" data-de="TATTOO-PLATZIERUNG">TATTOO PLACEMENT</label>
+            <input type="text" id="placement" name="placement" class="form-control" 
+                   data-en-ph="e.g., Forearm, Thigh, Chest" data-kr-ph="예: 전완근, 허벅지, 가슴 등" data-de-ph="z.B. Unterarm, Oberschenkel, Brust" 
+                   placeholder="e.g., Forearm, Thigh, Chest" required>
+          </div>
+          <div class="form-group">
+            <label for="size" data-en="ESTIMATED SIZE (CM)" data-kr="예상 사이즈 (SIZE)" data-de="GESCHÄTZTE GRÖSSE (CM)">ESTIMATED SIZE (CM)</label>
+            <input type="text" id="size" name="size" class="form-control" 
+                   data-en-ph="e.g., 15cm x 10cm" data-kr-ph="예: 15cm x 10cm" data-de-ph="z.B. 15cm x 10cm" 
+                   placeholder="e.g., 15cm x 10cm" required>
           </div>
         </div>
 
         <div class="form-group">
-          <label for="project_type" data-en="PROJECT TYPE" data-kr="작업 종류" data-de="PROJEKT-TYP">PROJECT TYPE</label>
+          <label for="project_type" data-en="PROJECT TYPE" data-kr="프로젝트 유형 (PROJECT TYPE)" data-de="PROJEKT-TYP">PROJECT TYPE</label>
           <select id="project_type" name="project_type" class="form-control" required>
-            <option value="" disabled selected data-en="Select project type" data-kr="작업 종류를 선택해주세요" data-de="Auswählen">Select project type</option>
-            <option value="Custom Design">Custom Design (New Concept)</option>
-            <option value="Available Flash">Available Flash Design</option>
-            <option value="Cover-up / Touch-up">Cover-up / Touch-up</option>
+            <option value="" disabled selected data-en="Select project type" data-kr="프로젝트 유형을 선택하세요" data-de="Projekt-Typ auswählen">Select project type</option>
+            <option value="Custom Design (New Concept)" data-en="Custom Design (New Concept)" data-kr="커스텀 도안 (새로운 컨셉)" data-de="Individuelles Design (Neues Konzept)">Custom Design (New Concept)</option>
+            <option value="Available Flash Design" data-en="Available Flash Design" data-kr="진행 가능한 플래시 도안" data-de="Verfügbares Flash-Design">Available Flash Design</option>
+            <option value="Cover-up / Touch-up" data-en="Cover-up / Touch-up" data-kr="커버업 / 터치업" data-de="Cover-up / Touch-up">Cover-up / Touch-up</option>
           </select>
         </div>
 
-        <div class="photo-notice-box">
-          <span data-en="💡 After submitting this form, please send your reference photos via <strong>Instagram DM</strong> or <strong>Email</strong> with your name."
-                data-kr="💡 문의 제출 후, 레퍼런스 사진은 <strong>인스타그램 DM</strong>이나 <strong>이메일</strong>로 성함과 함께 보내주세요."
-                data-de="💡 Senden Sie Referenzfotos nach dem Absenden per <strong>Instagram DM</strong> oder <strong>E-Mail</strong> mit Ihrem Namen.">
-            💡 After submitting this form, please send your reference photos via <strong>Instagram DM</strong> or <strong>Email</strong> with your name.
-          </span>
+        <div class="notice-box">
+          💡 <span data-en="After submitting this form, please send your reference photos via" data-kr="본 양식을 제출하신 후, 참고 사진을" data-de="Nach Absenden dieses Formulars senden Sie Ihre Referenzfotos bitte per">After submitting this form, please send your reference photos via</span> 
+          <strong style="color: var(--accent-color);">Instagram DM</strong> <span data-en="or" data-kr="또는" data-de="oder">or</span> 
+          <strong style="color: var(--accent-color);">Email</strong> <span data-en="with your name." data-kr="으로 성함과 함께 보내주세요." data-de="mit Ihrem Namen.">with your name.</span>
         </div>
 
         <div class="form-group">
-          <label for="message" data-en="PROJECT IDEA & DETAILS" data-kr="작업 아이디어 및 디테일" data-de="DETAILS">PROJECT IDEA & DETAILS</label>
-          <textarea id="message" name="message" class="form-control" placeholder="Describe your concept, preferred motifs (Dancheong, geometric, etc.)" required></textarea>
+          <label for="message" data-en="PROJECT IDEA & DETAILS" data-kr="작업 아이디어 및 디테일 (IDEA)" data-de="PROJEKT-IDEE & DETAILS">PROJECT IDEA & DETAILS</label>
+          <textarea id="message" name="message" class="form-control" 
+                    data-en-ph="Describe your concept, preferred motifs (Dancheong, geometric, etc.)" 
+                    data-kr-ph="원하시는 컨셉 및 선호하는 모티브(단청, 지오메트리 등)를 설명해주세요" 
+                    data-de-ph="Beschreiben Sie Ihr Konzept und bevorzugte Motive (Dancheong, Geometrie usw.)" 
+                    placeholder="Describe your concept, preferred motifs (Dancheong, geometric, etc.)" required></textarea>
         </div>
 
         <button type="submit" class="btn-submit" data-en="Submit Inquiry" data-kr="문의 제출하기" data-de="Anfrage absenden">Submit Inquiry</button>
@@ -886,26 +1202,16 @@
 
     function toggleTheme() {
       const htmlEl = document.documentElement;
-      const themeIcon = document.getElementById('themeIcon');
-      
       if (htmlEl.getAttribute('data-theme') === 'light') {
         htmlEl.removeAttribute('data-theme');
-        themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
       } else {
         htmlEl.setAttribute('data-theme', 'light');
-        themeIcon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
       }
     }
 
-    function toggleAccordion(element) {
-      const item = element.parentElement;
-      const icon = element.querySelector('.toggle-icon');
-      item.classList.toggle('active');
-      if (item.classList.contains('active')) {
-        icon.textContent = '-';
-      } else {
-        icon.textContent = '+';
-      }
+    function toggleAccordion(button) {
+      const parentBox = button.parentElement;
+      parentBox.classList.toggle('active');
     }
 
     function setLanguage(lang) {
@@ -921,10 +1227,26 @@
           el.innerHTML = el.dataset[lang];
         }
       });
+
+      document.querySelectorAll('[data-en-ph]').forEach(input => {
+        const phKey = `${lang}-ph`;
+        if (input.dataset[phKey]) {
+          input.placeholder = input.dataset[phKey];
+        }
+      });
+
+      const selectEl = document.getElementById('project_type');
+      if (selectEl && selectEl.options.length > 0) {
+        const defaultOpt = selectEl.options[0];
+        if (defaultOpt.dataset[lang]) {
+          defaultOpt.text = defaultOpt.dataset[lang];
+        }
+      }
     }
 
     document.getElementById('contact-form').addEventListener('submit', function(event) {
         event.preventDefault();
+
         const myForm = this;
         const submitBtn = myForm.querySelector('.btn-submit');
         const originalText = submitBtn.innerHTML;
@@ -938,105 +1260,37 @@
 
         emailjs.sendForm('service_kiwa', 'template_ahfvhka', myForm)
             .then(function() {
-                let successMsg = 'Inquiry sent successfully!';
-                if(currentLang === 'kr') successMsg = '예약 문의가 성공적으로 전송되었습니다!';
-                if(currentLang === 'de') successMsg = 'Anfrage erfolgreich gesendet!';
+                let successMsg = 'Inquiry sent successfully! We will get back to you soon.';
+                if(currentLang === 'kr') successMsg = '예약 문의가 성공적으로 전송되었습니다! 빠른 시일 내에 답변 드리겠습니다.';
+                if(currentLang === 'de') successMsg = 'Anfrage erfolgreich gesendet! Wir werden uns bald bei Ihnen melden.';
+                
                 alert(successMsg);
                 myForm.reset();
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             }, function(error) {
-                alert('Failed to send. (Error: ' + JSON.stringify(error) + ')');
+                let failMsg = 'Failed to send. Please try again. (Error: ';
+                if(currentLang === 'kr') failMsg = '전송에 실패했습니다. 다시 시도해 주세요. (Error: ';
+                if(currentLang === 'de') failMsg = 'Senden fehlgeschlagen. Bitte versuchen Sie es erneut. (Error: ';
+
+                alert(failMsg + JSON.stringify(error) + ')');
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             });
     });
 
-    const track = document.getElementById('heroTrack');
-    const container = document.getElementById('sliderContainer');
-    const slides = Array.from(track.children);
-    const nextBtn = document.getElementById('nextBtn');
-    const prevBtn = document.getElementById('prevBtn');
-    const dotsContainer = document.getElementById('dotsContainer');
-
-    let currentIndex = 0;
-    let autoSlideTimer = null;
-
-    slides.forEach((_, index) => {
-      const dot = document.createElement('div');
-      dot.classList.add('dot');
-      if (index === 0) dot.classList.add('active');
-      dot.addEventListener('click', () => {
-        goToSlide(index);
-        resetAutoSlide();
-      });
-      dotsContainer.appendChild(dot);
-    });
-
-    const dots = Array.from(dotsContainer.children);
-
-    function updateDots() {
-      dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentIndex);
-      });
-    }
-
-    function goToSlide(index) {
-      currentIndex = index;
-      if (currentIndex < 0) currentIndex = slides.length - 1;
-      if (currentIndex >= slides.length) currentIndex = 0;
-      track.style.transform = `translateX(-${currentIndex * 100}%)`;
-      updateDots();
-    }
-
-    function startAutoSlide() {
-      autoSlideTimer = setInterval(() => {
-        goToSlide(currentIndex + 1);
-      }, 5000);
-    }
-
-    function resetAutoSlide() {
-      clearInterval(autoSlideTimer);
-      startAutoSlide();
-    }
-
-    nextBtn.addEventListener('click', () => {
-      goToSlide(currentIndex + 1);
-      resetAutoSlide();
-    });
-
-    prevBtn.addEventListener('click', () => {
-      goToSlide(currentIndex - 1);
-      resetAutoSlide();
-    });
-
-    let startX = 0;
-    let endX = 0;
-
-    container.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
-    container.addEventListener('touchend', (e) => { endX = e.changedTouches[0].clientX; handleSwipe(); }, { passive: true });
-    container.addEventListener('mousedown', (e) => { startX = e.clientX; });
-    container.addEventListener('mouseup', (e) => { endX = e.clientX; handleSwipe(); });
-
-    function handleSwipe() {
-      const diffX = startX - endX;
-      if (Math.abs(diffX) > 50) {
-        if (diffX > 0) goToSlide(currentIndex + 1);
-        else goToSlide(currentIndex - 1);
-        resetAutoSlide();
-      }
-    }
-
-    startAutoSlide();
-
     document.addEventListener("DOMContentLoaded", function () {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add("visible");
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
         });
       }, { threshold: 0.1 });
 
-      document.querySelectorAll(".fade-up").forEach((el) => observer.observe(el));
+      document.querySelectorAll(".fade-up").forEach((el) => {
+        observer.observe(el);
+      });
     });
   </script>
 </body>
